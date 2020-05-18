@@ -51,9 +51,8 @@ var partner = require('./Partner/Controller.js');
 
  app.route('/employee/auth')
     .post(employee.auth)
-    
 
-     // Employee Routes
+     // Partner Routes
  app.route('/partner')
     .get(partner.getAll)
     .post(partner.create)

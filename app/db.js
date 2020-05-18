@@ -7,7 +7,7 @@ var connection = mysql.createConnection({
     host     : 'localhost',
     user     : 'root',
     password : '',
-    database : 'elixir-lab'
+    database : 'elixir'
 });
 
 connection.connect(function(err) {
