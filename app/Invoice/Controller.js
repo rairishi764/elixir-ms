@@ -1,27 +1,26 @@
 'use strict';
 
-var obj = require('../LabCategory/Model.js');
+var obj = require('../Invoice/Model.js');
 
 exports.getAll = function(req, res) {
   obj.getAll(function(err, obj) {
     console.log("List Is:"+obj)
     if (err)
       res.send(err);
-      console.log('res111', obj);
+      console.log('result:', obj);
     res.send(obj);
   });
 };
 
 exports.create = function(req, res) {
   var new_obj = new obj(req.body);
-  //console.log('Object is:'+new_obj.toString())
    if(!new_obj.lab_category_name){
-            res.status(400).send({ error:true, message: 'Please provide obj details properly.' });}   
-   else{  
-    obj.create(new_obj, function(err, obj) {   
+            res.status(400).send({ error:true, message: 'Please provide obj details properly.' });}
+   else{
+    obj.create(new_obj, function(err, obj) {
       if (err)
         res.send(err);
-      
+
       res.json(obj);
   });
 }
@@ -48,7 +47,7 @@ exports.remove = function(req, res) {
   obj.remove( req.params.id, function(err, categories) {
     if (err)
       res.send(err);
-    
+
     res.json({ message: 'Entry successfully deleted' });
   });
 };

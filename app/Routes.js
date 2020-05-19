@@ -10,8 +10,8 @@ var partner = require('./Partner/Controller.js');
 
 
  // LabCategory Routes
-  app.route('/labcategory')
-    .get(labcategory.getAll)
+  app.route('/labcategory')    //url path added to base url
+    .get(labcategory.getAll)   // controllerobj.function()
  	  .post(labcategory.create)
     
  app.route('/labcategory/:id')
