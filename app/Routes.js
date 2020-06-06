@@ -61,9 +61,8 @@ var partner = require('./Partner/Controller.js');
     .put(partner.update)
     .delete(partner.remove)
     .get(partner.getById)
-  };
 
-/*
+
       // Consultant Routes
   app.route('/api/consultant')
      .get(consultant.getAll)
@@ -72,4 +71,9 @@ var partner = require('./Partner/Controller.js');
   app.route('/api/consultant/:id')
      .put(consultant.update)
      .delete(consultant.remove)
-     .get(consultant.getById)*/
+     .get(consultant.getById)
+
+
+  };
+
+

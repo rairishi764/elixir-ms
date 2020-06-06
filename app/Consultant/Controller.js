@@ -2,6 +2,7 @@
 
 var obj = require('../Consultant/Model.js');
 
+
 exports.getAll = function(req, res) {
   obj.getAll(function(err, obj) {
     console.log("List Is:"+obj)

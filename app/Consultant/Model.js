@@ -11,13 +11,10 @@ var modelObj = function(obj){
     this.address = obj.address;
     this.records = obj.records;
     this.dob = obj.dob;
-    this.createdon = new Date();
 };
 
-
-
 modelObj.create = function create(newObj, result) {    
-        sql.query("INSERT INTO ${tableName} set ?", newObj, function (err, res) {
+        sql.query("INSERT INTO "+tableName+" set ?", newObj, function (err, res) {
                 
                 if(err) {
                     console.log("error: ", err);
@@ -33,7 +30,7 @@ modelObj.create = function create(newObj, result) {
 
 
 modelObj.getAll = function getAll(result) {    
-        sql.query("SELECT * FROM ${tableName}", function (err, res) {
+        sql.query("SELECT * FROM "+tableName, function (err, res) {
                 if(err) {
                     console.log("error: ", err);
                     result(err, null);
@@ -45,7 +42,7 @@ modelObj.getAll = function getAll(result) {
 };
 
 modelObj.getById = function getById(id, result) {    
-        sql.query("SELECT * FROM ${tableName} where id = ?", [id], function (err, res) {
+        sql.query("SELECT * FROM "+tableName+" where id = ?", [id], function (err, res) {
                 if(err) {
                     console.log("error: ", err);
                     result(err, null);
@@ -58,7 +55,7 @@ modelObj.getById = function getById(id, result) {
 
 
 modelObj.remove = function remove(id, result) {    
-        sql.query("DELETE FROM ${tableName} where id = ?", [id], function (err, res) {
+        sql.query("DELETE FROM "+tableName+" where id = ?", [id], function (err, res) {
                 
                 if(err) {
                     console.log("error: ", err);
@@ -74,7 +71,7 @@ modelObj.remove = function remove(id, result) {
 
 
 modelObj.update = function update(id, updatedObj, result) {    
- sql.query("UPDATE ${tableName} SET name = ? WHERE id = ?", [updatedObj, id], function (err, res) {
+ sql.query("UPDATE "+tableName+" SET name = ? WHERE id = ?", [updatedObj, id], function (err, res) {
           if(err) {
               console.log("error: ", err);
                 result(null, err);
