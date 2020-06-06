@@ -20,14 +20,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c06bd363-9f91-412d-b5bc-6a76616b5541" name="Default Changelist" comment="Added cross domain origin for rest apis">
-      <change afterPath="$PROJECT_DIR$/app/Invoice/Controller.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Invoice/Model.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Utils/encryption.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/LabCategory/Controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/LabCategory/Controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Doctors/Controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Consultant/Controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Doctors/Model.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Consultant/Model.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/LabTest/Model.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/LabTest/Model.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Routes.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +73,14 @@
       <option name="project" value="LOCAL" />
       <updated>1589840359220</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="added encryption basic code">
+      <created>1589917319419</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1589917319419</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -90,16 +97,25 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added cross domain origin for rest apis" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added cross domain origin for rest apis" />
+    <MESSAGE value="added encryption basic code" />
+    <option name="LAST_COMMIT_MESSAGE" value="added encryption basic code" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="222" y="140" width="930" height="503" key="DiffContextDialog" timestamp="1591446301019">
+      <screen x="0" y="23" width="1440" height="797" />
+    </state>
+    <state x="222" y="140" width="930" height="503" key="DiffContextDialog/0.23.1440.797@0.23.1440.797" timestamp="1591446301019" />
     <state x="511" y="313" key="VCS.EditChangelistDialog" timestamp="1589840392896">
       <screen x="0" y="23" width="1440" height="797" />
     </state>
     <state x="511" y="313" key="VCS.EditChangelistDialog/0.23.1440.797@0.23.1440.797" timestamp="1589840392896" />
-    <state x="287" y="131" key="Vcs.Push.Dialog.v2" timestamp="1589840363256">
+    <state x="287" y="131" key="Vcs.Push.Dialog.v2" timestamp="1589917322829">
       <screen x="0" y="23" width="1440" height="797" />
     </state>
-    <state x="287" y="131" key="Vcs.Push.Dialog.v2/0.23.1440.797@0.23.1440.797" timestamp="1589840363256" />
+    <state x="287" y="131" key="Vcs.Push.Dialog.v2/0.23.1440.797@0.23.1440.797" timestamp="1589917322829" />
+    <state x="490" y="312" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1589917636683">
+      <screen x="0" y="23" width="1440" height="797" />
+    </state>
+    <state x="490" y="312" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1440.797@0.23.1440.797" timestamp="1589917636683" />
   </component>
 </project>

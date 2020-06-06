@@ -1,6 +1,6 @@
 'use strict';
 
-var obj = require('../Doctors/Model.js');
+var obj = require('../Consultant/Model.js');
 
 exports.getAll = function(req, res) {
   obj.getAll(function(err, obj) {
@@ -20,7 +20,6 @@ exports.create = function(req, res) {
     obj.create(new_obj, function(err, obj) {   
       if (err)
         res.send(err);
-      
       res.json(obj);
   });
 }
@@ -47,7 +46,6 @@ exports.remove = function(req, res) {
   obj.remove( req.params.id, function(err, categories) {
     if (err)
       res.send(err);
-    
     res.json({ message: 'Entry successfully deleted' });
   });
 };

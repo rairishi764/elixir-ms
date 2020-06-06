@@ -1,19 +1,23 @@
 'user strict';
 
 var sql = require('../db.js');
-
+var tableName="consultant"
 //Task object constructor
-var modelObj = function(lab_sub_category){
-    this.lab_sub_category_id = lab_sub_category.lab_sub_category_id;
-    this.lab_category_id = lab_sub_category.lab_category_id;
-    this.lab_sub_category_name = lab_sub_category.lab_sub_category_name;
+var modelObj = function(obj){
+    this.name = obj.name;
+    this.qualification = obj.qualification;
+    this.medical_id = obj.medical_id;
+    this.phone = obj.phone;
+    this.address = obj.address;
+    this.records = obj.records;
+    this.dob = obj.dob;
     this.createdon = new Date();
 };
 
 
 
 modelObj.create = function create(newObj, result) {    
-        sql.query("INSERT INTO lab_sub_category set ?", newObj, function (err, res) {
+        sql.query("INSERT INTO ${tableName} set ?", newObj, function (err, res) {
                 
                 if(err) {
                     console.log("error: ", err);
@@ -29,7 +33,7 @@ modelObj.create = function create(newObj, result) {
 
 
 modelObj.getAll = function getAll(result) {    
-        sql.query("SELECT * FROM lab_sub_category", function (err, res) {                
+        sql.query("SELECT * FROM ${tableName}", function (err, res) {
                 if(err) {
                     console.log("error: ", err);
                     result(err, null);
@@ -41,7 +45,7 @@ modelObj.getAll = function getAll(result) {
 };
 
 modelObj.getById = function getById(id, result) {    
-        sql.query("SELECT * FROM lab_sub_category where lab_sub_category_id = ?", [id], function (err, res) {              
+        sql.query("SELECT * FROM ${tableName} where id = ?", [id], function (err, res) {
                 if(err) {
                     console.log("error: ", err);
                     result(err, null);
@@ -54,7 +58,7 @@ modelObj.getById = function getById(id, result) {
 
 
 modelObj.remove = function remove(id, result) {    
-        sql.query("DELETE FROM lab_sub_category where lab_sub_category_id = ?", [id], function (err, res) {
+        sql.query("DELETE FROM ${tableName} where id = ?", [id], function (err, res) {
                 
                 if(err) {
                     console.log("error: ", err);
@@ -69,10 +73,8 @@ modelObj.remove = function remove(id, result) {
 };
 
 
-
-
 modelObj.update = function update(id, updatedObj, result) {    
- sql.query("UPDATE lab_sub_category SET lab_sub_category_name = ? WHERE lab_sub_category_id = ?", [updatedObj, id], function (err, res) {
+ sql.query("UPDATE ${tableName} SET name = ? WHERE id = ?", [updatedObj, id], function (err, res) {
           if(err) {
               console.log("error: ", err);
                 result(null, err);

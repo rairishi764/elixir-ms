@@ -1,66 +1,75 @@
 'use strict';
 module.exports = function(app) {
 var labcategory = require('./LabCategory/Controller.js');
-// var employee = require('LabCategory/Controller.js');
+var consultant = require('./Consultant/Controller.js');
 var labsubcategory = require('./LabSubCategory/Controller.js');
 var labtest = require('./LabTest/Controller.js');
 var employee = require('./Employee/Controller.js');
 var partner = require('./Partner/Controller.js');
 
-
-
  // LabCategory Routes
-  app.route('/labcategory')    //url path added to base url
+  app.route('/api/labcategory')    //url path added to base url
     .get(labcategory.getAll)   // controllerobj.function()
  	  .post(labcategory.create)
     
- app.route('/labcategory/:id')
+ app.route('/api/labcategory/:id')
     .put(labcategory.update)
     .delete(labcategory.remove)
     .get(labcategory.getById)
 
  // LabSubCategory Routes
- app.route('/labsubcategory')
+ app.route('/api/labsubcategory')
     .get(labsubcategory.getAll)
     .post(labsubcategory.create)
-    
- app.route('/labsubcategory/:id')
+
+
+ app.route('/api/labsubcategory/:id')
     .put(labsubcategory.update)
     .delete(labsubcategory.remove)
     .get(labsubcategory.getById)
 
      // LabTests Routes
- app.route('/labtest')
+ app.route('/api/labtest')
     .get(labtest.getAll)
     .post(labtest.create)
     
- app.route('/labtest/:id')
+ app.route('/api/labtest/:id')
     .put(labtest.update)
     .delete(labtest.remove)
     .get(labtest.getById)
 
      // Employee Routes
- app.route('/employee')
+ app.route('/api/employee')
     .get(employee.getAll)
     .post(employee.create)
     
- app.route('/employee/:id')
+ app.route('/api/employee/:id')
     .put(employee.update)
     .delete(employee.remove)
     .get(employee.getById)
 
- app.route('/employee/auth')
+ app.route('/api/employee/auth')
     .post(employee.auth)
 
      // Partner Routes
- app.route('/partner')
+ app.route('/api/partner')
     .get(partner.getAll)
     .post(partner.create)
-    
- app.route('/partner/:id')
+
+
+ app.route('/api/partner/:id')
     .put(partner.update)
     .delete(partner.remove)
     .get(partner.getById)
   };
 
- 
+/*
+      // Consultant Routes
+  app.route('/api/consultant')
+     .get(consultant.getAll)
+     .post(consultant.create)
+
+  app.route('/api/consultant/:id')
+     .put(consultant.update)
+     .delete(consultant.remove)
+     .get(consultant.getById)*/

@@ -63,9 +63,8 @@ modelObj.getById = function getById(id, result) {
                 else{
                     result(null, res);
                 }
-            });           
-};
-
+            });
+           };
 
 modelObj.remove = function remove(id, result) {    
         sql.query("DELETE FROM lab_test where lab_test_id = ?", [id], function (err, res) {
@@ -81,8 +80,6 @@ modelObj.remove = function remove(id, result) {
                 }
             });           
 };
-
-
 
 
 modelObj.update = function update(id, updatedObj, result) {    
