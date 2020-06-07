@@ -71,7 +71,7 @@ modelObj.remove = function remove(id, result) {
 
 
 modelObj.update = function update(id, updatedObj, result) {    
- sql.query("UPDATE "+tableName+" SET name = ? WHERE id = ?", [updatedObj, id], function (err, res) {
+ sql.query("UPDATE "+tableName+" SET ? WHERE id = ?", [updatedObj, id], function (err, res) {
           if(err) {
               console.log("error: ", err);
                 result(null, err);
