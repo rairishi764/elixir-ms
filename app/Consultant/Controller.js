@@ -14,8 +14,9 @@ exports.getAll = function(req, res) {
 };
 
 exports.create = function(req, res) {
+console.log(req.body);
   var new_obj = new obj(req.body);
-   if(new_obj!=null){
+   if(new_obj==null){
             res.status(400).send({ error:true, message: 'Please provide obj details properly.' });}   
    else{  
     obj.create(new_obj, function(err, obj) {   
