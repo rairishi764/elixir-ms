@@ -5,6 +5,7 @@ var tableName="consultant"
 //Task object constructor
 var modelObj = function(obj){
     this.name = obj.name;
+    this.department_id= obj.department.id;
     this.qualification = obj.qualification;
     this.medical_id = obj.medical_id;
     this.phone = obj.phone;
