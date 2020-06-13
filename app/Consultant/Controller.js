@@ -2,7 +2,6 @@
 
 var obj = require('../Consultant/Model.js');
 
-
 exports.getAll = function(req, res) {
   obj.getAll(function(err, obj) {
     console.log("List Is:"+obj)
@@ -18,7 +17,8 @@ console.log(req.body);
   var new_obj = new obj(req.body);
    if(new_obj==null){
             res.status(400).send({ error:true, message: 'Please provide obj details properly.' });}   
-   else{  
+   else{
+   console.log("Creating")
     obj.create(new_obj, function(err, obj) {   
       if (err)
         res.send(err);

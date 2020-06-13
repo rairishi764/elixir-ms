@@ -1,11 +1,11 @@
 'use strict';
 module.exports = function(app) {
-var labcategory = require('./LabCategory/Controller.js');
 var consultant = require('./Consultant/Controller.js');
-var labsubcategory = require('./LabSubCategory/Controller.js');
-var labtest = require('./LabTest/Controller.js');
 var employee = require('./Employee/Controller.js');
-var partner = require('./Partner/Controller.js');
+var labcategory = require('./Lab/LabCategory/Controller.js');
+var labsubcategory = require('./Lab/LabSubCategory/Controller.js');
+var labtest = require('./Lab/LabTest/Controller.js');
+var partner = require('./Lab/Partner/Controller.js');
 
  // LabCategory Routes
   app.route('/api/labcategory')    //url path added to base url

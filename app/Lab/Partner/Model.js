@@ -1,18 +1,19 @@
 'user strict';
 
-var sql = require('../db.js');
+var sql = require('../../db.js');
 
 //Task object constructor
-var modelObj = function(lab_category){
-    this.lab_category_id = lab_category.lab_category_id;
-    this.lab_category_name = lab_category.lab_category_name;
+var modelObj = function(obj){
+    this.lab_partner_id = obj.lab_partner_id;
+    this.lab_partner_name = obj.lab_partner_name;
+  
     this.createdon = new Date();
 };
 
 
 
 modelObj.create = function create(newObj, result) {    
-        sql.query("INSERT INTO lab_category set ?", newObj, function (err, res) {
+        sql.query("INSERT INTO lab_partner set ?", newObj, function (err, res) {
                 
                 if(err) {
                     console.log("error: ", err);
@@ -28,7 +29,7 @@ modelObj.create = function create(newObj, result) {
 
 
 modelObj.getAll = function getAll(result) {    
-        sql.query("SELECT * FROM lab_category", function (err, res) {                
+        sql.query("SELECT * FROM lab_partner", function (err, res) {                
                 if(err) {
                     console.log("error: ", err);
                     result(err, null);
@@ -40,7 +41,7 @@ modelObj.getAll = function getAll(result) {
 };
 
 modelObj.getById = function getById(id, result) {    
-        sql.query("SELECT * FROM lab_category where lab_category_id = ?", [id], function (err, res) {              
+        sql.query("SELECT * FROM lab_partner where lab_partner_id = ?", [id], function (err, res) {              
                 if(err) {
                     console.log("error: ", err);
                     result(err, null);
@@ -53,7 +54,7 @@ modelObj.getById = function getById(id, result) {
 
 
 modelObj.remove = function remove(id, result) {    
-        sql.query("DELETE FROM lab_category where lab_category_id = ?", [id], function (err, res) {
+        sql.query("DELETE FROM lab_partner where lab_partner_id = ?", [id], function (err, res) {
                 
                 if(err) {
                     console.log("error: ", err);
@@ -71,7 +72,7 @@ modelObj.remove = function remove(id, result) {
 
 
 modelObj.update = function update(id, updatedObj, result) {    
- sql.query("UPDATE lab_category SET lab_category_name = ? WHERE lab_category_id = ?", [updatedObj, id], function (err, res) {
+ sql.query("UPDATE lab_partner SET lab_partner_name = ? WHERE lab_partner_id = ?", [updatedObj, id], function (err, res) {
           if(err) {
               console.log("error: ", err);
                 result(null, err);
