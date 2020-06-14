@@ -4,8 +4,8 @@ var sql = require('../../db.js');
 
 //Task object constructor
 var modelObj = function(obj){
-    this.lab_partner_id = obj.lab_partner_id;
-    this.lab_partner_name = obj.lab_partner_name;
+    this.id = obj.id;
+    this.name = obj.name;
   
     this.createdon = new Date();
 };
@@ -41,7 +41,7 @@ modelObj.getAll = function getAll(result) {
 };
 
 modelObj.getById = function getById(id, result) {    
-        sql.query("SELECT * FROM lab_partner where lab_partner_id = ?", [id], function (err, res) {              
+        sql.query("SELECT * FROM lab_partner where id = ?", [id], function (err, res) {
                 if(err) {
                     console.log("error: ", err);
                     result(err, null);
@@ -54,7 +54,7 @@ modelObj.getById = function getById(id, result) {
 
 
 modelObj.remove = function remove(id, result) {    
-        sql.query("DELETE FROM lab_partner where lab_partner_id = ?", [id], function (err, res) {
+        sql.query("DELETE FROM lab_partner where id = ?", [id], function (err, res) {
                 
                 if(err) {
                     console.log("error: ", err);

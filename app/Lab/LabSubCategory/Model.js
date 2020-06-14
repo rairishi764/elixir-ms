@@ -4,13 +4,11 @@ var sql = require('../../db.js');
 
 //Task object constructor
 var modelObj = function(obj){
-    this.lab_sub_category_id = obj.lab_sub_category_id;
+    this.id = obj.id;
     this.lab_category_id = obj.lab_category_id;
     this.lab_sub_category_name = obj.lab_sub_category_name;
     this.createdon = new Date();
 };
-
-
 
 modelObj.create = function create(newObj, result) {    
         sql.query("INSERT INTO lab_sub_category set ?", newObj, function (err, res) {
