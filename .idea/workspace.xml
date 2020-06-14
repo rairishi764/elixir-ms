@@ -21,17 +21,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c06bd363-9f91-412d-b5bc-6a76616b5541" name="Default Changelist" comment="Consultant create fixed">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Consultant/Controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Consultant/Controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Consultant/Model.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Consultant/Model.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/LabCategory/Controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Lab/LabCategory/Controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/LabCategory/Model.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Lab/LabCategory/Model.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/LabSubCategory/Controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Lab/LabSubCategory/Controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/LabSubCategory/Model.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Lab/LabSubCategory/Model.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/LabTest/Controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Lab/LabTest/Controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/LabTest/Model.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Lab/LabTest/Model.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Partner/Controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Lab/Partner/Controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Partner/Model.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Lab/Partner/Model.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Routes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Lab/LabSubCategory/Model.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Lab/LabSubCategory/Model.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,7 +112,14 @@
       <option name="project" value="LOCAL" />
       <updated>1592052371601</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="refactored code">
+      <created>1592055823275</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1592055823275</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -147,7 +144,8 @@
     <MESSAGE value="Consultant update fixed" />
     <MESSAGE value="Consultant create fixed" />
     <MESSAGE value="added dept_id to consultant" />
-    <option name="LAST_COMMIT_MESSAGE" value="added dept_id to consultant" />
+    <MESSAGE value="refactored code" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactored code" />
   </component>
   <component name="WindowStateProjectService">
     <state x="222" y="140" width="930" height="503" key="DiffContextDialog" timestamp="1591446301019">
@@ -158,10 +156,10 @@
       <screen x="0" y="23" width="1440" height="797" />
     </state>
     <state x="511" y="313" key="VCS.EditChangelistDialog/0.23.1440.797@0.23.1440.797" timestamp="1589840392896" />
-    <state x="287" y="131" key="Vcs.Push.Dialog.v2" timestamp="1592052375838">
+    <state x="287" y="131" key="Vcs.Push.Dialog.v2" timestamp="1592055830963">
       <screen x="0" y="23" width="1440" height="797" />
     </state>
-    <state x="287" y="131" key="Vcs.Push.Dialog.v2/0.23.1440.797@0.23.1440.797" timestamp="1592052375838" />
+    <state x="287" y="131" key="Vcs.Push.Dialog.v2/0.23.1440.797@0.23.1440.797" timestamp="1592055830963" />
     <state x="490" y="312" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1589917636683">
       <screen x="0" y="23" width="1440" height="797" />
     </state>

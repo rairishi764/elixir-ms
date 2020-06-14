@@ -41,7 +41,7 @@ modelObj.getAll = function getAll(result) {
 };
 
 modelObj.getById = function getById(id, result) {    
-        sql.query("SELECT * FROM lab_sub_category where lab_sub_category_id = ?", [id], function (err, res) {              
+        sql.query("SELECT * FROM lab_sub_category where id = ?", [id], function (err, res) {
                 if(err) {
                     console.log("error: ", err);
                     result(err, null);
@@ -54,7 +54,7 @@ modelObj.getById = function getById(id, result) {
 
 
 modelObj.remove = function remove(id, result) {    
-        sql.query("DELETE FROM lab_sub_category where lab_sub_category_id = ?", [id], function (err, res) {
+        sql.query("DELETE FROM lab_sub_category where id = ?", [id], function (err, res) {
                 
                 if(err) {
                     console.log("error: ", err);
@@ -72,7 +72,7 @@ modelObj.remove = function remove(id, result) {
 
 
 modelObj.update = function update(id, updatedObj, result) {    
- sql.query("UPDATE lab_sub_category SET lab_sub_category_name = ? WHERE lab_sub_category_id = ?", [updatedObj, id], function (err, res) {
+ sql.query("UPDATE lab_sub_category SET ? WHERE id = ?", [updatedObj, id], function (err, res) {
           if(err) {
               console.log("error: ", err);
                 result(null, err);
