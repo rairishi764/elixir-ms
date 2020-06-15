@@ -6,6 +6,7 @@ var labcategory = require('./Lab/LabCategory/Controller.js');
 var labsubcategory = require('./Lab/LabSubCategory/Controller.js');
 var labtest = require('./Lab/LabTest/Controller.js');
 var partner = require('./Lab/Partner/Controller.js');
+var patient = require('./Patient/Controller.js')
 
  // LabCategory Routes
   app.route('/api/labcategory')    //url path added to base url
@@ -51,11 +52,23 @@ var partner = require('./Lab/Partner/Controller.js');
  app.route('/api/employee/auth')
     .post(employee.auth)
 
+    // Patient Routes
+ app.route('/api/patient')
+    .get(patient.getAll)
+    .post(patient.create)
+
+ app.route('/api/patient/:id')
+    .put(patient.update)
+    .delete(patient.remove)
+    .get(patient.getById)
+
+ app.route('/api/patient/auth')
+    .post(patient.auth)
+
      // Partner Routes
  app.route('/api/partner')
     .get(partner.getAll)
     .post(partner.create)
-
 
  app.route('/api/partner/:id')
     .put(partner.update)
@@ -72,8 +85,6 @@ var partner = require('./Lab/Partner/Controller.js');
      .put(consultant.update)
      .delete(consultant.remove)
      .get(consultant.getById)
-
-
   };
 
 

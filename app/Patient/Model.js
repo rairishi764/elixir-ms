@@ -1,19 +1,46 @@
 'user strict';
 
-var sql = require('../../db.js');
+var sql = require('../db.js');
 
 //Task object constructor
 var modelObj = function(obj){
     this.id = obj.id;
     this.name = obj.name;
-  
+    this.dob = obj.dob;
+    this.marital_status = obj.marital_status;
+    this.medical_history = obj.medical_history;
+    this.access_type = obj.access_type;
+    this.username = obj.username;
+    this.pwd = obj.pwd;
     this.createdon = new Date();
 };
 
+modelObj.auth = function auth(newObj, result) {    
+        console.log(newObj);
+        sql.query("SELECT `username`, `pwd`, `access_type` FROM "+tableName+" WHERE (username=? and pwd=?)", [newObj.username,newObj.pwd], function (err, res) {
+                
+                if(err) {
+                    console.log("error: ", err);
+                    result(err, null);
+                }
+                else{
+                     console.log(res);
+                     if(res[0]!=null)
+                        {console.log("Success");
+                        result(null, res[0].access_type);}
+
+                    else
+                        {console.log("Fail");
+                        result(null, "Fail");}
+
+                    
+                }
+            });           
+};
 
 
 modelObj.create = function create(newObj, result) {    
-        sql.query("INSERT INTO lab_partner set ?", newObj, function (err, res) {
+        sql.query("INSERT INTO "+tableName+" set ?", newObj, function (err, res) {
                 
                 if(err) {
                     console.log("error: ", err);
@@ -29,7 +56,7 @@ modelObj.create = function create(newObj, result) {
 
 
 modelObj.getAll = function getAll(result) {    
-        sql.query("SELECT * FROM lab_partner", function (err, res) {                
+        sql.query("SELECT * FROM "+tableName, function (err, res) {
                 if(err) {
                     console.log("error: ", err);
                     result(err, null);
@@ -41,7 +68,7 @@ modelObj.getAll = function getAll(result) {
 };
 
 modelObj.getById = function getById(id, result) {    
-        sql.query("SELECT * FROM lab_partner where id = ?", [id], function (err, res) {
+        sql.query("SELECT * FROM "+tableName+" where id = ?", [id], function (err, res) {
                 if(err) {
                     console.log("error: ", err);
                     result(err, null);
@@ -54,7 +81,7 @@ modelObj.getById = function getById(id, result) {
 
 
 modelObj.remove = function remove(id, result) {    
-        sql.query("DELETE FROM lab_partner where id = ?", [id], function (err, res) {
+        sql.query("DELETE FROM "+tableName+" where id = ?", [id], function (err, res) {
                 
                 if(err) {
                     console.log("error: ", err);
@@ -72,7 +99,7 @@ modelObj.remove = function remove(id, result) {
 
 
 modelObj.update = function update(id, updatedObj, result) {    
- sql.query("UPDATE lab_partner SET ? WHERE id = ?", [updatedObj, id], function (err, res) {
+ sql.query("UPDATE "+tableName+" SET ? WHERE id = ?", [updatedObj, id], function (err, res) {
           if(err) {
               console.log("error: ", err);
                 result(null, err);
