@@ -4,7 +4,7 @@ var sql = require('../../db.js');
 
 //Task object constructor
 var modelObj = function(object){
-    this.lab_test_id = object.lab_test_id;
+    this.id = object.id;
     this.lab_sub_category_id = object.lab_sub_category_id;
     this.lab_partner_id = object.lab_partner_id;
     this.partner_share_type = object.partner_share_type;
@@ -55,7 +55,7 @@ modelObj.getAll = function getAll(result) {
 };
 
 modelObj.getById = function getById(id, result) {    
-        sql.query("SELECT * FROM lab_test where lab_test_id = ?", [id], function (err, res) {              
+        sql.query("SELECT * FROM lab_test where id = ?", [id], function (err, res) {
                 if(err) {
                     console.log("error: ", err);
                     result(err, null);
@@ -67,7 +67,7 @@ modelObj.getById = function getById(id, result) {
            };
 
 modelObj.remove = function remove(id, result) {    
-        sql.query("DELETE FROM lab_test where lab_test_id = ?", [id], function (err, res) {
+        sql.query("DELETE FROM lab_test where id = ?", [id], function (err, res) {
                 
                 if(err) {
                     console.log("error: ", err);
@@ -83,7 +83,7 @@ modelObj.remove = function remove(id, result) {
 
 
 modelObj.update = function update(id, updatedObj, result) {    
- sql.query("UPDATE lab_test SET lab_test_name = ? WHERE lab_test_id = ?", [updatedObj, id], function (err, res) {
+ sql.query("UPDATE lab_test SET lab_test_name = ? WHERE id = ?", [updatedObj, id], function (err, res) {
           if(err) {
               console.log("error: ", err);
                 result(null, err);
