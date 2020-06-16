@@ -19,8 +19,6 @@ var modelObj = function(object){
     this.cut_off_time = object.cut_off_time;
     this.schd = object.schd;
     this.reporting = object.reporting;
-    this.discount_type_id = object.discount_type_id;
-    this.discount = object.discount;
     this.createdon = new Date();
 };
 
@@ -80,7 +78,6 @@ modelObj.remove = function remove(id, result) {
                 }
             });           
 };
-
 
 modelObj.update = function update(id, updatedObj, result) {    
  sql.query("UPDATE lab_test SET lab_test_name = ? WHERE id = ?", [updatedObj, id], function (err, res) {
