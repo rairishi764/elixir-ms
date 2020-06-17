@@ -1,6 +1,6 @@
 'use strict';
 
-var obj = require('../Employee/Model.js');
+var obj = require('./Model.js');
 
 
 exports.auth = function(req, res) {

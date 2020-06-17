@@ -1,6 +1,6 @@
 'use strict';
 
-var obj = require('../Invoice/Model.js');
+var obj = require('./Model.js');
 
 exports.getAll = function(req, res) {
   obj.getAll(function(err, obj) {

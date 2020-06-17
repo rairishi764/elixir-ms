@@ -1,6 +1,6 @@
 'use strict';
 
-var obj = require('../LabSubCategory/Model.js');
+var obj = require('./Model.js');
 
 exports.getAll = function(req, res) {
   obj.getAll(function(err, obj) {
@@ -14,9 +14,9 @@ exports.getAll = function(req, res) {
 
 exports.create = function(req, res) {
   var new_obj = new obj(req.body);
-   if(!new_obj.lab_sub_category_name){
+   if(new_obj==null){
             res.status(400).send({ error:true, message: 'Please provide obj details properly.' });}   
-   else{  
+   else{
     obj.create(new_obj, function(err, obj) {   
       if (err)
         res.send(err);

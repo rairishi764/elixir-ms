@@ -3,10 +3,12 @@
 var sql = require('../db.js');
 
 //Task object constructor
-var modelObj = function(lab_category){
-    this.lab_category_id = lab_category.lab_category_id;
-    this.lab_category_name = lab_category.lab_category_name;
-    this.createdon = new Date();
+var modelObj = function(object){
+    this.id = object.lab_category_id;
+    this.patient_id = object.lab_category_name;
+    this.date = new Date();
+    this.payment_mode = object.payment_mode;
+    this.total_cost =object.total_cost;
 };
 
 
