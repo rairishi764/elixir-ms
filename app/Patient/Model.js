@@ -7,6 +7,8 @@ var modelObj = function(obj){
     this.id = obj.id;
     this.name = obj.name;
     this.dob = obj.dob;
+    this.phone = obj.phone;
+    this.address = obj.address;
     this.marital_status = obj.marital_status;
     this.medical_history = obj.medical_history;
     this.access_type = obj.access_type;
@@ -14,11 +16,10 @@ var modelObj = function(obj){
     this.pwd = obj.pwd;
     this.createdon = new Date();
 };
-
+var tableName = "patient";
 modelObj.auth = function auth(newObj, result) {    
         console.log(newObj);
         sql.query("SELECT `username`, `pwd`, `access_type` FROM "+tableName+" WHERE (username=? and pwd=?)", [newObj.username,newObj.pwd], function (err, res) {
-                
                 if(err) {
                     console.log("error: ", err);
                     result(err, null);
@@ -27,13 +28,12 @@ modelObj.auth = function auth(newObj, result) {
                      console.log(res);
                      if(res[0]!=null)
                         {console.log("Success");
-                        result(null, res[0].access_type);}
-
-                    else
-                        {console.log("Fail");
-                        result(null, "Fail");}
-
-                    
+                        result(null, res[0].access_type);
+                        }
+                    else{
+                        console.log("Fail");
+                        result(null, "Fail");
+                        }
                 }
             });           
 };

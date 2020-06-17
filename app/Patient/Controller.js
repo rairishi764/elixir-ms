@@ -16,7 +16,6 @@ var auth_obj = new obj(req.body);
 }
 };
 
-
 exports.getAll = function(req, res) {
   obj.getAll(function(err, obj) {
     console.log("List Is:"+obj)
