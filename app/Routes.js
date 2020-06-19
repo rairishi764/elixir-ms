@@ -7,7 +7,7 @@ var labsubcategory = require('./Lab/LabSubCategory/Controller.js');
 var labtest = require('./Lab/LabTest/Controller.js');
 var partner = require('./Lab/Partner/Controller.js');
 var patient = require('./Patient/Controller.js')
-
+var labinvoice = require('./Lab/LabInvoice/Controller.js')
  // LabCategory Routes
   app.route('/api/labcategory')    //url path added to base url
     .get(labcategory.getAll)   // controllerobj.function()
@@ -75,7 +75,6 @@ var patient = require('./Patient/Controller.js')
     .delete(partner.remove)
     .get(partner.getById)
 
-
       // Consultant Routes
   app.route('/api/consultant')
      .get(consultant.getAll)
@@ -85,6 +84,16 @@ var patient = require('./Patient/Controller.js')
      .put(consultant.update)
      .delete(consultant.remove)
      .get(consultant.getById)
+
+      // invoice Routes
+  app.route('/api/labinvoice')
+     .get(labinvoice.getAll)
+     .post(labinvoice.create)
+
+  app.route('/api/labinvoice/:id')
+     .put(labinvoice.update)
+     .delete(labinvoice.remove)
+     .get(labinvoice.getById)
   };
 
 
