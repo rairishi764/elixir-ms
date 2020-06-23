@@ -39,6 +39,7 @@ var labinvoice = require('./Lab/LabInvoice/Controller.js')
     .delete(labtest.remove)
     .get(labtest.getById)
 
+
      // Employee Routes
  app.route('/api/employee')
     .get(employee.getAll)
