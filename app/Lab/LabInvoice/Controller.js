@@ -1,5 +1,4 @@
 'use strict';
-
 var obj = require('./Model.js');
 
 exports.getAll = function(req, res) {
@@ -11,6 +10,8 @@ exports.getAll = function(req, res) {
     res.send(obj);
   });
 };
+
+
 exports.create = function(req, res) {
   var new_obj = new obj(req.body);
    if(new_obj==null){

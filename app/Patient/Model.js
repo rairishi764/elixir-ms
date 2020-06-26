@@ -15,6 +15,10 @@ var modelObj = function(obj){
     this.username = obj.username;
     this.pwd = obj.pwd;
     this.createdon = new Date();
+    this.patient_gender = obj.patient_gender;
+    this.patient_number = obj.patient_number;
+    this.patient_age = obj.patient_age;
+    this.access_type = 1;
 };
 var tableName = "patient";
 modelObj.auth = function auth(newObj, result) {    

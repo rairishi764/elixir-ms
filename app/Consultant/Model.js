@@ -11,6 +11,7 @@ var modelObj = function(obj){
     this.phone = obj.phone;
     this.address = obj.address;
     this.records = obj.records;
+    this.department_id = obj.lab_category_id;
     this.dob = obj.dob;
 };
 
