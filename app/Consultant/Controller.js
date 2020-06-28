@@ -2,6 +2,19 @@
 
 var obj = require('./Model.js');
 
+exports.auth = function(req, res) {
+var auth_obj = new obj(req.body);
+   if(auth_obj==null){
+            res.status(400).send({ error:true, message: 'Please provide credentials properly.' });}
+   else{
+    obj.auth(auth_obj, function(err, obj) {
+      if (err)
+        res.send(err);
+      res.json(obj);
+  });
+}
+};
+
 exports.getAll = function(req, res) {
   obj.getAll(function(err, obj) {
     console.log("List Is:"+obj)
@@ -11,6 +24,7 @@ exports.getAll = function(req, res) {
     res.send(obj);
   });
 };
+
 
 exports.create = function(req, res) {
 console.log(req.body);

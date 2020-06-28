@@ -13,6 +13,9 @@ var modelObj = function(object){
     this.discount_percent = object.discount_percent;
     this.discount_amt = object.discount_amt;
     this.advance = object.advance;
+    this.patient_age=object.patient_age;
+    this.patient_gender=object.patient_gender;
+    this.patient_number=object.patient_number;
 };
 
 var tableName = "lab_invoice";
@@ -70,7 +73,7 @@ modelObj.remove = function remove(id, result) {
 };
 
 modelObj.update = function update(id, updatedObj, result) {
- sql.query("UPDATE lab_category SET "+tableName+" = ? WHERE id = ?", [updatedObj, id], function (err, res) {
+ sql.query("UPDATE "+tableName+" SET due_amt=?, advance=? WHERE id = ?", [updatedObj.due_amt,updatedObj.advance, id], function (err, res) {
           if(err) {
               console.log("error: ", err);
                 result(null, err);

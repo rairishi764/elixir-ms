@@ -36,7 +36,6 @@ exports.create = function(req, res) {
     obj.create(new_obj, function(err, obj) {   
       if (err)
         res.send(err);
-      
       res.json(obj);
   });
 }

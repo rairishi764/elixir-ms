@@ -13,6 +13,28 @@ var modelObj = function(obj){
     this.records = obj.records;
     this.department_id = obj.lab_category_id;
     this.dob = obj.dob;
+    this.mail = obj.mail;
+    this.pwd= obj.pwd;
+};
+
+modelObj.auth = function auth(newObj, result) {
+        console.log(newObj);
+        sql.query("SELECT * FROM "+tableName+" WHERE (mail=? and pwd=?)", [newObj.mail,newObj.pwd], function (err, res) {
+
+                if(err) {
+                    console.log("error: ", err);
+                    result(err, null);
+                }
+                else{
+                     console.log(res);
+                     if(res[0]!=null)
+                        {console.log("Success");
+                        result(null, res[0]);}
+                    else
+                        {console.log("Fail");
+                        result(null, "Fail");}
+                }
+            });
 };
 
 modelObj.create = function create(newObj, result) {    
@@ -23,7 +45,7 @@ modelObj.create = function create(newObj, result) {
                     result(err, null);
                 }
                 else{
-                     console.log("Creatig");
+                     console.log("Creating");
                     console.log(res.insertId);
                     result(null, res.insertId);
                 }
@@ -81,6 +103,7 @@ modelObj.update = function update(id, updatedObj, result) {
            else{   
              result(null, res);
                 }
-            }); };
+            });
+            };
 
 module.exports = modelObj

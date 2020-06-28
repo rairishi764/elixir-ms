@@ -86,6 +86,10 @@ var labinvoice = require('./Lab/LabInvoice/Controller.js')
      .delete(consultant.remove)
      .get(consultant.getById)
 
+ app.route('/api/consultant/auth')
+    .post(consultant.auth)
+
+
       // invoice Routes
   app.route('/api/labinvoice')
      .get(labinvoice.getAll)
