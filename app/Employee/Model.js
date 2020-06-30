@@ -4,23 +4,25 @@ var sql = require('../db.js');
 
 //Task object constructor
 var modelObj = function(obj){
-    this.employee_id = obj.employee_id;
-    this.employee_type_id = obj.employee_type_id;
-    this.employee_name = obj.employee_name;
-    this.employee_dob = obj.employee_dob;
-    this.employee_job_history = obj.employee_job_history;
-    this.employee_education = obj.employee_education;
-    this.marital_status = obj.marital_status;
+    this.id = obj.id;
+    this.employee_type = obj.employee_type;
+    this.name = obj.name;
+    this.qualification = obj.qualification;
+    this.phone = obj.phone;
+    this.address = obj.address;
+    this.records = obj.records;
     this.access_type = obj.access_type;
-    this.username = obj.username;
+    this.dob = obj.dob;
+    this.mail = obj.mail;
+    this.reference = obj.reference;
+    this.access_type= obj.access_type;
+    this.marital_status = obj.marital_status;
     this.pwd = obj.pwd;
     this.createdon = new Date();
 };
-
 modelObj.auth = function auth(newObj, result) {    
         console.log(newObj);
-        sql.query("SELECT `username`, `pwd`, `access_type` FROM `employee` WHERE (username=? and pwd=?)", [newObj.username,newObj.pwd], function (err, res) {
-                
+        sql.query("SELECT `mail`, `pwd`, `access_type` FROM `employee` WHERE (username=? and pwd=?)", [newObj.username,newObj.pwd], function (err, res) {
                 if(err) {
                     console.log("error: ", err);
                     result(err, null);
@@ -28,14 +30,15 @@ modelObj.auth = function auth(newObj, result) {
                 else{
                      console.log(res);
                      if(res[0]!=null)
-                        {console.log("Success");
-                        result(null, res[0].access_type);}
-
+                        {
+                        console.log("Success");
+                        result(null, res[0].access_type);
+                        }
                     else
-                        {console.log("Fail");
-                        result(null, "Fail");}
-
-                    
+                        {
+                        console.log("Fail");
+                        result(null, "Fail");
+                        }
                 }
             });           
 };
@@ -70,7 +73,7 @@ modelObj.getAll = function getAll(result) {
 };
 
 modelObj.getById = function getById(id, result) {    
-        sql.query("SELECT * FROM employee where employee_id = ?", [id], function (err, res) {              
+        sql.query("SELECT * FROM employee where id = ?", [id], function (err, res) {
                 if(err) {
                     console.log("error: ", err);
                     result(err, null);
@@ -83,7 +86,7 @@ modelObj.getById = function getById(id, result) {
 
 
 modelObj.remove = function remove(id, result) {    
-        sql.query("DELETE FROM employee where employee_id = ?", [id], function (err, res) {
+        sql.query("DELETE FROM employee where id = ?", [id], function (err, res) {
                 
                 if(err) {
                     console.log("error: ", err);
@@ -97,11 +100,8 @@ modelObj.remove = function remove(id, result) {
             });           
 };
 
-
-
-
 modelObj.update = function update(id, updatedObj, result) {    
- sql.query("UPDATE employee SET employee_name = ? WHERE employee_id = ?", [updatedObj, id], function (err, res) {
+ sql.query("UPDATE employee SET ? WHERE id = ?", [updatedObj, id], function (err, res) {
           if(err) {
               console.log("error: ", err);
                 result(null, err);
@@ -109,6 +109,7 @@ modelObj.update = function update(id, updatedObj, result) {
            else{   
              result(null, res);
                 }
-            }); };
+            });
+            };
 
 module.exports = modelObj
