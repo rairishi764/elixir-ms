@@ -2,10 +2,12 @@
 
 var sql = require('../db.js');
 var tableName="consultant"
+
+
 //Task object constructor
 var modelObj = function(obj){
+    this.title = obj.title;
     this.name = obj.name;
-    this.department_id= obj.department_id;
     this.qualification = obj.qualification;
     this.medical_id = obj.medical_id;
     this.phone = obj.phone;
@@ -15,6 +17,8 @@ var modelObj = function(obj){
     this.dob = obj.dob;
     this.mail = obj.mail;
     this.pwd= obj.pwd;
+    this.reg_body= obj.reg_body;
+    this.access_type = obj.access_type;
 };
 
 modelObj.auth = function auth(newObj, result) {

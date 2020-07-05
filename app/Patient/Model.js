@@ -1,10 +1,10 @@
 'user strict';
 
 var sql = require('../db.js');
-
 //Task object constructor
 var modelObj = function(obj){
     this.id = obj.id;
+    this.title=obj.title;
     this.name = obj.name;
     this.dob = obj.dob;
     this.phone = obj.phone;
@@ -12,12 +12,13 @@ var modelObj = function(obj){
     this.marital_status = obj.marital_status;
     this.medical_history = obj.medical_history;
     this.access_type = obj.access_type;
-    this.username = obj.username;
+    this.mail = obj.mail;
     this.pwd = obj.pwd;
     this.createdon = new Date();
     this.gender = obj.gender;
     this.access_type = 1;
 };
+
 var tableName = "patient";
 modelObj.auth = function auth(newObj, result) {    
         console.log(newObj);
