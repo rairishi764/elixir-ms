@@ -11,6 +11,7 @@ var modelObj = function(obj){
     this.partner_id = obj.partner_id;
     this.partner_share_type= obj.partner_share_type;
     this.partner_share= obj.partner_share;
+    this.gst=obj.gst;
     this.createdon = new Date();
 };
 var tableName = "lab_partner_service";
