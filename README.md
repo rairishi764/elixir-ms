@@ -11,5 +11,7 @@ A config.json needs to be in place on top folder level for services to run
 #### ms-lab
 nodemon server.js
 
-#### Python Project
+### Python Project
+#### ms-email
+#### ms-report
 python3 main.py
