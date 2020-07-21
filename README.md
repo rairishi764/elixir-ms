@@ -19,3 +19,5 @@ nodemon server.js
 pip3 install -r requirements.txt
 python3 main.py
 ```
+#### Configs
+Update the config.json to set values for mail,pwd and other secrets
