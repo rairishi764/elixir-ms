@@ -9,9 +9,14 @@ A config.json needs to be in place on top folder level for services to run
 ## Run Book
 ### NodeJS Project
 #### ms-lab
+```
+npm install
 nodemon server.js
-
+```
 ### Python Project
 #### ms-email
 #### ms-report
+```
+pip3 install -r requirements.txt
 python3 main.py
+```
