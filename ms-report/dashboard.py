@@ -3,7 +3,7 @@ import json
 from mysql.connector import Error
 import json
 import datetime
-from datetime import date
+from datetime import date, timedelta
 
 def dashboard():
     try:
@@ -93,12 +93,12 @@ def dashboard():
             due_amt=due_amt+row[8]
             advance=advance+row[9]
             if row[3]==1:
-                print("cash pay")
+                #print("cash pay")
                 cash_collection=cash_collection+row[4]
 
             if row[3]==2:
                 card_collection=card_collection+row[4]
-                print("card pay")
+                #print("card pay")
 
             #print ("DATE:"+str(row[2].isocalendar()[1]))
             
@@ -125,9 +125,9 @@ def dashboard():
                 if row[3]==2:
                     week_card_collection_1=week_card_collection_1+row[4]
                     
-
             
             if(row[2].isocalendar()[1]==date.today().isocalendar()[1]-2):
+                #print(row[2].isocalendar()[1])
                 week_total_price_2=week_total_price_2+row[4]
                 week_discount_amt_2=week_discount_amt_2+row[7]
                 week_due_amt_2=week_due_amt_2+row[8]
@@ -152,7 +152,7 @@ def dashboard():
                     week_card_collection_3=week_card_collection_3+row[4]
                     
             
-            if(row[2].weekday()==date.today().weekday()):
+            if(row[2]==date.today()):
                 day_total_price=day_total_price+row[4]
                 day_discount_amt=day_discount_amt+row[7]
                 day_due_amt=day_due_amt+row[8]
@@ -165,7 +165,7 @@ def dashboard():
                     
 
             
-            if(row[2].weekday()==date.today().weekday()-1):
+            if(row[2]==date.today()- timedelta(days = 1)):
                 day_total_price_1=day_total_price_1+row[4]
                 day_discount_amt_1=day_discount_amt_1+row[7]
                 day_due_amt_1=day_due_amt_1+row[8]
@@ -177,7 +177,7 @@ def dashboard():
                     day_card_collection_1=day_card_collection_1+row[4]
                 
             
-            if(row[2].weekday()==date.today().weekday()-2):
+            if(row[2]==date.today()- timedelta(days = 2)):
                 day_total_price_2=day_total_price_2+row[4]
                 day_discount_amt_2=day_discount_amt_2+row[7]
                 day_due_amt_2=day_due_amt_2+row[8]

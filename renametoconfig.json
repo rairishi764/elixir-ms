@@ -1,0 +1,8 @@
+{
+    "client":{
+        "name":"ClientName",
+        "logo":"logopath",
+        "invoicemail":"XYZ@GMAIL>COM",
+        "invoicemailpwd":"ABC"
+    }
+}
