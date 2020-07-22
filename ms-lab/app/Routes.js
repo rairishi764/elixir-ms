@@ -10,6 +10,7 @@ var patient = require('./Patient/Controller.js');
 var labinvoice = require('./Lab/LabInvoice/Controller.js');
 var partnerservice = require('./Lab/PartnerService/Controller.js');
 var specialization = require('./Specialization/Controller.js');
+var consultationservice = require('./ConsultationService/Controller.js');
  // LabCategory Routes
   app.route('/api/labcategory')    //url path added to base url
     .get(labcategory.getAll)   // controllerobj.function()
@@ -122,6 +123,16 @@ var specialization = require('./Specialization/Controller.js');
       .put(specialization.update)
       .delete(specialization.remove)
       .get(specialization.getById)
+
+   // Consultation Services Routes
+    app.route('/api/consultantationservice')    //url path added to base url
+    .get(consultationservice.getAll)   // controllerobj.function()
+      .post(consultationservice.create)
+
+ app.route('/api/consultantationservice/:id')
+    .put(consultationservice.update)
+    .delete(consultationservice.remove)
+    .get(consultationservice.getById)
 
   };
 
