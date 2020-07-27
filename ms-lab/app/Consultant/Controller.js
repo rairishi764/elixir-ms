@@ -9,7 +9,7 @@ var auth_obj = new obj(req.body);
    else{
     obj.auth(auth_obj, function(err, obj) {
       if (err)
-        res.send(err);
+        res.send(obj);
       res.json(obj);
   });
 }
@@ -35,7 +35,7 @@ console.log(req.body);
    console.log("Creating")
     obj.create(new_obj, function(err, obj) {   
       if (err)
-        res.send(err);
+        res.send(obj);
       res.json(obj);
   });
 }
@@ -53,7 +53,7 @@ exports.update = function(req, res) {
   var updated_obj= new obj(req.body)
   obj.update(req.params.id, updated_obj, function(err, obj) {
     if (err)
-      res.send(err);
+      res.send(obj);
     res.json(obj);
   });
 };
@@ -61,7 +61,7 @@ exports.update = function(req, res) {
 exports.remove = function(req, res) {
   obj.remove( req.params.id, function(err, categories) {
     if (err)
-      res.send(err);
+      res.send(obj);
     res.json({ message: 'Entry successfully deleted' });
   });
 };

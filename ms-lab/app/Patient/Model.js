@@ -22,7 +22,7 @@ var modelObj = function(obj){
 var tableName = "patient";
 modelObj.auth = function auth(newObj, result) {    
         console.log(newObj);
-        sql.query("SELECT `username`, `pwd`, `access_type` FROM "+tableName+" WHERE (username=? and pwd=?)", [newObj.username,newObj.pwd], function (err, res) {
+        sql.query("SELECT `mail`, `pwd`, `access_type` FROM "+tableName+" WHERE (mail=? and pwd=?)", [newObj.username,newObj.pwd], function (err, res) {
                 if(err) {
                     console.log("error: ", err);
                     result(err, null);

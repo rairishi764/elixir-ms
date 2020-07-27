@@ -88,30 +88,26 @@ def dashboard():
         print("\n Printing record")
         data = {}
         for row in records:
-            total_price=total_price+row[4]
+            total_price=total_price+row[4]-row[7]
             discount_amt=discount_amt+row[7]
             due_amt=due_amt+row[8]
             advance=advance+row[9]
             if row[3]==1:
-                #print("cash pay")
-                cash_collection=cash_collection+row[4]
+                cash_collection=cash_collection+row[4]-row[7]
 
             if row[3]==2:
-                card_collection=card_collection+row[4]
-                #print("card pay")
-
-            #print ("DATE:"+str(row[2].isocalendar()[1]))
-            
+                card_collection=card_collection+row[4]-row[7]
+                
             if(row[2].isocalendar()[1]==date.today().isocalendar()[1]):
-                week_total_price=week_total_price+row[4]
+                week_total_price=week_total_price+row[4]-row[7]
                 week_discount_amt=week_discount_amt+row[7]
                 week_due_amt=week_due_amt+row[8]
                 week_advance=week_advance+row[9]
                 if row[3]==1:
-                    week_cash_collection=week_cash_collection+row[4]
+                    week_cash_collection=week_cash_collection+row[4]-row[7]
 
                 if row[3]==2:
-                    week_card_collection=week_card_collection+row[4]
+                    week_card_collection=week_card_collection+row[4]-row[7]
                     
 
             if(row[2].isocalendar()[1]==date.today().isocalendar()[1]-1):
@@ -120,73 +116,73 @@ def dashboard():
                 week_due_amt_1=week_due_amt_1+row[8]
                 week_advance_1=week_advance_1+row[9]
                 if row[3]==1:
-                    week_cash_collection_1=week_cash_collection_1+row[4]
+                    week_cash_collection_1=week_cash_collection_1+row[4]-row[7]
 
                 if row[3]==2:
-                    week_card_collection_1=week_card_collection_1+row[4]
+                    week_card_collection_1=week_card_collection_1+row[4]-row[7]
                     
             
             if(row[2].isocalendar()[1]==date.today().isocalendar()[1]-2):
                 #print(row[2].isocalendar()[1])
-                week_total_price_2=week_total_price_2+row[4]
+                week_total_price_2=week_total_price_2+row[4]-row[7]
                 week_discount_amt_2=week_discount_amt_2+row[7]
                 week_due_amt_2=week_due_amt_2+row[8]
                 week_advance_2=week_advance_2+row[9]
                 if row[3]==1:
-                    week_cash_collection_2=week_cash_collection_2+row[4]
+                    week_cash_collection_2=week_cash_collection_2+row[4]-row[7]
 
                 if row[3]==2:
-                    week_card_collection_2=week_card_collection_2+row[4]
+                    week_card_collection_2=week_card_collection_2+row[4]-row[7]
                     
 
 
             if(row[2].isocalendar()[1]==date.today().isocalendar()[1]-3):
-                week_total_price_3=week_total_price_3+row[4]
+                week_total_price_3=week_total_price_3+row[4]-row[7]
                 week_discount_amt_3=week_discount_amt_3+row[7]
                 week_due_amt_3=week_due_amt_3+row[8]
                 week_advance_3=week_advance_3+row[9]
                 if row[3]==1:
-                    week_cash_collection_3=week_cash_collection_3+row[4]
+                    week_cash_collection_3=week_cash_collection_3+row[4]-row[7]
 
                 if row[3]==2:
-                    week_card_collection_3=week_card_collection_3+row[4]
+                    week_card_collection_3=week_card_collection_3+row[4]-row[7]
                     
             
             if(row[2]==date.today()):
-                day_total_price=day_total_price+row[4]
+                day_total_price=day_total_price+row[4]-row[7]
                 day_discount_amt=day_discount_amt+row[7]
                 day_due_amt=day_due_amt+row[8]
                 day_advance=day_advance+row[9]
                 if row[3]==1:
-                    day_cash_collection=day_cash_collection+row[4]
+                    day_cash_collection=day_cash_collection+row[4]-row[7]
 
                 if row[3]==2:
-                    day_card_collection=day_card_collection+row[4]
+                    day_card_collection=day_card_collection+row[4]-row[7]
                     
 
             
             if(row[2]==date.today()- timedelta(days = 1)):
-                day_total_price_1=day_total_price_1+row[4]
+                day_total_price_1=day_total_price_1+row[4]-row[7]
                 day_discount_amt_1=day_discount_amt_1+row[7]
                 day_due_amt_1=day_due_amt_1+row[8]
                 day_advance_1=day_advance_1+row[9]
                 if row[3]==1:
-                    day_cash_collection_1=day_cash_collection_1+row[4]
+                    day_cash_collection_1=day_cash_collection_1+row[4]-row[7]
 
                 if row[3]==2:
-                    day_card_collection_1=day_card_collection_1+row[4]
+                    day_card_collection_1=day_card_collection_1+row[4]-row[7]
                 
             
             if(row[2]==date.today()- timedelta(days = 2)):
-                day_total_price_2=day_total_price_2+row[4]
+                day_total_price_2=day_total_price_2+row[4]-row[7]
                 day_discount_amt_2=day_discount_amt_2+row[7]
                 day_due_amt_2=day_due_amt_2+row[8]
                 day_advance_2=day_advance_2+row[9]
                 if row[3]==1:
-                    day_cash_collection_2=day_cash_collection_2+row[4]
+                    day_cash_collection_2=day_cash_collection_2+row[4]-row[7]
 
                 if row[3]==2:
-                    day_card_collection_2=day_card_collection_2+row[4]
+                    day_card_collection_2=day_card_collection_2+row[4]-row[7]
             
 
 
