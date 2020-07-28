@@ -37,12 +37,18 @@ npm --version
 sudo npm install -g @angular/cli@9
 ng --version
 ```
-###Project Setup
+### Angular Project Setup
 ```
 git clone <projecturl>
 cd <projectname>
 npm install
 npm audit fix
 ng serve --host 0.0.0.0
+```
+### Python Project Setup
+```
+sudo apt install python3-pip
+pip install -r requirements.txt 
+pip3 install -r requirements.txt
 ```
 
