@@ -32,12 +32,12 @@ modelObj.auth = function auth(newObj, result) {
                      if(res[0]!=null)
                         {
                         console.log("Success");
-                        result(null, res[0].access_type);
+                        result(null, res[0]);
                         }
                     else
                         {
                         console.log("Fail");
-                        result(null, "Fail");
+                        result(null, "ID Password incorrect");
                         }
                 }
             });           
