@@ -22,7 +22,7 @@ modelObj.create = function create(newObj, result) {
         sql.query("INSERT INTO "+tableName+" set ?", newObj, function (err, res) {
                 if(err) {
                     console.log("error: ", err);
-                    result(err, null);
+                    //result(err, null);
                 }
                 else{
                      console.log(res);

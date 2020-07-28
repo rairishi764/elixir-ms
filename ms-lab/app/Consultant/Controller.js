@@ -19,7 +19,7 @@ exports.getAll = function(req, res) {
   obj.getAll(function(err, obj) {
     console.log("List Is:"+obj)
     if (err)
-      res.send(err);
+      res.send(obj);
       console.log('res111', obj);
     res.send(obj);
   });
@@ -44,7 +44,7 @@ console.log(req.body);
 exports.getById = function(req, res) {
   obj.getById(req.params.id, function(err, obj) {
     if (err)
-      res.send(err);
+      res.send(obj);
     res.json(obj);
   });
 };
