@@ -21,3 +21,34 @@ python3 main.py
 ```
 #### Configs
 Update the config.json to set values for mail,pwd and other secrets
+
+## AWS Server Setup
+```
+sudo adduser username
+sudo usermod -aG sudo username
+```
+AWS has git already installed
+
+```
+curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
+sudo apt install nodejs
+node --version
+npm --version
+sudo npm install -g @angular/cli@9
+ng --version
+```
+### Angular Project Setup
+```
+git clone <projecturl>
+cd <projectname>
+npm install
+npm audit fix
+ng serve --host 0.0.0.0
+```
+### Python Project Setup
+```
+sudo apt install python3-pip
+pip3 install -r requirements.txt
+python3 main.py
+```
+
