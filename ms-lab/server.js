@@ -6,7 +6,6 @@ app.use(cors());
   bodyParser = require('body-parser');
   port = process.env.PORT || 3002;
 
-
 app.listen(port);
 
 app.use(function(req, res, next) {

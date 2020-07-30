@@ -4,13 +4,16 @@ from mysql.connector import Error
 import json
 import datetime
 from datetime import date, timedelta
-
+import json
 def dashboard():
     try:
-        connection = mysql.connector.connect(host='localhost',
-                                         database='elixir',
-                                         user='root',
-                                         password='')
+        with open('../config.json') as json_file:
+            configdata = json.load(json_file)
+
+        connection = mysql.connector.connect(host=configdata['db']['server'],
+                                         database=configdata['db']['db'],
+                                         user=configdata['db']['user'],
+                                         password=configdata['db']['password'])
         sql = """SELECT * FROM lab_invoice WHERE (month(CURRENT_DATE)= month(date))"""
         cursor = connection.cursor()
         result = cursor.execute(sql)
