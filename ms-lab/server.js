@@ -6,7 +6,7 @@ app.use(cors());
   bodyParser = require('body-parser');
   port = process.env.PORT || 3002;
 
-app.listen(port);
+app.listen(port,'0.0.0.0');
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
