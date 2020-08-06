@@ -3,15 +3,15 @@ var sql = require('../db.js');
 //Task object constructor
 var modelObj = function(obj){
     this.id = obj.id;
-    this.consultant_id = obj.name;
-    this.consultant_service_id = obj.description;
+    this.consultant_id = obj.consultant_id;
+    this.consultation_service_id = obj.consultation_service_id;
     this.fee=obj.fee;
     this.consultant_share_type=obj.consultant_share_type;
     this.consultant_share=obj.consultant_share;
+    this.gst=obj.gst;
     this.createdon = new Date();
 };
 var table = "consultant_service";
-
 modelObj.create = function create(newObj, result) {    
         sql.query("INSERT INTO "+table+" set ?", newObj, function (err, res) {
                 if(err) {

@@ -11,7 +11,9 @@ var labinvoice = require('./Lab/LabInvoice/Controller.js');
 var partnerservice = require('./Lab/PartnerService/Controller.js');
 var specialization = require('./Specialization/Controller.js');
 var consultationservice = require('./ConsultationService/Controller.js');
- // LabCategory Routes
+var consultantservice = require('./ConsultantService/Controller.js');
+
+// LabCategory Routes
   app.route('/api/labcategory')    //url path added to base url
     .get(labcategory.getAll)   // controllerobj.function()
  	  .post(labcategory.create)
@@ -128,6 +130,16 @@ var consultationservice = require('./ConsultationService/Controller.js');
     app.route('/api/consultantationservice')    //url path added to base url
     .get(consultationservice.getAll)   // controllerobj.function()
       .post(consultationservice.create)
+
+ app.route('/api/consultantationservice/:id')
+    .put(consultationservice.update)
+    .delete(consultationservice.remove)
+    .get(consultationservice.getById)
+
+    // Consultant Services Routes
+    app.route('/api/consultantservice')    //url path added to base url
+    .get(consultantservice.getAll)   // controllerobj.function()
+      .post(consultantservice.create)
 
  app.route('/api/consultantationservice/:id')
     .put(consultationservice.update)
