@@ -141,7 +141,7 @@ var consultantservice = require('./ConsultantService/Controller.js');
     .get(consultantservice.getAll)   // controllerobj.function()
       .post(consultantservice.create)
 
- app.route('/api/consultantationservice/:id')
+ app.route('/api/consultantservice/:id')
     .put(consultationservice.update)
     .delete(consultationservice.remove)
     .get(consultationservice.getById)
