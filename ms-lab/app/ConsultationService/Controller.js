@@ -10,7 +10,6 @@ exports.getAll = function(req, res) {
     res.send(obj);
   });
 };
-
 exports.create = function(req, res) {
   var new_obj = new obj(req.body);
   //console.log('Object is:'+new_obj.toString())
