@@ -12,6 +12,7 @@ var partnerservice = require('./Lab/PartnerService/Controller.js');
 var specialization = require('./Specialization/Controller.js');
 var consultationservice = require('./Consultation/ConsultantService/Controller.js');
 var consultantservice = require('./Consultation/ConsultantService/Controller.js');
+var consultationinvoice = require('./Consultation/ConsultantService/Controller.js');
 
 // LabCategory Routes
   app.route('/api/labcategory')    //url path added to base url
@@ -145,6 +146,18 @@ var consultantservice = require('./Consultation/ConsultantService/Controller.js'
     .put(consultationservice.update)
     .delete(consultationservice.remove)
     .get(consultationservice.getById)
+
+
+    // Consultant Services Routes
+app.route('/api/consultationinvoice')    //url path added to base url
+    .get(consultationinvoice.getAll)   // controllerobj.function()
+   .post(consultationinvoice.create)
+
+   app.route('/api/consultationinvoice/:id')
+    .put(consultationinvoice.update)
+    .delete(consultationinvoice.remove)
+    .get(consultationinvoice.getById)
+
 
   };
 
