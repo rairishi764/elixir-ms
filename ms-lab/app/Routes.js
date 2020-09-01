@@ -10,7 +10,7 @@ var patient = require('./Patient/Controller.js');
 var labinvoice = require('./Lab/LabInvoice/Controller.js');
 var partnerservice = require('./Lab/PartnerService/Controller.js');
 var specialization = require('./Specialization/Controller.js');
-var consultationservice = require('./ConsultationService/Controller.js');
+var consultationservice = require('./Consultation/ConsultationService/Controller.js');
 var consultantservice = require('./Consultation/ConsultantService/Controller.js');
 var consultationinvoice = require('./Consultation/Invoice/Controller.js');
 
