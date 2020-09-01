@@ -10,7 +10,7 @@ var patient = require('./Patient/Controller.js');
 var labinvoice = require('./Lab/LabInvoice/Controller.js');
 var partnerservice = require('./Lab/PartnerService/Controller.js');
 var specialization = require('./Specialization/Controller.js');
-var consultationservice = require('./Consultation/ConsultantService/Controller.js');
+var consultationservice = require('./ConsultationService/Controller.js');
 var consultantservice = require('./Consultation/ConsultantService/Controller.js');
 var consultationinvoice = require('./Consultation/ConsultantService/Controller.js');
 
@@ -143,9 +143,9 @@ var consultationinvoice = require('./Consultation/ConsultantService/Controller.j
       .post(consultantservice.create)
 
  app.route('/api/consultantservice/:id')
-    .put(consultationservice.update)
-    .delete(consultationservice.remove)
-    .get(consultationservice.getById)
+    .put(consultantservice.update)
+    .delete(consultantservice.remove)
+    .get(consultantservice.getById)
 
 
     // Consultant Services Routes
