@@ -12,7 +12,7 @@ var partnerservice = require('./Lab/PartnerService/Controller.js');
 var specialization = require('./Specialization/Controller.js');
 var consultationservice = require('./ConsultationService/Controller.js');
 var consultantservice = require('./Consultation/ConsultantService/Controller.js');
-var consultationinvoice = require('./Consultation/ConsultantService/Controller.js');
+var consultationinvoice = require('./Consultation/Invoice/Controller.js');
 
 // LabCategory Routes
   app.route('/api/labcategory')    //url path added to base url
