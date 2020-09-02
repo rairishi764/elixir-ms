@@ -29,7 +29,6 @@ var consultationinvoice = require('./Consultation/Invoice/Controller.js');
     .get(labsubcategory.getAll)
     .post(labsubcategory.create)
 
-
  app.route('/api/labsubcategory/:id')
     .put(labsubcategory.update)
     .delete(labsubcategory.remove)
@@ -44,7 +43,6 @@ var consultationinvoice = require('./Consultation/Invoice/Controller.js');
     .put(labtest.update)
     .delete(labtest.remove)
     .get(labtest.getById)
-
 
      // Employee Routes
  app.route('/api/employee')
@@ -95,7 +93,6 @@ var consultationinvoice = require('./Consultation/Invoice/Controller.js');
  app.route('/api/consultant/auth')
     .post(consultant.auth)
 
-
       // invoice Routes
   app.route('/api/labinvoice')
      .get(labinvoice.getAll)
@@ -105,7 +102,6 @@ var consultationinvoice = require('./Consultation/Invoice/Controller.js');
      .put(labinvoice.update)
      .delete(labinvoice.remove)
      .get(labinvoice.getById)
-
 
    // Partner Service Routes
     app.route('/api/partnerservice')    //url path added to base url
@@ -147,7 +143,6 @@ var consultationinvoice = require('./Consultation/Invoice/Controller.js');
     .delete(consultantservice.remove)
     .get(consultantservice.getById)
 
-
     // Consultant Services Routes
 app.route('/api/consultationinvoice')    //url path added to base url
     .get(consultationinvoice.getAll)   // controllerobj.function()
@@ -157,7 +152,6 @@ app.route('/api/consultationinvoice')    //url path added to base url
     .put(consultationinvoice.update)
     .delete(consultationinvoice.remove)
     .get(consultationinvoice.getById)
-
 
   };
 
