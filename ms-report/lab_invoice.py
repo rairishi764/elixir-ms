@@ -19,14 +19,15 @@ def data():
 
         cursor = connection.cursor()
         
-        sql = """SELECT * FROM lab_invoice"""
+        sql = "SELECT * FROM lab_invoice"
         result = cursor.execute(sql)
         records = cursor.fetchall()
 
-        days_totalcost =[]
-        days_due_amount=[]
-        days_discount_amt = []
-        days_advance = []       
+        totalcost =[]
+        due_amount=[]
+        discount_amt = []
+        advance = []
+        keys = []       
         days = 5
         for i in range(days):
             iday = datetime.date.today() - datetime.timedelta(days=i)
@@ -34,26 +35,29 @@ def data():
             due_amount_temp = 0
             discount_amt_temp = 0
             advance_temp = 0
-
+            temp_key =''
             for row in records:
                 if(iday == row[2]):
                     totalcost_temp = totalcost_temp + row[4]
                     due_amount_temp = due_amount_temp + row[8]
                     discount_amt_temp = discount_amt_temp + row[7]
                     advance_temp = advance_temp + row[9]
-            days_totalcost.append(totalcost_temp)
-            days_due_amount.append(due_amount_temp)
-            days_discount_amt.append(discount_amt_temp)
-            days_advance.append(advance_temp)
+                    temp_key = row[2].strftime('%A')
+            totalcost.append(str(totalcost_temp))
+            due_amount.append(str(due_amount_temp))
+            discount_amt.append(str(discount_amt_temp))
+            advance.append(str(advance_temp))
+            keys.append(temp_key)
 
-        day_dict = dict([('totalcost',days_totalcost), ('due_amount',days_due_amount)
-                , ('discount_amt',days_discount_amt), ('advance',days_advance)])
+        day_dict = dict([('totalcost',totalcost), ('due_amount',due_amount)
+                , ('discount_amt',discount_amt), ('advance',advance),('keys',keys)])
 
-        months_totalcost =[]
-        months_due_amount=[]
-        months_discount_amt = []
-        months_advance = []       
+        totalcost =[]
+        due_amount=[]
+        discount_amt = []
+        advance = []       
         months = 5
+        keys = []
         for i in range(months):
             imonth = datetime.datetime.today().month - i
             year = datetime.datetime.today().year
@@ -61,26 +65,29 @@ def data():
             due_amount_temp = 0
             discount_amt_temp = 0
             advance_temp = 0
-
+            temp_month = ''
             for row in records:
                 if(imonth == row[2].month and year == row[2].year):
                     totalcost_temp = totalcost_temp + row[4]
                     due_amount_temp = due_amount_temp + row[8]
                     discount_amt_temp = discount_amt_temp + row[7]
                     advance_temp = advance_temp + row[9]
-            months_totalcost.append(totalcost_temp)
-            months_due_amount.append(due_amount_temp)
-            months_discount_amt.append(discount_amt_temp)
-            months_advance.append(advance_temp)
+                    temp_month = row[2].strftime('%B')
 
-        month_dict = dict([('totalcost',months_totalcost), ('due_amount',months_due_amount)
-                , ('discount_amt',months_discount_amt), ('advance',months_advance)])
+            totalcost.append(str(totalcost_temp))
+            due_amount.append(str(due_amount_temp))
+            discount_amt.append(str(discount_amt_temp))
+            advance.append(str(advance_temp))
+            keys.append(temp_month)
+           # keys.append()
+        month_dict = dict([('totalcost',totalcost), ('due_amount',due_amount)
+                , ('discount_amt',discount_amt), ('advance',advance), ('keys',keys)])
 
 
-        years_totalcost =[]
-        years_due_amount=[]
-        years_discount_amt = []
-        years_advance = []  
+        totalcost =[]
+        due_amount=[]
+        discount_amt = []
+        advance = []  
         financial_years = []     
         years = 5
         for i in range(years):
@@ -97,18 +104,19 @@ def data():
                     due_amount_temp = due_amount_temp + row[8]
                     discount_amt_temp = discount_amt_temp + row[7]
                     advance_temp = advance_temp + row[9]
-            years_totalcost.append(totalcost_temp)
-            years_due_amount.append(due_amount_temp)
-            years_discount_amt.append(discount_amt_temp)
-            years_advance.append(advance_temp)
+            totalcost.append(str(totalcost_temp))
+            due_amount.append(str(due_amount_temp))
+            discount_amt.append(str(discount_amt_temp))
+            advance.append(str(advance_temp))
             financial_years.append(str(iyear)+'-'+str(iyear+1))
 
-        years_dict = dict([('totalcost',years_totalcost), ('due_amount',years_due_amount)
-                , ('discount_amt',years_discount_amt), ('advance',years_advance), ('key',financial_years)])
-
+        years_dict = dict([('totalcost',totalcost), ('due_amount',due_amount)
+                , ('discount_amt',discount_amt), ('advance',advance), ('key',financial_years)])
 
         data_dict = dict ([('days',day_dict),('months',month_dict),('years',years_dict)])
-        print(data_dict)
+        
+        return (data_dict)
+        #print(data_dict)
     except Error as e:
         print("Error reading data from MySQL table", e)
     finally:
