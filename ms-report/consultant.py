@@ -86,10 +86,10 @@ def data():
             months_discount_amt.append(discount_amt_temp)
             months_advance.append(advance_temp)
 
-            print(months_totalcost)
-            print(months_advance)
-            print(months_discount_amt)
-            print(months_due_amount)
+            #print(months_totalcost)
+            #print(months_advance)
+            #print(months_discount_amt)
+            #print(months_due_amount)
 
 
 
@@ -97,7 +97,8 @@ def data():
         years_totalcost =[]
         years_due_amount=[]
         years_discount_amt = []
-        years_advance = []       
+        years_advance = []  
+        financial_years = []     
         years = 5
         for i in range(years):
             iyear = datetime.datetime.today().year - i
@@ -107,22 +108,24 @@ def data():
             due_amount_temp = 0
             discount_amt_temp = 0
             advance_temp = 0
+            financial_year = 0
 
             for row in records_lab_invoice:
-                if(imonth == row[2].month):
+                if((iyear == row[2].year and row[2].month>4) or (iyear+1 == row[2].year and row[2].month<4)):
                     totalcost_temp = totalcost_temp + row[4]
                     due_amount_temp = due_amount_temp + row[8]
                     discount_amt_temp = discount_amt_temp + row[7]
                     advance_temp = advance_temp + row[9]
-            months_totalcost.append(totalcost_temp)
-            months_due_amount.append(due_amount_temp)
-            months_discount_amt.append(discount_amt_temp)
-            months_advance.append(advance_temp)
-
-            print(months_totalcost)
-            print(months_advance)
-            print(months_discount_amt)
-            print(months_due_amount)
+            years_totalcost.append(totalcost_temp)
+            years_due_amount.append(due_amount_temp)
+            years_discount_amt.append(discount_amt_temp)
+            years_advance.append(advance_temp)
+            financial_years.append(str(iyear)+'-'+str(iyear+1))
+            print(years_totalcost)
+            print(years_due_amount)
+            print(years_discount_amt)
+            print(years_advance)
+            print(financial_years)
 
 
 
