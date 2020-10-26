@@ -26,24 +26,32 @@ def data():
         result = cursor.execute(sql)
         consultants = cursor.fetchall()
 
-        consultant_share = []
-        center_share = []
-        keys = []       
         days = 5
-        for i in range(days):
-            iday = datetime.date.today() - datetime.timedelta(days=i)
-            consultant_share_temp = 0
-            center_share_temp = 0
-            temp_key =''
-            for row in records:
-                #print(iday)
-                #print(row[2])
-                if(iday == row[2]):
-                    for obj in consultants:
-                        #print (str(row[5]))
-                        json_data = json.dumps(row[5])  
-                        #print(json_data[1])
-                        #print(row[4])
+        for consultant in consultants:
+            print('###############')
+            consultant_share = []
+            center_share = []
+            keys = []       
+            consultant_share_val = 0
+
+            for i in range(days):
+                iday = datetime.date.today() - datetime.timedelta(days=i)
+                consultant_share_day = 0
+                center_share_temp = 0
+                for row in records:
+                    if(iday == row[2]):
+                        json_data =json.loads(row[5])
+                        for obj1 in json_data:
+                            if(consultant[0]==obj1['consultant_name']):
+                                consultant_share_day=consultant_share_day+obj1['center_share_value']
+                            else:
+                                print('')
+                keys.append(str(iday))
+                consultant_share.append(consultant_share_day)
+            print(consultant[0])
+            print(keys)
+            print(consultant_share)
+    
         return 'Hello'            
 
     except Error as e:
