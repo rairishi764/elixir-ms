@@ -52,7 +52,8 @@ def data():
             consultant = consultant +(day_dict,)
             consultants[j] = consultant
             j=j+1
-        print(consultants)
+        #print(consultants)
+
 
 
 
@@ -86,8 +87,52 @@ def data():
             consultant = consultant +(day_dict,)
             consultants[j] = consultant
             j=j+1
+        #print(consultants)
+
+
+
+
+
+
+        years = 3
+        j=0
+        for consultant in consultants:
+           # print('###############')
+            consultant_share = []
+            center_share = []
+            keys = []       
+            consultant_share_val = 0
+            for i in range(years):
+                iyear = datetime.datetime.today().year - i
+                year = datetime.datetime.today().year
+                consultant_share_month = 0
+                center_share_temp = 0
+                month = ''
+                for row in records:
+                    if((iyear == row[2].year and row[2].month>4) or (iyear+1 == row[2].year and row[2].month<4)):
+                        json_data =json.loads(row[5])
+                        for obj1 in json_data:
+                            if(consultant[0]==obj1['consultant_name']):
+                                consultant_share_month=consultant_share_month+obj1['center_share_value']
+                            else:
+                                print('')
+                #imonth = datetime.datetime.today().month - i
+                #financial_years.append(str(iyear)+'-'+str(iyear+1))
+                keys.append(str(iyear)+'-'+str(iyear+1))
+                consultant_share.append(consultant_share_month)
+            day_dict = dict([('yearshare',consultant_share), ('keys',keys)])
+            consultant = consultant +(day_dict,)
+            consultants[j] = consultant
+            j=j+1
         print(consultants)
         
+
+
+
+
+
+
+
         return 'Hello'            
 
     except Error as e:
