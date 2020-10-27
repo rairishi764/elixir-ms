@@ -54,10 +54,6 @@ def data():
             j=j+1
         #print(consultants)
 
-
-
-
-
         months = 3
         j=0
         for consultant in consultants:
@@ -89,11 +85,6 @@ def data():
             j=j+1
         #print(consultants)
 
-
-
-
-
-
         years = 3
         j=0
         for consultant in consultants:
@@ -124,16 +115,9 @@ def data():
             consultant = consultant +(day_dict,)
             consultants[j] = consultant
             j=j+1
-        print(consultants)
+        #print(consultants)
         
-
-
-
-
-
-
-
-        return 'Hello'            
+        return consultants            
 
     except Error as e:
         print("Error reading data from MySQL table", e)
