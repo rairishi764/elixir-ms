@@ -1,6 +1,6 @@
 import flask
 from flask import request, jsonify
-import dashboard, lab_invoice, consultation_invoice, consultant
+import dashboard, lab_invoice, consultation_invoice, consultant,lab_partner
 from flask_cors import CORS, cross_origin
 
 app = flask.Flask(__name__)
@@ -37,5 +37,12 @@ def api_consultationinvoicedata():
 def api_consultantdata():
     print("Print POST")
     return consultant.data()
+
+
+@app.route('/api/analytics/labpartner',methods=['GET'])
+@cross_origin()
+def api_labpartnerdata():
+    print("Print POST")
+    return lab_partner.data()
 
 app.run(port=5001,host= '0.0.0.0')

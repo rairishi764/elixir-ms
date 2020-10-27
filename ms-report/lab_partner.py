@@ -18,11 +18,11 @@ def data():
 
         cursor = connection.cursor()
         
-        sql = "SELECT * FROM consultation_invoice"
+        sql = "SELECT * FROM lab_invoice"
         result = cursor.execute(sql)
         records = cursor.fetchall()
 
-        sql = "SELECT * FROM consultant"
+        sql = "SELECT * FROM lab_partner"
         result = cursor.execute(sql)
         consultants = cursor.fetchall()
 
@@ -42,8 +42,8 @@ def data():
                     if(iday == row[2]):
                         json_data =json.loads(row[5])
                         for obj1 in json_data:
-                            if(consultant[0]==obj1['consultant_name']):
-                                consultant_share_day=consultant_share_day+obj1['center_share_value']
+                            if(consultant[1]==obj1['partner']):
+                                consultant_share_day=consultant_share_day+obj1['partner_share_value']
                             else:
                                 print('')
                 keys.append(str(iday))
@@ -72,8 +72,9 @@ def data():
                     if(imonth == row[2].month and year == row[2].year):
                         json_data =json.loads(row[5])
                         for obj1 in json_data:
-                            if(consultant[0]==obj1['consultant_name']):
-                                consultant_share_month=consultant_share_month+obj1['center_share_value']
+                            if(consultant[1]==obj1['partner']):
+                                print(obj1['partner'])
+                                consultant_share_month=consultant_share_month+obj1['partner_share_value']
                             else:
                                 print('')
                 imonth = datetime.datetime.today().month - i
@@ -103,8 +104,8 @@ def data():
                     if((iyear == row[2].year and row[2].month>4) or (iyear+1 == row[2].year and row[2].month<4)):
                         json_data =json.loads(row[5])
                         for obj1 in json_data:
-                            if(consultant[0]==obj1['consultant_name']):
-                                consultant_share_month=consultant_share_month+obj1['center_share_value']
+                            if(consultant[1]==obj1['partner']):
+                                consultant_share_month=consultant_share_month+obj1['partner_share_value']
                             else:
                                 print('')
                 #imonth = datetime.datetime.today().month - i
@@ -115,7 +116,7 @@ def data():
             consultant = consultant +(day_dict,)
             consultants[j] = consultant
             j=j+1
-        #print(consultants)
+        print(consultants)
         
         return str(consultants)            
 
