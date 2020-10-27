@@ -27,13 +27,13 @@ def data():
         consultants = cursor.fetchall()
 
         days = 5
+        j=0
         for consultant in consultants:
-            print('###############')
+           # print('###############')
             consultant_share = []
             center_share = []
             keys = []       
             consultant_share_val = 0
-
             for i in range(days):
                 iday = datetime.date.today() - datetime.timedelta(days=i)
                 consultant_share_day = 0
@@ -48,10 +48,46 @@ def data():
                                 print('')
                 keys.append(str(iday))
                 consultant_share.append(consultant_share_day)
-            print(consultant[0])
-            print(keys)
-            print(consultant_share)
-    
+            day_dict = dict([('dayshare',consultant_share), ('daykeys',keys)])
+            consultant = consultant +(day_dict,)
+            consultants[j] = consultant
+            j=j+1
+        print(consultants)
+
+
+
+
+        months = 3
+        j=0
+        for consultant in consultants:
+           # print('###############')
+            consultant_share = []
+            center_share = []
+            keys = []       
+            consultant_share_val = 0
+            for i in range(days):
+                imonth = datetime.datetime.today().month - i
+                year = datetime.datetime.today().year
+                consultant_share_month = 0
+                center_share_temp = 0
+                month = ''
+                for row in records:
+                    if(imonth == row[2].month and year == row[2].year):
+                        json_data =json.loads(row[5])
+                        for obj1 in json_data:
+                            if(consultant[0]==obj1['consultant_name']):
+                                consultant_share_month=consultant_share_month+obj1['center_share_value']
+                            else:
+                                print('')
+                imonth = datetime.datetime.today().month - i
+                keys.append(str(imonth))
+                consultant_share.append(consultant_share_month)
+            day_dict = dict([('monthshare',consultant_share), ('keys',keys)])
+            consultant = consultant +(day_dict,)
+            consultants[j] = consultant
+            j=j+1
+        print(consultants)
+        
         return 'Hello'            
 
     except Error as e:
