@@ -27,7 +27,9 @@ def data():
         due_amount=[]
         discount_amt = []
         advance = []
-        keys = []       
+        keys = []   
+        cash_collection = []
+        card_collection = []    
         days = 5
         for i in range(days):
             iday = datetime.date.today() - datetime.timedelta(days=i)
@@ -35,6 +37,8 @@ def data():
             due_amount_temp = 0
             discount_amt_temp = 0
             advance_temp = 0
+            cash =0
+            card =0
             temp_key =''
             for row in records:
                 if(iday == row[2]):
@@ -43,7 +47,14 @@ def data():
                     discount_amt_temp = discount_amt_temp + row[7]
                     advance_temp = advance_temp + row[9]
                     temp_key = row[2].strftime('%A')
+                    if(row[3]==1):
+                        cash = cash+row[9]
+                    else:
+                        card = card + row[9]
+                    
             totalcost.append(str(totalcost_temp))
+            cash_collection.append(str(cash))
+            card_collection.append(str(card))
             due_amount.append(str(due_amount_temp))
             discount_amt.append(str(discount_amt_temp))
             advance.append(str(advance_temp))
