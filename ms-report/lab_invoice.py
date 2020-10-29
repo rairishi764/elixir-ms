@@ -60,7 +60,7 @@ def data():
             advance.append(str(advance_temp))
             keys.append(temp_key)
 
-        day_dict = dict([('cash',cash_collection),('card',card_collection),('totalcost',totalcost), ('due_amount',due_amount)
+        day_dict = dict([('cash',cash_collection),('card'),('totalcost',totalcost), ('due_amount',due_amount)
                 , ('discount_amt',discount_amt), ('advance',advance),('keys',keys)])
 
         totalcost =[]
@@ -76,6 +76,8 @@ def data():
             due_amount_temp = 0
             discount_amt_temp = 0
             advance_temp = 0
+            cash =0
+            card =0
             temp_month = ''
             for row in records:
                 if(imonth == row[2].month and year == row[2].year):
@@ -83,15 +85,19 @@ def data():
                     due_amount_temp = due_amount_temp + row[8]
                     discount_amt_temp = discount_amt_temp + row[7]
                     advance_temp = advance_temp + row[9]
+                    cash_collection.append(str(cash))
+                    card_collection.append(str(card))
                     temp_month = row[2].strftime('%B')
 
             totalcost.append(str(totalcost_temp))
             due_amount.append(str(due_amount_temp))
             discount_amt.append(str(discount_amt_temp))
             advance.append(str(advance_temp))
+            cash_collection.append(str(cash))
+            card_collection.append(str(card))
             keys.append(temp_month)
            # keys.append()
-        month_dict = dict([('totalcost',totalcost), ('due_amount',due_amount)
+        month_dict = dict([('cash',cash_collection),('card'),('totalcost',totalcost), ('due_amount',due_amount)
                 , ('discount_amt',discount_amt), ('advance',advance), ('keys',keys)])
 
 
