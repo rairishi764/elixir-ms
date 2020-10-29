@@ -60,7 +60,7 @@ def data():
             advance.append(str(advance_temp))
             keys.append(temp_key)
 
-        day_dict = dict([('cash',cash_collection),('card'),('totalcost',totalcost), ('due_amount',due_amount)
+        day_dict = dict([('cash',cash_collection),('card',card_collection),('totalcost',totalcost), ('due_amount',due_amount)
                 , ('discount_amt',discount_amt), ('advance',advance),('keys',keys)])
 
         totalcost =[]
@@ -97,7 +97,7 @@ def data():
             card_collection.append(str(card))
             keys.append(temp_month)
            # keys.append()
-        month_dict = dict([('cash',cash_collection),('card'),('totalcost',totalcost), ('due_amount',due_amount)
+        month_dict = dict([('cash',cash_collection),('card',card_collection),('totalcost',totalcost), ('due_amount',due_amount)
                 , ('discount_amt',discount_amt), ('advance',advance), ('keys',keys)])
 
 
