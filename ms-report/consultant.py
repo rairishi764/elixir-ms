@@ -4,6 +4,7 @@ from mysql.connector import Error
 import json
 import datetime
 from datetime import date, timedelta
+from dateutil.relativedelta import *
 import json
 def data():
     data = {}
@@ -77,7 +78,9 @@ def data():
                             else:
                                 print('')
                 imonth = datetime.datetime.today().month - i
-                keys.append(str(imonth))
+                month = datetime.datetime.now() - relativedelta(months=i)
+                temp_key = month.strftime('%B')
+                keys.append(str(temp_key))
                 consultant_share.append(consultant_share_month)
             day_dict = dict([('monthshare',consultant_share), ('keys',keys)])
             consultant = consultant +(day_dict,)

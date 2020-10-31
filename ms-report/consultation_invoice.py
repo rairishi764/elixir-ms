@@ -4,6 +4,7 @@ from mysql.connector import Error
 import json
 import datetime
 from datetime import date, timedelta
+from dateutil.relativedelta import *
 import json
 def data():
     data = {}
@@ -87,8 +88,10 @@ def data():
                         cash = cash+row[9]
                     else:
                         card = card + row[9]
-                    temp_month = row[2].strftime('%B')
-
+                    #temp_month = row[2].strftime('%B')
+            
+            month = datetime.datetime.now() - relativedelta(months=i)
+            temp_key = month.strftime('%B')
             totalcost.append(str(totalcost_temp))
             due_amount.append(str(due_amount_temp))
             discount_amt.append(str(discount_amt_temp))
