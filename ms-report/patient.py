@@ -4,6 +4,8 @@ from mysql.connector import Error
 import json
 import datetime
 from datetime import date, timedelta
+from dateutil.relativedelta import *
+
 import json
 def data():
     data = {}
@@ -32,7 +34,7 @@ def data():
             for row in records:
                 if(iday == row[10]):
                     new_patient_temp = new_patient_temp + 1
-                    temp_key = row[2].strftime('%A')
+                temp_key = iday.strftime('%A')
                     
             new_patient.append(str(new_patient_temp))
             keys.append(temp_key)
@@ -49,10 +51,11 @@ def data():
             temp_key =''
             
             for row in records:
-                if(imonth == row[2].month and year == row[2].year):
+                if(imonth == row[10].month and year == row[10].year):
                     new_patient_temp = new_patient_temp + 1
-                    temp_key = row[2].strftime('%B')
                     
+                month = datetime.datetime.now() - relativedelta(months=i)
+                temp_key = month.strftime('%B')
             new_patient.append(str(new_patient_temp))
             keys.append(str(temp_key))
             # keys.append()
@@ -67,7 +70,7 @@ def data():
             financial_year = 0
 
             for row in records:
-                if((iyear == row[2].year and row[2].month>4) or (iyear+1 == row[2].year and row[2].month<4)):
+                if((iyear == row[10].year and row[10].month>4) or (iyear+1 == row[10].year and row[10].month<4)):
                     new_patient_temp = new_patient_temp + 1
                     
             new_patient.append(str(new_patient_temp))
@@ -76,9 +79,9 @@ def data():
         years_dict = dict([('new_patient',new_patient), ('key',financial_years)])
 
         data_dict = dict ([('days',day_dict),('months',month_dict),('years',years_dict)])
-        
+        print(data_dict)
         return (data_dict)
-        #print(data_dict)
+       
     except Error as e:
         print("Error reading data from MySQL table", e)
     finally:

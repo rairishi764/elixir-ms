@@ -73,7 +73,7 @@ def data():
                         json_data =json.loads(row[5])
                         for obj1 in json_data:
                             if(consultant[1]==obj1['partner']):
-                                print(obj1['partner'])
+                                #print(obj1['partner'])
                                 consultant_share_month=consultant_share_month+obj1['partner_share_value']
                             else:
                                 print('')
@@ -116,7 +116,7 @@ def data():
             consultant = consultant +(day_dict,)
             consultants[j] = consultant
             j=j+1
-        print(consultants)
+        #print(consultants)
         
         return str(consultants)            
 
