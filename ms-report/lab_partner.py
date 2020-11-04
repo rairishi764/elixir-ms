@@ -46,7 +46,7 @@ def data():
                             if(consultant[1]==obj1['partner']):
                                 consultant_share_day=consultant_share_day+obj1['partner_share_value']
                             else:
-                                print('')
+                                continue
                 keys.append(str(iday))
                 consultant_share.append(consultant_share_day)
             day_dict = dict([('dayshare',consultant_share), ('daykeys',keys)])
@@ -77,7 +77,7 @@ def data():
                                 #print(obj1['partner'])
                                 consultant_share_month=consultant_share_month+obj1['partner_share_value']
                             else:
-                                print('')
+                                continue
                 month = datetime.datetime.now() - relativedelta(months=i)
                 temp_key = month.strftime('%B')
                 keys.append(str(temp_key))
@@ -109,7 +109,7 @@ def data():
                             if(consultant[1]==obj1['partner']):
                                 consultant_share_month=consultant_share_month+obj1['partner_share_value']
                             else:
-                                print('')
+                                continue
                 #imonth = datetime.datetime.today().month - i
                 #financial_years.append(str(iyear)+'-'+str(iyear+1))
                 keys.append(str(iyear)+'-'+str(iyear+1))
