@@ -58,7 +58,7 @@ def data():
                                 continue                      
                 keys.append(str(iday.strftime('%A')))
                 consultant_share.append(consultant_share_day)
-            doc_dict = dict([('dayshare',consultant_share), ('daykeys',keys),('consultant',consultant[0])])
+            doc_dict = dict([('share',consultant_share), ('keys',keys),('consultant',consultant[0])])
             day.append(doc_dict)
             
 
@@ -90,7 +90,7 @@ def data():
                 temp_key = month.strftime('%B')
                 keys.append(str(temp_key))
                 consultant_share.append(consultant_share_month)
-            doc_dict = dict([('monthshare',consultant_share), ('keys',keys)])
+            doc_dict = dict([('share',consultant_share), ('keys',keys),('consultant',consultant[0])])
             month_data.append(doc_dict)
             
         #print(consultants)
@@ -121,7 +121,7 @@ def data():
                 financial_years.append(str(iyear)+'-'+str(iyear+1))
                 keys.append(str(iyear)+'-'+str(iyear+1))
                 consultant_share.append(consultant_share_month)
-            doc_dict = dict([('yearshare',consultant_share), ('keys',keys),('consultant',consultant[0])])
+            doc_dict = dict([('share',consultant_share), ('keys',keys),('consultant',consultant[0])])
             year_data.append(doc_dict)
 
         data = dict([('day',day),('month',month_data),('year',year_data)])
