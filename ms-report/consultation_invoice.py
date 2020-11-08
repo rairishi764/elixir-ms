@@ -50,7 +50,7 @@ def data():
                         cash = cash+row[9]
                     else:
                         card = card + row[9]
-                    temp_key = row[2].strftime('%A')
+            temp_key = iday.strftime('%A')
             totalcost.append(str(totalcost_temp))
             cash_collection.append(str(cash))
             card_collection.append(str(card))
@@ -68,6 +68,9 @@ def data():
         advance = []       
         months = 5
         keys = []
+        cash_collection = []
+        card_collection = []
+        
         for i in range(months):
             imonth = datetime.datetime.today().month - i
             year = datetime.datetime.today().year
@@ -98,7 +101,7 @@ def data():
             cash_collection.append(str(cash))
             card_collection.append(str(card))
             advance.append(str(advance_temp))
-            keys.append(temp_month)
+            keys.append(temp_key)
            # keys.append()
         month_dict = dict([('cash',cash_collection),('card',card_collection), ('totalcost',totalcost), ('due_amount',due_amount)
                 , ('discount_amt',discount_amt), ('advance',advance), ('keys',keys)])
@@ -108,7 +111,9 @@ def data():
         due_amount=[]
         discount_amt = []
         advance = []  
-        financial_years = []     
+        financial_years = []   
+        cash_collection = []
+        card_collection = []
         years = 5
         for i in range(years):
             iyear = datetime.datetime.today().year - i

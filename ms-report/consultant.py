@@ -36,15 +36,12 @@ def data():
         year_data = []
         data ={}
         for consultant in consultants:
-           # print('###############')
             consultant_share = []
-            center_share = []
-            
+            center_share = []          
             doc_dict = {}
             consultant_name = ''
             keys = []       
             consultant_share_val = 0
-            print (consultant[0])
             for i in range(days):
                 iday = datetime.date.today() - datetime.timedelta(days=i)
                 consultant_share_day = 0
