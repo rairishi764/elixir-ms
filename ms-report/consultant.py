@@ -125,7 +125,7 @@ def data():
             year_data.append(doc_dict)
 
         data = dict([('day',day),('month',month_data),('year',year_data)])
-        return str(data)            
+        return data            
 
     except Error as e:
         print("Error reading data from MySQL table", e)
