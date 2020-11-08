@@ -56,7 +56,7 @@ def data():
                                 consultant_share_day = consultant_share_day+obj1['center_share_value']
                             else:
                                 continue                      
-                keys.append(str(iday))
+                keys.append(str(iday.strftime('%A')))
                 consultant_share.append(consultant_share_day)
             doc_dict = dict([('dayshare',consultant_share), ('daykeys',keys),('consultant',consultant[0])])
             day.append(doc_dict)
