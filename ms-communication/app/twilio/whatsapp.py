@@ -1,0 +1,2 @@
+def whatsapp():
+    print("Whatsapp")
