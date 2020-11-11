@@ -24,20 +24,17 @@ def api_labinvoicedata():
     print("Print POST")
     return lab_invoice.data()
 
-
 @app.route('/api/analytics/consultationinvoice',methods=['GET'])
 @cross_origin()
 def api_consultationinvoicedata():
     print("Print POST")
     return consultation_invoice.data()
 
-
 @app.route('/api/analytics/consultant',methods=['GET'])
 @cross_origin()
 def api_consultantdata():
     print("Print POST")
     return consultant.data()
-
 
 @app.route('/api/analytics/labpartner',methods=['GET'])
 @cross_origin()
@@ -50,6 +47,5 @@ def api_labpartnerdata():
 def api_labpatientdata():
     print("Print POST")
     return patient.data()
-
 
 app.run(port=5001,host= '0.0.0.0')
