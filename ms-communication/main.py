@@ -16,9 +16,12 @@ def home():
 
 @app.route('/api/sms/',methods=['POST'])
 @cross_origin()
-def api_tsms():
-    print("Print POST")
-    #return sms.main()
+def api_sms():
+    return sms(request.POST['from_'], request.POST['to'], request.POST['body'])
+    
+def api_whatsapp():
+    return whatsapp(request.POST['from_'], request.POST['to'], request.POST['body'])
+    
 
 
 app.run(port=5002,host= '0.0.0.0')

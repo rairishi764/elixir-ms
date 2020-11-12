@@ -11,7 +11,7 @@ def sms(from_,to,message_body):
             # Your Auth Token from twilio.com/console
             auth_token = configdata['communication']['twilio']['auth_token']
             client = Client(account_sid, auth_token)
-            message = client.messages.create(to, from_, message_body)
+            message = client.messages.create(to=to, from_=from_, body=message_body)
         return(message.sid)
 
     except ConnectionError as e:
