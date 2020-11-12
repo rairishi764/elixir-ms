@@ -138,8 +138,7 @@ def data():
                 , ('discount_amt',discount_amt), ('advance',advance), ('key',financial_years)])
 
         data_dict = dict ([('days',day_dict),('months',month_dict),('years',years_dict)])
-        
-#        print(data_dict)
+
         return (data_dict)
         
     except Error as e:

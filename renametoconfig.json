@@ -4,5 +4,12 @@
         "logo":"logopath",
         "invoicemail":"XYZ@GMAIL>COM",
         "invoicemailpwd":"ABC"
+    },
+    "communication":{
+        "twilio":{
+            "account_id":"AC732f7a606eb7aab936f964fdbfd30a49",
+            "auth_token":"6855684a24be0c9a3255637a409d590e"
+                }
     }
+
 }
