@@ -3,7 +3,9 @@ from flask import request, jsonify
 #import dashboard, lab_invoice, consultation_invoice, consultant, lab_partner, patient
 from flask_cors import CORS, cross_origin
 from app.twilio.sms import sms
-from app.twilio.whatsapp import whatsapp
+#from app.twilio.whatsapp import whatsapp, whatsapp_with_callbackURL, whatsapp_with_media
+from app.twilio.whatsapp import whatsapp, whatsapp_with_media, whatsapp_with_callbackURL
+
 
 app = flask.Flask(__name__)
 cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
@@ -17,33 +19,35 @@ def home():
 @app.route('/api/sms/',methods=['POST'])
 @cross_origin()
 def api_sms():
-    return sms(request.POST['from_'], 
-                                request.POST['to'], 
-                                request.POST['body'])
+    #+13466169573
+    return sms(request.get_json(force=True)['from_'], 
+                                request.get_json(force=True)['to'], 
+                                request.get_json(force=True)['body'])
 
 
 @app.route('/api/whatsapp/',methods=['POST'])
 @cross_origin()    
 def api_whatsapp():
-    return whatsapp(request.POST['from_'],
-                                request.POST['to'], 
-                                request.POST['body'])
+    print(request.get_json(force=True)['from_'])
+    return whatsapp(request.get_json(force=True)['from_'],
+                                request.get_json(force=True)['to'], 
+                                request.get_json(force=True)['body'])
 
 
 @app.route('/api/whatsappwithmedia/',methods=['POST'])
 @cross_origin()    
 def api_whatsapp_with_media():
-    return whatsapp_with_media(request.POST['from_'], 
-                                request.POST['to'],
-                                request.POST['body'],
-                                request.POST['media_url'])
+    return whatsapp_with_media(request.get_json(force=True)['from_'], 
+                                request.get_json(force=True)['to'],
+                                request.get_json(force=True)['body'],
+                                request.get_json(force=True)['media_url'])
 
 @app.route('/api/whatsappwithcallbackurl/',methods=['POST'])
 @cross_origin()    
-def api_whatsapp_with_media():
-    return whatsapp_with_callbackURL(request.POST['from_'], 
-                                request.POST['to'],
-                                request.POST['body'],
-                                request.POST['status_callback'])
+def api_whatsapp_with_media_callbackURL():
+    return whatsapp_with_callbackURL(request.get_json(force=True)['from_'], 
+                                request.get_json(force=True)['to'],
+                                request.get_json(force=True)['body'],
+                                request.get_json(force=True)['status_callback'])
                                     
 app.run(port=5002,host= '0.0.0.0')

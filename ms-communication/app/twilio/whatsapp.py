@@ -8,10 +8,15 @@ def whatsapp(from_,to,message_body):
             configdata = json.load(json_file)            
             # Your Account SID from twilio.com/console
             account_sid = configdata['communication']['twilio']['account_id']
+            print(account_sid)
             # Your Auth Token from twilio.com/console
             auth_token = configdata['communication']['twilio']['auth_token']
             client = Client(account_sid, auth_token)
-            message = client.messages.create(from_='whatsapp:'+from_,to='whatsapp:'+to, body=message_body)
+            message = client.messages.create( #+14155238886
+                              from_='whatsapp:'+from_,  
+                              body=message_body,      
+                              to='whatsapp:'+to 
+                          ) 
         return(message.sid)
 
     except ConnectionError as e:
@@ -29,7 +34,7 @@ def whatsapp_with_media(from_,to,message_body,media_url):
             client = Client(account_sid, auth_token)
             message = client.messages.create(
                      body=message_body,
-                     media_url=media_url,
+                     media_url=[media_url],
                      from_='whatsapp:'+from_,
                      to='whatsapp:'+to,
                  )
