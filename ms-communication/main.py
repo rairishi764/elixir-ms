@@ -17,11 +17,33 @@ def home():
 @app.route('/api/sms/',methods=['POST'])
 @cross_origin()
 def api_sms():
-    return sms(request.POST['from_'], request.POST['to'], request.POST['body'])
-    
+    return sms(request.POST['from_'], 
+                                request.POST['to'], 
+                                request.POST['body'])
+
+
+@app.route('/api/whatsapp/',methods=['POST'])
+@cross_origin()    
 def api_whatsapp():
-    return whatsapp(request.POST['from_'], request.POST['to'], request.POST['body'])
-    
+    return whatsapp(request.POST['from_'],
+                                request.POST['to'], 
+                                request.POST['body'])
 
 
+@app.route('/api/whatsappwithmedia/',methods=['POST'])
+@cross_origin()    
+def api_whatsapp_with_media():
+    return whatsapp_with_media(request.POST['from_'], 
+                                request.POST['to'],
+                                request.POST['body'],
+                                request.POST['media_url'])
+
+@app.route('/api/whatsappwithcallbackurl/',methods=['POST'])
+@cross_origin()    
+def api_whatsapp_with_media():
+    return whatsapp_with_callbackURL(request.POST['from_'], 
+                                request.POST['to'],
+                                request.POST['body'],
+                                request.POST['status_callback'])
+                                    
 app.run(port=5002,host= '0.0.0.0')
