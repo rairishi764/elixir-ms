@@ -19,6 +19,7 @@ var modelObj = function(obj){
     this.pwd= obj.pwd;
     this.reg_body= obj.reg_body;
     this.access_type = obj.access_type;
+    this.workhrs = obj.workhrs;
 };
 
 modelObj.auth = function auth(newObj, result) {

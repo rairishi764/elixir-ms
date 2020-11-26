@@ -53,7 +53,7 @@ def data():
                         for obj1 in json_data:
                             if(consultant[0]==obj1['consultant_name']):
                                 consultant_name = obj1['consultant_name']
-                                consultant_share_day = consultant_share_day+obj1['center_share_value']
+                                consultant_share_day = consultant_share_day+obj1['consultant_share_value']
                             else:
                                 continue                      
                 keys.append(str(iday.strftime('%A')))
