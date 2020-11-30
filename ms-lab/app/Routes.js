@@ -13,7 +13,7 @@ var specialization = require('./Specialization/Controller.js');
 var consultationservice = require('./Consultation/ConsultationService/Controller.js');
 var consultantservice = require('./Consultation/ConsultantService/Controller.js');
 var consultationinvoice = require('./Consultation/Invoice/Controller.js');
-
+var appointment = require('./Appointment/Controller.js');
 // LabCategory Routes
   app.route('/api/labcategory')    //url path added to base url
     .get(labcategory.getAll)   // controllerobj.function()
@@ -152,6 +152,18 @@ app.route('/api/consultationinvoice')    //url path added to base url
     .put(consultationinvoice.update)
     .delete(consultationinvoice.remove)
     .get(consultationinvoice.getById)
+
+
+     // Consultant Services Routes
+app.route('/api/appointment')    //url path added to base url
+.get(appointment.getAll)   // controllerobj.function()
+.post(appointment.create)
+
+app.route('/api/appointment/:id')
+.put(appointment.update)
+.delete(appointment.remove)
+.get(appointment.getById)   
+
 
   };
 
