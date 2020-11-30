@@ -5,12 +5,12 @@ var sql = require('../db.js');
 //Task object constructor
 var modelObj = function(obj){
     this.id = obj.id;
-    this.patient_id = obj.name;
-    this.consultant_id = obj.name;
-    this.specialization_id = obj.name;
-    this.time = obj.name;
-    this.date = obj.name;   
-    this.info = obj.name;
+    this.patient_id = obj.patient_id;
+    this.consultant_id = obj.consultant_id;
+    this.specialization_id = obj.specialization_id;
+    this.time = obj.time;
+    this.date = obj.date;   
+    this.info = obj.info;
     this.createdon = new Date();
 };
 var table = "appointment";
