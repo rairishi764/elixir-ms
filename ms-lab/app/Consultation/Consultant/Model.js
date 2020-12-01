@@ -20,6 +20,7 @@ var modelObj = function(obj){
     this.reg_body= obj.reg_body;
     this.access_type = obj.access_type;
     this.workhrs = obj.workhrs;
+    this.colorcode = obj.colorcode;
 };
 
 modelObj.auth = function auth(newObj, result) {
