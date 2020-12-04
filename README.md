@@ -52,3 +52,9 @@ pip3 install -r requirements.txt
 python3 main.py
 ```
 
+### Python venv project setup
+```
+python3 -m venv env
+
+```
+
