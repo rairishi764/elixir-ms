@@ -43,7 +43,6 @@ def whatsapp_with_media(from_,to,message_body,media_url):
     except ConnectionError as e:
         print("Error sending message:", e)
 
-
 def whatsapp_with_callbackURL(from_,to,message_body,status_callback):
     try:
         with open('../config.json') as json_file:
@@ -60,6 +59,5 @@ def whatsapp_with_callbackURL(from_,to,message_body,status_callback):
                      to='whatsapp:'+to,
                  )
         return(message.sid)
-
     except ConnectionError as e:
         print("Error sending message:", e)
