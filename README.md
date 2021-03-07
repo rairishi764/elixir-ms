@@ -55,6 +55,9 @@ python3 main.py
 ### Python venv project setup
 ```
 python3 -m venv env
-
 ```
 
+### Starting XAMP 
+```
+Setup 3306 -> 80
+```

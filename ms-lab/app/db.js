@@ -4,7 +4,6 @@ var mysql = require('mysql');
 
 //local mysql db connection
 
-//log_in(config.username, config.password);
 var connection = mysql.createConnection({
     host     : config.db.server,
     user     : config.db.user,
