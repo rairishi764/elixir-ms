@@ -1,0 +1,324 @@
+<div class="container-fluid" *ngIf="_router.url.includes('view')">
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Category
+          <button type="button" class="btn btn-primary" data-toggle="modal"
+          data-target="#addform">
+            Register
+          </button>
+        </h6>
+
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Test</th>
+                <th>Code</th>
+                <th>Sub Category</th>
+                <th>Method</th>
+                <th>Vaccutainer Vol</th>
+                <th>Temp</th>
+                <th>Cut Off Time</th>
+                <th>Schedule</th>
+                <th>Reporting</th>
+                <th>Color Code</th>
+                <th></th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of objlist; index as i">
+
+                <td style='background-color:{{item.color_code}}'>{{ item.id }}</td>
+                <td>{{ item.lab_test_name }}</td>
+                <td>{{ item.lab_testcode_id }}</td>
+                <td>{{ item.lab_sub_category_name}}</td>
+                <td>{{ item.method }}</td>
+                <td>{{ item.sample_volume_vaccutainer }}</td>
+                <td>{{ item.temp }}</td>
+                <td>{{ item.cut_off_time }}</td>
+                <td>{{ item.schd }}</td>
+                <td>{{ item.reporting }}</td>
+                <td>{{ item.color_code }}</td>
+                <td>
+                  <button (click)="updateview(item)" type="submit" class="btn btn-warning" data-toggle="modal"
+                    data-target="#editform"><i class="fa fa-edit"></i></button>
+                </td>
+                <td>
+                  <button (click)="remove(item.id)" type="submit" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /.container-fluid -->
+
+
+  <!-- ############# Edit Modal ##############-->
+ <div class="modal" id="editform">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5>Edit </h5>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="card">
+          <div class="card-body">
+            <form [formGroup]="angForm" novalidate>
+              <div class="form-group">
+                <input placeholder="Test Name" type="text" class="form-control" formControlName="lab_test_name"
+                  [(ngModel)]="objedit.lab_test_name" #lab_test_name />
+              </div>
+              <div
+                *ngIf="angForm.controls['lab_test_name'].invalid && (angForm.controls['lab_test_name'].dirty || angForm.controls['lab_test_name'].touched)"
+                class="alert alert-danger">
+                Required field.
+              </div>
+
+              <div class="form-group">
+                <input placeholder="Testcode id" type="text" class="form-control" formControlName="lab_testcode_id"
+                  [(ngModel)]="objedit.lab_testcode_id" #lab_testcode_id />
+              </div>
+              <div
+                *ngIf="angForm.controls['lab_testcode_id'].invalid && (angForm.controls['lab_testcode_id'].dirty || angForm.controls['lab_testcode_id'].touched)"
+                class="alert alert-danger">
+                Required field.
+              </div>
+
+              <div class="form-group">
+                <input placeholder="Sub Category" type="text" class="form-control" formControlName="lab_sub_category_id"
+                  [(ngModel)]="objedit.lab_sub_category_id" #lab_sub_category_id
+                  list="lab_sub_category_list"/>
+
+                  <datalist id="lab_sub_category_list">
+                    <option *ngFor="let item of subcategories" [value]=item.id>
+                        {{item.lab_sub_category_name}}</option>
+                </datalist>
+              </div>
+              <div
+                *ngIf="angForm.controls['lab_sub_category_id'].invalid && (angForm.controls['lab_sub_category_id'].dirty || angForm.controls['lab_sub_category_id'].touched)"
+                class="alert alert-danger">
+                Required field.
+              </div>
+
+              <div class="form-group">
+                <input placeholder="Method" type="text" class="form-control" formControlName="method"
+                  [(ngModel)]="objedit.method" #method />
+              </div>
+              <div
+                *ngIf="angForm.controls['method'].invalid && (angForm.controls['method'].dirty || angForm.controls['method'].touched)"
+                class="alert alert-danger">
+                Required field.
+              </div>
+
+              <div class="form-group">
+                <input placeholder="Volume Vaccutainer" type="text" class="form-control" formControlName="sample_volume_vaccutainer"
+                  [(ngModel)]="objedit.sample_volume_vaccutainer" #sample_volume_vaccutainer />
+              </div>
+              <div
+                *ngIf="angForm.controls['sample_volume_vaccutainer'].invalid && (angForm.controls['sample_volume_vaccutainer'].dirty || angForm.controls['sample_volume_vaccutainer'].touched)"
+                class="alert alert-danger">
+                Required field.
+              </div>
+
+              <div class="form-group">
+                <input placeholder="Temprature" type="text" class="form-control" formControlName="temp"
+                  [(ngModel)]="objedit.temp" #temp />
+              </div>
+              <div
+                *ngIf="angForm.controls['temp'].invalid && (angForm.controls['temp'].dirty || angForm.controls['temp'].touched)"
+                class="alert alert-danger">
+                Required field.
+              </div>
+
+              <div class="form-group">
+                <input placeholder="Cut off time" type="text" class="form-control" formControlName="cut_off_time"
+                  [(ngModel)]="objedit.cut_off_time" #cut_off_time />
+              </div>
+              <div
+                *ngIf="angForm.controls['cut_off_time'].invalid && (angForm.controls['cut_off_time'].dirty || angForm.controls['cut_off_time'].touched)"
+                class="alert alert-danger">
+                Required field.
+              </div>
+
+              <div class="form-group">
+                <input placeholder="Schedule" type="text" class="form-control" formControlName="schd"
+                  [(ngModel)]="objedit.schd" #schd />
+              </div>
+              <div
+                *ngIf="angForm.controls['schd'].invalid && (angForm.controls['schd'].dirty || angForm.controls['schd'].touched)"
+                class="alert alert-danger">
+                Required field.
+              </div>
+
+              <div class="form-group">
+                <input placeholder="Reporting" type="text" class="form-control" formControlName="reporting"
+                  [(ngModel)]="objedit.reporting" #reporting />
+              </div>
+              <div
+                *ngIf="angForm.controls['reporting'].invalid && (angForm.controls['reporting'].dirty || angForm.controls['reporting'].touched)"
+                class="alert alert-danger">
+                Required field.
+              </div>
+
+
+              <div class="form-group">
+                <button (click)="update(objedit)" type="submit" class="btn btn-primary">
+                  Submit
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+       </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+ <!-- ############# Add Modal ##############-->
+ <div class="modal" id="addform">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5>Add </h5>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="card">
+          <div class="card-body">
+            <form [formGroup]="angForm" novalidate>
+              <div class="form-group">
+                <input placeholder="Test Name" type="text" class="form-control" formControlName="lab_test_name"
+                  [(ngModel)]="objadd.lab_test_name" #lab_test_name />
+              </div>
+              <div
+                *ngIf="angForm.controls['lab_test_name'].invalid && (angForm.controls['lab_test_name'].dirty || angForm.controls['lab_test_name'].touched)"
+                class="alert alert-danger">
+                Required field.
+              </div>
+
+              <div class="form-group">
+                <input placeholder="Testcode id" type="text" class="form-control" formControlName="lab_testcode_id"
+                  [(ngModel)]="objadd.lab_testcode_id" #lab_testcode_id />
+              </div>
+              <div
+                *ngIf="angForm.controls['lab_testcode_id'].invalid && (angForm.controls['lab_testcode_id'].dirty || angForm.controls['lab_testcode_id'].touched)"
+                class="alert alert-danger">
+                Required field.
+              </div>
+
+              <div class="form-group">
+                <input placeholder="Sub Category" type="text" class="form-control" formControlName="lab_sub_category_id"
+                  [(ngModel)]="objadd.lab_sub_category_id" #lab_sub_category_id
+                  list="lab_sub_category_list"/>
+
+                  <datalist id="lab_sub_category_list">
+                    <option *ngFor="let item of subcategories" [value]=item.id>
+                        {{item.lab_sub_category_name}}</option>
+                </datalist>
+              </div>
+              <div
+                *ngIf="angForm.controls['lab_sub_category_id'].invalid && (angForm.controls['lab_sub_category_id'].dirty || angForm.controls['lab_sub_category_id'].touched)"
+                class="alert alert-danger">
+                Required field.
+              </div>
+
+              <div class="form-group">
+                <input placeholder="Method" type="text" class="form-control" formControlName="method"
+                  [(ngModel)]="objadd.method" #method />
+              </div>
+              <div
+                *ngIf="angForm.controls['method'].invalid && (angForm.controls['method'].dirty || angForm.controls['method'].touched)"
+                class="alert alert-danger">
+                Required field.
+              </div>
+
+              <div class="form-group">
+                <input placeholder="Volume Vaccutainer" type="text" class="form-control" formControlName="sample_volume_vaccutainer"
+                  [(ngModel)]="objadd.sample_volume_vaccutainer" #sample_volume_vaccutainer />
+              </div>
+              <div
+                *ngIf="angForm.controls['sample_volume_vaccutainer'].invalid && (angForm.controls['sample_volume_vaccutainer'].dirty || angForm.controls['sample_volume_vaccutainer'].touched)"
+                class="alert alert-danger">
+                Required field.
+              </div>
+
+              <div class="form-group">
+                <input placeholder="Temprature" type="text" class="form-control" formControlName="temp"
+                  [(ngModel)]="objadd.temp" #temp />
+              </div>
+              <div
+                *ngIf="angForm.controls['temp'].invalid && (angForm.controls['temp'].dirty || angForm.controls['temp'].touched)"
+                class="alert alert-danger">
+                Required field.
+              </div>
+
+              <div class="form-group">
+                <input placeholder="Cut off time" type="text" class="form-control" formControlName="cut_off_time"
+                  [(ngModel)]="objadd.cut_off_time" #cut_off_time />
+              </div>
+              <div
+                *ngIf="angForm.controls['cut_off_time'].invalid && (angForm.controls['cut_off_time'].dirty || angForm.controls['cut_off_time'].touched)"
+                class="alert alert-danger">
+                Required field.
+              </div>
+
+              <div class="form-group">
+                <input placeholder="Schedule" type="text" class="form-control" formControlName="schd"
+                  [(ngModel)]="objadd.schd" #schd />
+              </div>
+              <div
+                *ngIf="angForm.controls['schd'].invalid && (angForm.controls['schd'].dirty || angForm.controls['schd'].touched)"
+                class="alert alert-danger">
+                Required field.
+              </div>
+
+              <div class="form-group">
+                <input placeholder="Reporting" type="text" class="form-control" formControlName="reporting"
+                  [(ngModel)]="objadd.reporting" #reporting />
+              </div>
+              <div
+                *ngIf="angForm.controls['reporting'].invalid && (angForm.controls['reporting'].dirty || angForm.controls['reporting'].touched)"
+                class="alert alert-danger">
+                Required field.
+              </div>
+
+
+              <div class="form-group">
+                <button (click)="add(objadd)" type="submit" class="btn btn-primary">
+                  Submit
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+

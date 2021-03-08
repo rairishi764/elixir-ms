@@ -1,0 +1,276 @@
+<div class="row">
+  <div class="col-lg-6">
+    <div class="card m-2" style="padding: 10px;">
+      <h4>Consultation</h4>
+      <mat-tab-group>
+        <mat-tab label="Day">
+          <table class="table">
+            <tr>
+              <td></td>
+              <td *ngFor="let item of consultationInvoiceData.days.keys">
+                {{ item }}
+              </td>
+            </tr>
+            <tr>
+              <td>Revenue</td>
+              <td *ngFor="let item of consultationInvoiceData.days.totalcost">
+                {{ item }}
+              </td>
+            </tr>
+            <tr>
+              <td>Collected Revenue</td>
+              <td *ngFor="let item of consultationInvoiceData.days.advance">
+                {{ item }}
+              </td>
+            </tr>
+            <tr>
+              <td>Revenue in Cash</td>
+              <td *ngFor="let item of consultationInvoiceData.days.cash">
+                {{ item }}
+              </td>
+            </tr>
+            <tr>
+              <td>Revenue in Card</td>
+              <td *ngFor="let item of consultationInvoiceData.days.card">
+                {{ item }}
+              </td>
+            </tr>
+          </table>
+        </mat-tab>
+        <mat-tab label="Month">
+          <table class="table">
+            <tr>
+              <td>Month</td>
+              <td *ngFor="let item of consultationInvoiceData.months.keys">
+                {{ item }}
+              </td>
+            </tr>
+            <tr>
+              <td>Revenue</td>
+              <td *ngFor="let item of consultationInvoiceData.months.totalcost">
+                {{ item }}
+              </td>
+            </tr>
+            <tr>
+              <td>Collected Revenue</td>
+              <td *ngFor="let item of consultationInvoiceData.months.advance">
+                {{ item }}
+              </td>
+            </tr>
+            <tr>
+              <td>Revenue in Cash</td>
+              <td *ngFor="let item of consultationInvoiceData.months.cash">
+                {{ item }}
+              </td>
+            </tr>
+            <tr>
+              <td>Revenue in Card</td>
+              <td *ngFor="let item of consultationInvoiceData.months.card">
+                {{ item }}
+              </td>
+            </tr>
+          </table>
+        </mat-tab>
+        <mat-tab label="Year">
+          <table class="table">
+            <tr>
+              <td>Years</td>
+              <td *ngFor="let item of consultationInvoiceData.years.key">
+                {{ item }}
+              </td>
+            </tr>
+            <tr>
+              <td>Revenue</td>
+              <td *ngFor="let item of consultationInvoiceData.years.totalcost">
+                {{ item }}
+              </td>
+            </tr>
+            <tr>
+              <td>Collected Revenue</td>
+              <td *ngFor="let item of consultationInvoiceData.years.advance">
+                {{ item }}
+              </td>
+            </tr>
+          </table>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+
+  <div class="col-lg-6">
+  <div class="card m-2"  style="padding: 10px;">
+    <h4>Laboratory</h4>
+    <mat-tab-group>
+      <mat-tab label="Day">
+        <table class="table">
+          <tr>
+            <td></td>
+            <td *ngFor="let item of labInvoiceData.days.keys">{{ item }}</td>
+          </tr>
+          <tr>
+            <td>Revenue</td>
+            <td *ngFor="let item of labInvoiceData.days.totalcost">
+              {{ item }}
+            </td>
+          </tr>
+          <tr>
+            <td>Collected Revenue</td>
+            <td *ngFor="let item of labInvoiceData.days.advance">{{ item }}</td>
+          </tr>
+          <tr>
+            <td>Revenue in Cash</td>
+            <td *ngFor="let item of labInvoiceData.days.cash">{{ item }}</td>
+          </tr>
+          <tr>
+            <td>Revenue in Card</td>
+            <td *ngFor="let item of labInvoiceData.days.card">{{ item }}</td>
+          </tr>
+        </table>
+      </mat-tab>
+      <mat-tab label="Month">
+        <table class="table">
+          <tr>
+            <td>Month</td>
+            <td *ngFor="let item of labInvoiceData.months.keys">{{ item }}</td>
+          </tr>
+          <tr>
+            <td>Revenue</td>
+            <td *ngFor="let item of labInvoiceData.months.totalcost">
+              {{ item }}
+            </td>
+          </tr>
+          <tr>
+            <td>Collected Revenue</td>
+            <td *ngFor="let item of labInvoiceData.months.advance">
+              {{ item }}
+            </td>
+          </tr>
+          <tr>
+            <td>Revenue in Cash</td>
+            <td *ngFor="let item of labInvoiceData.months.cash">{{ item }}</td>
+          </tr>
+          <tr>
+            <td>Revenue in Card</td>
+            <td *ngFor="let item of labInvoiceData.months.card">{{ item }}</td>
+          </tr>
+        </table>
+      </mat-tab>
+      <mat-tab label="Year">
+        <table class="table">
+          <tr>
+            <td>Years</td>
+            <td *ngFor="let item of labInvoiceData.years.key">{{ item }}</td>
+          </tr>
+          <tr>
+            <td>Revenue</td>
+            <td *ngFor="let item of labInvoiceData.years.totalcost">
+              {{ item }}
+            </td>
+          </tr>
+          <tr>
+            <td>Collected Revenue</td>
+            <td *ngFor="let item of labInvoiceData.years.advance">
+              {{ item }}
+            </td>
+          </tr>
+        </table>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>
+</div>
+
+<div class="row">
+  <div class="col-lg-6">
+  <div class="card m-2" style="padding: 10px;">
+    <h4>Consultant Payout</h4>
+    <mat-tab-group>
+      <mat-tab label="Day">
+        <table class="table">
+          <tr>
+            <td></td>
+            <td *ngFor="let item of consultantData.day[0].keys">{{ item }}</td>
+          </tr>
+          <tr *ngFor="let consultant of consultantData.day">
+            <td>{{ consultant.consultant }}</td>
+            <td *ngFor="let item of consultant.share">{{ item }}</td>
+          </tr>
+        </table>
+      </mat-tab>
+      <mat-tab label="Month">
+        <table class="table">
+          <tr>
+            <td></td>
+            <td *ngFor="let item of consultantData.month[0].keys">
+              {{ item }}
+            </td>
+          </tr>
+          <tr *ngFor="let consultant of consultantData.month">
+            <td>{{ consultant.consultant }}</td>
+            <td *ngFor="let item of consultant.share">{{ item }}</td>
+          </tr>
+        </table>
+      </mat-tab>
+      <mat-tab label="Year">
+        <table class="table">
+          <tr>
+            <td></td>
+            <td *ngFor="let item of consultantData.year[0].keys">{{ item }}</td>
+          </tr>
+          <tr *ngFor="let consultant of consultantData.year">
+            <td>{{ consultant.consultant }}</td>
+            <td *ngFor="let item of consultant.share">{{ item }}</td>
+          </tr>
+        </table>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+  </div>
+
+
+  <div class="col-lg-6">
+    <div class="card m-2" style="padding: 10px;">
+      <h4>Lab Partner Payout</h4>
+      <mat-tab-group>
+        <mat-tab label="Day">
+          <table class="table">
+            <tr>
+              <td></td>
+              <td *ngFor="let item of partnerData.day[0].keys">{{ item }}</td>
+            </tr>
+            <tr *ngFor="let partner of partnerData.day">
+              <td>{{ partner.partner }}</td>
+              <td *ngFor="let item of partner.share">{{ item }}</td>
+            </tr>
+          </table>
+        </mat-tab>
+        <mat-tab label="Month">
+          <table class="table">
+            <tr>
+              <td></td>
+              <td *ngFor="let item of consultantData.month[0].keys">
+                {{ item }}
+              </td>
+            </tr>
+            <tr *ngFor="let partner of partnerData.month">
+              <td>{{ partner.partner }}</td>
+              <td *ngFor="let item of partner.share">{{ item }}</td>
+            </tr>
+          </table>
+        </mat-tab>
+        <mat-tab label="Year">
+          <table class="table">
+            <tr>
+              <td></td>
+              <td *ngFor="let item of partnerData.year[0].keys">{{ item }}</td>
+            </tr>
+            <tr *ngFor="let partner of partnerData.year">
+              <td>{{ partner.partner }}</td>
+              <td *ngFor="let item of partner.share">{{ item }}</td>
+            </tr>
+          </table>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+    </div>
+</div>

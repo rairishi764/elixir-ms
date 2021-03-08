@@ -1,0 +1,541 @@
+<div class="main-content">
+  <div class="container-fluid">
+      <div class="row">
+          <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                  <div class="card-header card-header-warning card-header-icon">
+                      <div class="card-icon">
+                          <i class="material-icons">account_balance_wallet</i>
+                      </div>
+                      <p class="card-category">Revenue</p>
+                      <h3 class="card-title"><small>Lab/Consultation</small><br/>
+                          <small>
+                           {{labInvoiceData.days.totalcost[0]}}/{{consultationInvoiceData.days.totalcost[0]}}
+                          </small>
+                      </h3>
+                  </div>
+                  <div class="card-footer">
+                      <div class="stats">
+                          <i class="material-icons text-warning"><i class="fa fa-flask"></i></i>
+                          <a routerLink="/labinvoice/add">Lab Invoice</a>
+                          </div>
+                  </div>
+              </div>
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                  <div class="card-header card-header-success card-header-icon">
+                      <div class="card-icon">
+                          <i class="material-icons">assessment</i>
+                      </div>
+                      <p class="card-category">Cash Collected</p>
+                      <h3 class="card-title"><small>Lab/Consultation</small><br/>
+                      <small>{{labInvoiceData.days.cash[0]}}/{{consultationInvoiceData.days.cash[0]}}</small>
+                    </h3>
+                  </div>
+                  <div class="card-footer">
+                      <div class="stats">
+                          <i class="material-icons">date_range</i> <a routerLink="consultationinvoice/add">Consultation Invoice</a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                  <div class="card-header card-header-danger card-header-icon">
+                      <div class="card-icon">
+                          <i class="material-icons">supervisor_account</i>
+                      </div>
+                      <p class="card-category">Card Collected</p>
+                      <h3 class="card-title"><small>Lab/Consultation<br/>
+                      {{labInvoiceData.days.card[0]}}/{{consultationInvoiceData.days.card[0]}}</small></h3>
+                  </div>
+                  <div class="card-footer">
+                      <div class="stats">
+                          <i class="material-icons">local_offer</i> <a routerLink="patient/view">Search Patient</a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                  <div class="card-header card-header-info card-header-icon">
+                      <div class="card-icon">
+                          <i class="fa fa-flask"></i>
+                      </div>
+                      <p class="card-category">Due Amount</p>
+                      <h3 class="card-title"><small>Lab/Consultation <br/>
+                      {{labInvoiceData.days.due_amount[0]}}/{{consultationInvoiceData.days.due_amount[0]}}</small></h3>
+                  </div>
+                  <div class="card-footer">
+                      <div class="stats">
+                          <i class="material-icons">update</i> Just Updated
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-md-4">
+              <div class="card card-chart">
+                  <div class="card-header card-header-success">
+                    <h4 class="card-title">New Patients Footfall</h4>
+                      <div class="ct-chart" id="dailySalesChart"></div>
+                  </div>
+                  <div class="card-body">
+                     <!-- <h4 class="card-title">New Patients Footfall</h4>-->
+                      <table>
+                        <thead>
+                          <td>{{patientData.days.keys[0]}}</td>
+                          <td>{{patientData.days.keys[1]}}</td>
+                          <td>{{patientData.days.keys[2]}}</td>
+                          <td>{{patientData.days.keys[3]}}</td>
+                        </thead>
+                        <tr>
+                          <td>{{patientData.days.new_patient[0]}}</td>
+                          <td>{{patientData.days.new_patient[1]}}</td>
+                          <td>{{patientData.days.new_patient[2]}}</td>
+                          <td>{{patientData.days.new_patient[3]}}</td>
+                        </tr>
+
+                        <tr>
+                          <td>{{patientData.months.keys[0]}}</td>
+                          <td>{{patientData.months.keys[1]}}</td>
+                          <td>{{patientData.months.keys[2]}}</td>
+                          <td>{{patientData.months.keys[3]}}</td>
+                        </tr>
+                        <tr>
+                          <td>{{patientData.months.new_patient[0]}}</td>
+                          <td>{{patientData.months.new_patient[1]}}</td>
+                          <td>{{patientData.months.new_patient[2]}}</td>
+                          <td>{{patientData.months.new_patient[3]}}</td>
+                        </tr>
+
+                        <tr>
+                          <td>{{patientData.years.key[0]}}</td>
+                          <td>{{patientData.years.key[1]}}</td>
+                          <td>{{patientData.years.key[2]}}</td>
+                          <td>{{patientData.years.key[3]}}</td>
+                        </tr>
+                        <tr>
+                          <td>{{patientData.years.new_patient[0]}}</td>
+                          <td>{{patientData.years.new_patient[1]}}</td>
+                          <td>{{patientData.years.new_patient[2]}}</td>
+                          <td>{{patientData.years.new_patient[3]}}</td>
+                        </tr>
+                      </table>
+                      <p class="card-category">
+<!--
+                          <span class="text-success"><i class="fa fa-long-arrow-up"></i> 55% </span> increase in today sales.</p>
+    -->              </div>
+               <!--   <div class="card-footer">
+                      <div class="stats">
+                          <i class="material-icons">access_time</i> updated 4 minutes ago
+                      </div>
+                  </div>-->
+              </div>
+          </div>
+          <div class="col-md-4">
+              <div class="card card-chart">
+                  <div class="card-header card-header-warning">
+                    <h4 class="card-title">Consultation</h4>
+                      <div class="ct-chart" id="websiteViewsChart"></div>
+                  </div>
+                  <div class="card-body">
+                      <!--<h4 class="card-title">Center Revenue</h4>-->
+                      <p class="card-category">Last Campaign Performance</p>
+                  </div>
+                 <!-- <div class="card-footer">
+                      <div class="stats">
+                          <i class="material-icons">access_time</i> campaign sent 2 days ago
+                      </div>
+                  </div>-->
+              </div>
+          </div>
+          <div class="col-md-4">
+              <div class="card card-chart">
+                  <div class="card-header card-header-info">
+                    <h4 class="card-title">Lab</h4>
+                      <div class="ct-chart" id="completedTasksChart"></div>
+                  </div>
+                  <div class="card-body">
+                      <!--<h4 class="card-title">Lab</h4>-->
+                      <p class="card-category">Last Campaign Performance</p>
+                  </div>
+                  <!--<div class="card-footer">
+                      <div class="stats">
+                          <i class="material-icons">access_time</i> campaign sent 2 days ago
+                      </div>
+                  </div>-->
+              </div>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-lg-6 col-md-12">
+              <div class="card">
+                  <div class="card-header card-header-tabs card-header-info">
+                      <div class="nav-tabs-navigation">
+                          <div class="nav-tabs-wrapper">
+                              <span class="nav-tabs-title">Reports:</span>
+                              <ul class="nav nav-tabs" data-tabs="tabs">
+                                  <li class="nav-item">
+                                      <a mat-button class="nav-link active" href="#profile" data-toggle="tab">
+                                          <i class="material-icons">calendar_today</i> Day
+                                          <div class="ripple-container"></div>
+                                      </a>
+                                  </li>
+                                  <li class="nav-item">
+                                      <a mat-button class="nav-link" href="#messages" data-toggle="tab">
+                                          <i class="material-icons">date_range</i> Month
+                                          <div class="ripple-container"></div>
+                                      </a>
+                                  </li>
+                                  <!--<li class="nav-item">
+                                      <a mat-button class="nav-link" href="#settings" data-toggle="tab">
+                                          <i class="material-icons">code</i> Month
+                                          <div class="ripple-container"></div>
+                                      </a>
+                                  </li>-->
+                              </ul>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="card-body">
+                      <div class="tab-content">
+                          <div class="tab-pane active" id="profile">
+                              <table class="table">
+                                  <tbody>
+                                     <tr>
+                                       <td></td>
+                                       <td>{{labInvoiceData.days.keys[0]}}</td>
+                                       <td>{{labInvoiceData.days.keys[1]}}</td>
+                                       <td>{{labInvoiceData.days.keys[2]}}</td>
+                                       <td>{{labInvoiceData.days.keys[3]}}</td>
+                                     </tr>
+                                      <tr>
+                                        <td>
+                                            Collection
+                                        </td>
+                                          <td>
+                                            {{(labInvoiceData.days.totalcost[0]*1)+(consultationInvoiceData.days.totalcost[0]*1)}}
+                                          </td>
+                                          <td>
+                                            {{(labInvoiceData.days.totalcost[1]*1)+(consultationInvoiceData.days.totalcost[1]*1)}}
+                                          </td>
+                                          <td>
+                                            {{(labInvoiceData.days.totalcost[2]*1)+(consultationInvoiceData.days.totalcost[2]*1)}}
+                                          </td>
+                                          <td>
+                                            {{(labInvoiceData.days.totalcost[3]*1)+(consultationInvoiceData.days.totalcost[3]*1)}}
+                                          </td>
+                                      </tr>
+
+                                      <tr>
+                                        <td>
+                                            Cash Collection
+                                        </td>
+                                          <td>
+                                            {{(labInvoiceData.days.cash[0]*1)+(consultationInvoiceData.days.cash[0]*1)}}
+                                          </td>
+                                          <td>
+                                            {{(labInvoiceData.days.cash[1]*1)+(consultationInvoiceData.days.cash[1]*1)}}
+                                          </td>
+                                          <td>
+                                            {{(labInvoiceData.days.cash[2]*1)+(consultationInvoiceData.days.cash[2]*1)}}
+                                          </td>
+                                          <td>
+                                            {{(labInvoiceData.days.cash[3]*1)+(consultationInvoiceData.days.cash[3]*1)}}
+                                          </td>
+                                      </tr>
+
+                                      <tr>
+                                        <td>
+                                            Card Collection
+                                        </td>
+                                        <td>
+                                          {{(labInvoiceData.days.card[0]*1)+(consultationInvoiceData.days.card[0]*1)}}
+                                        </td>
+                                        <td>
+                                          {{(labInvoiceData.days.card[1]*1)+(consultationInvoiceData.days.card[1]*1)}}
+                                        </td>
+                                        <td>
+                                          {{(labInvoiceData.days.card[2]*1)+(consultationInvoiceData.days.card[2]*1)}}
+                                        </td>
+                                        <td>
+                                          {{(labInvoiceData.days.card[3]*1)+(consultationInvoiceData.days.card[3]*1)}}
+                                        </td>
+                                      </tr>
+
+                                      <tr>
+                                        <td>
+                                            Amount Collected
+                                        </td>
+                                        <td>
+                                          {{(labInvoiceData.days.advance[0]*1)+(consultationInvoiceData.days.advance[0]*1)}}
+                                        </td>
+                                        <td>
+                                          {{(labInvoiceData.days.advance[1]*1)+(consultationInvoiceData.days.advance[1]*1)}}
+                                        </td>
+                                        <td>
+                                          {{(labInvoiceData.days.advance[2]*1)+(consultationInvoiceData.days.advance[2]*1)}}
+                                        </td>
+                                        <td>
+                                          {{(labInvoiceData.days.advance[3]*1)+(consultationInvoiceData.days.advance[3]*1)}}
+                                        </td>
+                                      </tr>
+
+
+                                      <tr>
+                                        <td>
+                                            Due Amount
+                                        </td>
+                                        <td>
+                                          {{(labInvoiceData.days.due_amount[0]*1)+(consultationInvoiceData.days.due_amount[0]*1)}}
+                                        </td>
+                                        <td>
+                                          {{(labInvoiceData.days.due_amount[1]*1)+(consultationInvoiceData.days.due_amount[1]*1)}}
+                                        </td>
+                                        <td>
+                                          {{(labInvoiceData.days.due_amount[2]*1)+(consultationInvoiceData.days.due_amount[2]*1)}}
+                                        </td>
+                                        <td>
+                                          {{(labInvoiceData.days.due_amount[3]*1)+(consultationInvoiceData.days.due_amount[3]*1)}}
+                                        </td>
+                                      </tr>
+
+                                  </tbody>
+                              </table>
+                          </div>
+                          <div class="tab-pane" id="messages">
+                              <table class="table">
+                                <tbody>
+                                  <tr>
+                                    <td>
+
+                                    </td>
+                                      <td>
+                                        {{labInvoiceData.months.keys[0]}}
+                                      </td>
+                                      <td>
+                                        {{labInvoiceData.months.keys[1]}}
+                                      </td>
+                                      <td>
+                                        {{labInvoiceData.months.keys[2]}}</td>
+                                  </tr>
+
+                                  <tr>
+                                    <td>
+                                        Collection
+                                    </td>
+                                      <td>
+                                        {{(labInvoiceData.months.totalcost[0]*1)+(consultationInvoiceData.months.totalcost[0]*1)}}
+                                      </td>
+                                      <td>
+                                        {{(labInvoiceData.months.totalcost[1]*1)+(consultationInvoiceData.months.totalcost[1]*1)}}
+                                      </td>
+                                      <td>
+                                        {{(labInvoiceData.months.totalcost[2]*1)+(consultationInvoiceData.months.totalcost[2]*1)}}
+                                      </td>
+                                  </tr>
+
+                                  <tr>
+                                    <td>
+                                        Cash Collection
+                                    </td>
+                                      <td>
+                                        {{(labInvoiceData.months.cash[0]*1)+(consultationInvoiceData.months.cash[0]*1)}}
+                                      </td>
+                                      <td>
+                                        {{(labInvoiceData.months.cash[1]*1)+(consultationInvoiceData.months.cash[1]*1)}}
+                                      </td>
+                                      <td>
+                                        {{(labInvoiceData.months.cash[2]*1)+(consultationInvoiceData.months.cash[2]*1)}}
+                                      </td>
+                                  </tr>
+
+                                  <tr>
+                                    <td>
+                                        Card Collection
+                                    </td>
+                                    <td>
+                                      {{(labInvoiceData.months.card[0]*1)+(consultationInvoiceData.months.card[0]*1)}}
+                                    </td>
+                                    <td>
+                                      {{(labInvoiceData.months.card[1]*1)+(consultationInvoiceData.months.card[1]*1)}}
+                                    </td>
+                                    <td>
+                                      {{(labInvoiceData.months.card[2]*1)+(consultationInvoiceData.months.card[2]*1)}}
+                                    </td>
+                                  </tr>
+
+                                  <tr>
+                                    <td>
+                                        Amount Collected
+                                    </td>
+                                    <td>
+                                      {{(labInvoiceData.months.advance[0]*1)+(consultationInvoiceData.months.advance[0]*1)}}
+                                    </td>
+                                    <td>
+                                      {{(labInvoiceData.months.advance[1]*1)+(consultationInvoiceData.months.advance[1]*1)}}
+                                    </td>
+                                    <td>
+                                      {{(labInvoiceData.months.advance[2]*1)+(consultationInvoiceData.months.advance[2]*1)}}
+                                    </td>
+                                  </tr>
+
+
+                                  <tr>
+                                    <td>
+                                        Due Amount
+                                    </td>
+                                    <td>
+                                      {{(labInvoiceData.months.due_amount[0]*1)+(consultationInvoiceData.months.due_amount[0]*1)}}
+                                    </td>
+                                    <td>
+                                      {{(labInvoiceData.months.due_amount[1]*1)+(consultationInvoiceData.months.due_amount[1]*1)}}
+                                    </td>
+                                    <td>
+                                      {{(labInvoiceData.months.due_amount[2]*1)+(consultationInvoiceData.months.due_amount[2]*1)}}
+                                    </td>
+                                  </tr>
+
+                              </tbody>
+                              </table>
+                          </div>
+                          <div class="tab-pane" id="settings">
+                              <table class="table">
+                                  <tbody>
+                                    <tr>
+                                      <td>
+                                      </td>
+                                      <td>Current Month
+                                      </td>
+                                      <td>Last Month
+                                      </td>
+                                  </tr>
+
+                                  <tr>
+                                    <td>Revenue
+                                    </td>
+                                    <td>{{data.month_total_revenue}}
+                                    </td>
+                                    <td>
+                                    </td>
+                                    <td>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                  <td>Cash
+                                  </td>
+                                  <td>{{data.month_cash_collection}}
+                                  </td>
+                                  <td>
+                                  </td>
+                                  <td>
+                                  </td>
+                              </tr>
+
+                              <tr>
+                                <td>Card
+                                </td>
+                                <td>{{data.month_card_collection}}
+                                </td>
+                                <td>
+                                </td>
+                                <td>
+                                </td>
+                            </tr>
+
+                            <tr>
+                              <td> Revenue collected
+                              </td>
+                              <td>{{data.month_advance}}
+                              </td>
+                              <td>
+                              </td>
+                              <td>
+                              </td>
+                          </tr>
+
+                          <tr>
+                            <td> Due Amount
+                            </td>
+                            <td>{{data.month_due_amt}}
+                            </td>
+                            <td>
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
+
+                        <tr>
+                          <td>Discount Offered
+                          </td>
+                          <td>{{data.month_discount_amt}}
+                          </td>
+                          <td>
+                          </td>
+                          <td>
+                          </td>
+                      </tr>
+
+
+
+                                  </tbody>
+                              </table>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="col-lg-6 col-md-12">
+              <div class="card">
+                  <div class="card-header card-header-warning">
+                      <h4 class="card-title">Consultant Availability</h4>
+                      <!--<p class="card-category">New employees on 15th September, 2016</p>-->
+                  </div>
+
+
+
+                  <div class="card-body table-responsive">
+                      <table class="table table-hover">
+                          <thead class="text-warning">
+                              <th>ID</th>
+                              <th>Name</th>
+                              <th>Salary</th>
+                              <th>Country</th>
+                          </thead>
+                          <tbody>
+                              <tr>
+                                  <td>1</td>
+                                  <td>Dakota Rice</td>
+                                  <td>$36,738</td>
+                                  <td>Niger</td>
+                              </tr>
+                              <tr>
+                                  <td>2</td>
+                                  <td>Minerva Hooper</td>
+                                  <td>$23,789</td>
+                                  <td>Curaçao</td>
+                              </tr>
+                              <tr>
+                                  <td>3</td>
+                                  <td>Sage Rodriguez</td>
+                                  <td>$56,142</td>
+                                  <td>Netherlands</td>
+                              </tr>
+                              <tr>
+                                  <td>4</td>
+                                  <td>Philip Chaney</td>
+                                  <td>$38,735</td>
+                                  <td>Korea, South</td>
+                              </tr>
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>

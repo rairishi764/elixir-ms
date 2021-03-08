@@ -1,0 +1,67 @@
+<div class="card" style="background-color: white;" *ngIf="router.url.includes('experience')">
+  <div class="card-body" style="background-color: white;">
+    <hr/>
+    <p style="text-align: center;"><b>Experience Certificate</b></p>
+    <hr/>
+<textarea rows="20" cols="145" style="border: 0px none">
+  No. 57, 6th Cross, Nanjappa Garden,
+  Babusapalya, Bangalore - 560 043
+  P: (0)80 2542 9798 M: 98453 80011
+  E: mdmc@mdmc.in, W: www.mdmc.in
+
+
+
+
+</textarea>
+<button  class="btn btn-warning no-print" (click)="print()">Print</button>
+</div>
+</div>
+
+
+<div class="card" style="background-color: white;" *ngIf="router.url.includes('medical')">
+  <div class="card-body" style="background-color: white;">
+    <hr/>
+    <p style="text-align: center;"><b>Medical Certificate</b></p>
+    <hr/>
+
+    <p style="text-align: center;">To whomsoever it may concern</p>
+<textarea rows="20" cols="145" style="border: 0px none">
+
+I hereby certify that Mr./Mrs./Ms.__________________________ aged/sex__________ years residing at ________________________________________________
+___________________________________ was/is suffering from _______________________________________________ since/from ___________ to ___________ .
+He/She has/had been advised strict rest during the period of illness.
+
+
+Mr./Mrs./Ms.______________________________ is fit to resume professional duties/class from ___________.
+
+Dr.
+Regn. No.:
+
+</textarea>
+<button  class="btn btn-warning no-print" (click)="print()">Print</button>
+</div>
+</div>
+
+
+
+
+
+
+<div class="card" style="background-color: white;" *ngIf="router.url.includes('letterhead')">
+  <div class="card-body" style="background-color: white;">
+    <hr/>
+    <p style="text-align: center;"><b>{{this.client}}</b></p>
+    <hr/>
+<textarea rows="20" cols="145" style="border: 0px none">
+  No. 57, 6th Cross, Nanjappa Garden,
+  Babusapalya, Bangalore - 560 043
+  P: (0)80 2542 9798 M: 98453 80011
+  E: mdmc@mdmc.in, W: www.mdmc.in
+
+
+
+
+</textarea>
+<button  class="btn btn-warning no-print" (click)="print()">Print</button>
+</div>
+</div>

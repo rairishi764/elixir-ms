@@ -1,0 +1,89 @@
+<body>
+  <div class="container">
+    <div class="d-flex justify-content-center h-100">
+      <div class="card" style="background-color: rgba(0,0,0,0.5) !important;border:0px !important;">
+        <div class="card-header" style="background-color: rgba(0,0,0,0.5) !important;border:0px !important;">
+          <h3>Elixir | Sign In</h3>
+          <div class="d-flex justify-content-end social_icon" >
+            <!--<span><i class="fa fa-facebook-square" aria-hidden="true" ></i></span>
+            <span><i class="fa fa-linkedin-square" aria-hidden="true"></i></span>-->
+            <span><button type="button" (click)="login()"><i class="fa fa-google-plus-square" aria-hidden="true" style="font-size:48px;color:#FFC312"></i></button></span>
+          </div>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="angForm" novalidate>
+            <div class="input-group form-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fa fa-user-circle" aria-hidden="true"></i></span>
+              </div>
+              <input style="padding-left: 10px;;color:whitesmoke" placeholder=" Mail Id" type="text" formControlName="mail" class="form-control"  [(ngModel)]="user1.mail"
+              #mail />
+            </div>
+            <div class="input-group form-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fa fa-key" aria-hidden="true"></i></span>
+              </div>
+              <!--<input type="password" class="form-control" placeholder="password">-->
+              <input style="padding-left: 10px;color:whitesmoke" placeholder="    Password" type="password" class="form-control" formControlName="pwd" [(ngModel)]="user1.pwd"
+              #pwd />
+            </div>
+
+            <div class="input-group form-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fa fa-address-card" aria-hidden="true"></i></span>
+              </div>
+              <select name="access_type" style="color:white" id="access_type" class="form-control" formControlName="access_type" [(ngModel)]="user1.accesstype">
+                <option value=0 selected disabled>  Access type</option>
+                <option value=1>  _employee</option>
+                <option value=2>  _consultant</option>
+                <option value=3>  _patient</option>
+                <option value=4>  _administrator</option>
+              </select>
+            </div>
+
+            <div class="row align-items-center remember">
+              <input type="checkbox">Remember Me
+            </div>
+            <div class="form-group">
+              <input type="submit" value="Login" (click)="submit(user1)"  style="margin-top: -20px;" class="btn float-right login_btn">
+            </div>
+          </form>
+        </div>
+        <div class="card-footer" style="background-color: rgba(0,0,0,0.5) !important;border: 0">
+          <div class="d-flex justify-content-center links">
+            Don't have an account?<a href="#">Sign Up</a>
+          </div>
+          <div class="d-flex justify-content-center">
+            <a href="#">Forgot your password?</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </body>
+  <!--
+
+  <div class="card">
+    <div class="card-body">
+        <p>Login</p>
+        <form [formGroup] novalidate>
+          <div class="form-group">
+            <input placeholder="User Name" type="text" class="form-control"
+              #user_name />
+          </div>
+          <div class="form-group">
+            <input placeholder="Password" type="password" class="form-control"
+              #password />
+          </div>
+
+          <div class="form-group">
+            <button (click) = "submit(user_name.value,password.value)" type="submit" class="btn btn-primary"  >
+              Submit
+            </button>
+    </div>
+        </form>
+    </div>
+  </div>
+
+  -->
+

@@ -1,0 +1,623 @@
+<div *ngIf="router.url.includes('add')">
+  <div class="card" style="background-color: white;">
+    <div class="card-body" style="background-color: white;">
+      <div [formGroup]="addForm" *ngIf="router.url.includes('add')">
+        <label class="label-control">Create Invoice</label>
+        <br />
+        <div class="form-group row">
+        <div class="col-md-4">
+        <input
+          placeholder="Patient"
+          type="text"
+          class="form-control"
+          formControlName="patient_id"
+          #patient
+          list="patientlist1"
+          *ngIf="addForm.get('rows')"
+        />
+        <datalist id="patientlist1">
+          <option *ngFor="let item of patientlist" [value]="item.id">
+            {{ item.name }} Ph:{{ item.phone }}</option
+          >
+        </datalist>
+        </div>
+
+        <div class="col-md-4">
+        <select
+          class="form-control"
+          formControlName="payment_mode"
+          *ngIf="addForm.get('rows')"
+        ><option disabled>Payment Mode</option>
+          <option value="1">Card</option>
+          <option value="2">Cash</option>
+        </select>
+        </div>
+        </div>
+        <div class="form-group" *ngIf="addForm.get('rows')">
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="row-border hover">
+                <thead *ngIf="addForm.get('rows')">
+                  <tr>
+                    <td>
+                      <button
+                        (click)="onAddRow()"
+                        *ngIf="addForm.get('rows')"
+                        class="btn btn-primary"
+                      >
+                        <i class="fa fa-plus" aria-hidden="true"></i> Add Row
+                      </button>
+                    </td>
+                    <td></td>
+                    <td>Qty</td>
+                    <td>Price</td>
+                    <td>SubTotal</td>
+                    <td></td>
+                    <td>DiscountedSubtotal</td>
+                    <td>ConsultantShareType</td>
+                    <td>ConsultantShare</td>
+                    <td>ConsultantShareValue</td>
+                    <td>CenterShareValue</td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr
+                    *ngFor="
+                      let row of addForm.get('rows')['controls'];
+                      let index = index
+                    "
+                  >
+                    <td>
+                      <input
+                        style="min-width: 120px;"
+                        placeholder="Service"
+                        type="text"
+                        class="form-control"
+                        (blur)="servicefilter(row)"
+                        [formControl]="row.get('service')"
+                        list="Servicelist"
+                        (input)="servicefilter(row)"
+                      />
+                      <datalist id="Servicelist">
+                        <option
+                          *ngFor="let item of consultationservicelist"
+                          [value]="item.name"
+                        >
+                          {{ item.id }}
+                        </option>
+                      </datalist>
+                    </td>
+
+                    <td>
+                      <input
+                        style="min-width: 100px;"
+                        placeholder="Consultant"
+                        type="text"
+                        class="form-control"
+                        [formControl]="row.get('consultant_name')"
+                        list="Consultantlist"
+                        (input)="consultantfilter(row)"
+
+                      />
+                      <datalist id="Consultantlist">
+                        <option
+                          *ngFor="let item of rowconsultantlist"
+                          [value]="item.name"
+                        >
+                          {{ item.name }}
+                        </option>
+                      </datalist>
+                    </td>
+
+                    <td>
+                      <input
+                        style="max-width: 100px; min-width: 50px;"
+                        placeholder="No."
+                        type="number"
+                        class="form-control"
+                        min="1"
+                        [formControl]="row.get('qty')"
+                        (input)="calculate(row)"
+                      />
+                    </td>
+
+
+                    <td>
+                      <input
+                        style="max-width: 100px; min-width: 70px;"
+                        placeholder="Price"
+                        type="number"
+                        class="form-control"
+                        style="width: 100px;"
+                        min="0"
+                        [formControl]="row.get('price')"
+                        (change)="calculate(row)"
+                      />
+                    </td>
+                    <td>
+                      <input
+                        style="max-width: 120px; min-width: 90px;"
+                        placeholder="SubTotal"
+                        type="number"
+                        class="form-control"
+                        disabled
+                        [formControl]="row.get('subtotal')"
+                      />
+                    </td>
+                    <td>
+                      <button (click)="onRemoveRow(index)" class="btn btn-danger">
+                        <i class="fa fa-minus" aria-hidden="true"></i>
+                      </button>
+                    </td>
+
+                    <td>
+                      <input
+                        style="max-width: 120px; min-width: 90px;"
+                        placeholder="SubTotal"
+                        type="number"
+                        class="form-control"
+                        disabled
+                        [formControl]="row.get('discounted_subtotal')"
+                      />
+                    </td>
+
+                    <td>
+                      <input
+                        style="max-width: 80px; min-width: 50px;"
+                        placeholder="ConsultantShareType"
+                        type="text"
+                        class="form-control"
+                        min="1"
+                        [formControl]="row.get('consultant_share_type')"
+                      />
+                    </td>
+                    <td>
+                      <input
+                        style="max-width: 80px; min-width: 50px;"
+                        placeholder="Consultanthare"
+                        type="number"
+                        class="form-control"
+                        min="1"
+                        [formControl]="row.get('consultant_share')"
+                      />
+                    </td>
+
+                    <td>
+                      <input
+                        style="max-width: 80px; min-width: 50px;"
+                        placeholder="ConsultantShareValue"
+                        type="number"
+                        class="form-control"
+                        min="1"
+                        [formControl]="row.get('consultant_share_value')"
+                      />
+                    </td>
+
+
+                    <td>
+                      <input
+                        style="max-width: 80px; min-width: 50px;"
+                        placeholder="Center Share"
+                        type="number"
+                        class="form-control"
+                        min="1"
+                        [formControl]="row.get('center_share_value')"
+                      />
+                    </td>
+
+                  </tr>
+
+                  <tr>
+                    <td colspan="4"></td>
+                    <td colspan="3">Total Amount before discount</td>
+                    <td>
+                      <input
+                        style="max-width: 120px; min-width: 90px;"
+                        class="form-control"
+                        placeholder="Total"
+                        formControlName="total_amt"
+                        disabled
+                      />
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td></td>
+                    <td>Discount Type</td>
+                    <td colspan="2">
+                      <select class="form-control" formControlName="discount_type">
+                        <option value=0 selected>No Discount</option>
+                        <option value=1>Center</option>
+                        <option value=2>Partner</option>
+                        <option value=3>Shared</option>
+                        </select>
+                    </td>
+                    <td></td>
+                    <td>Discount%</td>
+                    <td>
+                      <input
+                        style="max-width: 120px; min-width: 90px;"
+                        class="form-control"
+                        placeholder="Discount"
+                        type="number"
+                        (change)="calculatediscount()"
+                        formControlName="discount_percent"
+                      />
+                    </td>
+                    <td>
+                      <input
+                        style="max-width: 120px; min-width: 90px;"
+                        class="form-control"
+                        placeholder="Discount Amt"
+                        (change)="calculatediscount()"
+                        type="number"
+                        formControlName="discount_amt"
+                      />
+                    </td>
+                    <td></td>
+                  </tr>
+
+                  <tr>
+                    <td colspan="4"></td>
+                    <td colspan="3">Total Amount after discount</td>
+                    <td>
+                      <input
+                        style="max-width: 120px; min-width: 90px;"
+                        class="form-control"
+                        placeholder="Discounted Total"
+                        formControlName="total_amt_after_discount"
+                        disabled
+                      />
+                    </td>
+                  </tr>
+
+
+                  <tr>
+
+                    <td colspan="5"></td>
+                    <td></td>
+                    <td>Amount Paid</td>
+                    <td>
+                      <input
+                        style="max-width: 120px; min-width: 90px;"
+                        class="form-control"
+                        placeholder="Advance"
+                        formControlName="advance"
+                        (change)="calculatediscount()"
+                        type="number"
+                      />
+                    </td>
+                    <td></td>
+                  </tr>
+
+                  <tr>
+                    <td colspan="2">
+                      <button
+                        type="button"
+                        (click)="add()"
+                        *ngIf="addForm.get('rows')"
+                        class="btn btn-success"
+                      >
+                        Submit
+                      </button>
+                    </td>
+                    <td><mat-slide-toggle>Save Paper!Mail Invoice</mat-slide-toggle></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Balance</td>
+                    <td>
+                      <input
+                        style="max-width: 120px; min-width: 90px;"
+                        disabled
+                        class="form-control"
+                        placeholder="Due Amt"
+                        formControlName="due_amt"
+                      />
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <!-- <pre>{{ rows.value | json }}</pre> -->
+    </div>
+  </div>
+</div>
+<!--###################################################################################-->
+
+<div id="invoice print" *ngIf="router.url.includes('print')">
+  <div id="invoice" class="invoice-box" >
+    <table cellpadding="0" cellspacing="0" id="invoice-table">
+      <tr class="top">
+        <td colspan="5">
+          <table>
+            <tr>
+              <td class="title">
+                <!--<img
+                  src="../../../../../assets/img/logo.png"
+                  style="width: 100%; max-width: 300px;"
+                />-->
+                <h1 style="margin:0 0 -10px;color: grey;font-family: Arial, Helvetica"><b>{{clientDetails.name}}</b></h1>
+                  <p style="font-size:16px; margin:0 0 -20px">
+                  {{ clientDetails.address}}</p>
+                  <p style="font-size:16px; margin:0 0 -20px">
+                  {{ clientDetails.website}}</p>
+                  <p style="font-size:16px; margin:0 0 -20px">
+                  {{ clientDetails.email}}</p>
+              </td>
+
+              <td>
+                Invoice #: {{ invoice.id }}<br />
+                {{ invoice.date | date }}<br />
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+
+      <tr class="information">
+        <td colspan="5">
+          <table>
+            <tr>
+              <td>
+                <tr>
+                  <b>Name:</b>{{ invoice.patient_name }}
+                  <b>PID:</b>{{ invoice.patient_id }}
+                </tr>
+                <tr>
+                <b>Phone:</b> {{ invoice.patient_number }}
+                <b>Gender/Age:</b> {{ invoice.patient_gender }}/{{ invoice.patient_age }}Yrs
+              </tr>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+
+      <tr class="heading">
+        <td>
+          Service
+        </td>
+        <td>
+          Consultant
+        </td>
+        <td>
+          Units
+        </td>
+        <td>
+          Charges
+        </td>
+        <td>
+          Sub Total
+        </td>
+      </tr>
+
+      <tr class="item" *ngFor="let item of invoice.servicesList">
+        <td>
+          {{ item.service }}
+        </td>
+        <td>
+          {{ item.consultant_name }}
+        </td>
+        <td>
+          {{ item.qty }}
+        </td>
+        <td>
+          {{ item.price }}
+        </td>
+
+        <td>
+          {{ item.subtotal }}
+        </td>
+      </tr>
+
+      <tr class="total">
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>Total:</td>
+        <td>{{invoice.total_cost}}</td>
+      </tr>
+      <tr class="total" *ngIf="invoice.discount_percent!=0">
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>Discount:({{invoice.discount_percent}}%)</td>
+        <td>-{{invoice.discount_amt}} </td>
+      </tr>
+      <tr class="total" *ngIf="invoice.discount_percent!=0">
+        <td></td>
+        <td></td>
+        <td></td>
+        <td><b>Discounted Total:</b></td>
+        <td><b>{{invoice.total_cost-invoice.discount_amt}}</b></td>
+      </tr>
+      <tr class="total">
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>Paid:</td>
+        <td>{{invoice.advance}}</td>
+      </tr>
+      <tr class="total">
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>Balance:</td>
+        <td>{{invoice.due_amt}}</td>
+      </tr>
+      <tr class="heading">
+        <td>
+          Payment Method
+        </td>
+        <td></td>
+        <td></td>
+        <td></td>
+
+        <td *ngIf="invoice.payment_mode=='1'">
+            Card
+        </td>
+        <td *ngIf="invoice.payment_mode=='2'">
+          Cash
+      </td>
+      </tr>
+
+     <!-- <tr class="details">
+        <td>
+          Check
+        </td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>
+          1000
+        </td>
+      </tr>-->
+    </table>
+  </div>
+  <!--
+    <button  class="btn btn-warning" styleSheetFile="labinvoice.component.css, ../../../../styles.css" printSectionId="invoice" ngxPrint>print</button>
+  -->
+  <button  class="btn btn-success no-print" (click)="sendmail(invoice)">Send Email</button>
+  <button  class="btn btn-warning no-print" (click)="print()">Print</button>
+  </div>
+
+
+<!-- #######################  LIST INVOICE  ####################################### -->
+    <div *ngIf="router.url.includes('view')">
+    <!--  Table content  -->
+    <div class="container-fluid" *ngIf="router.url.includes('view')">
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4 no-print">
+          <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Invoice
+              <button type="button" class="btn btn-primary" routerLink="/consultationinvoice/add">
+                Create
+              </button>
+            </h6>
+
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Date</th>
+                    <th>Patient</th>
+                    <th>Services <br/><p style="font-size: 10px;">( Service, Consultant, Price,  Qty,  SubTotal, ConsultantShareType, ConsultantShare, ConsultantShareValue, CenterShareValue )</p></th>
+                    <th>Total Cost</th>
+                    <th>Paid</th>
+                    <th>Balance</th>
+                    <th>Discount Percent</th>
+                    <th>Discount Amt</th>
+                    <th>Payment Mode</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of objlist; index as i">
+
+                    <td>{{ item.id }}</td>
+                    <td>{{ item.date | date }}</td>
+                    <td>{{ item.patient_name }}</td>
+                    <td>
+                        <table class="table table-sm" style="font-size: 12px;">
+                            <tr *ngFor="let obj of item.servicesList">
+                                <td>{{obj.service}}</td>
+                                <td>{{obj.consultant_name}}</td>
+                                <td>{{obj.price}}</td>
+                                <td>{{obj.qty}}</td>
+                                <td>{{ obj.subtotal}}</td>
+                                <td>{{ obj.consultant_share_type}}</td>
+                                <td>{{ obj.consultant_share}}</td>
+                                <td>{{ obj.consultant_share_value}}</td>
+                                <td>{{ obj.center_share_value}}</td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td>{{ item.total_cost }}</td>
+                    <td>{{ item.advance }}</td>
+                    <td>{{ item.due_amt }}</td>
+                    <td>{{ item.discount_percent }}</td>
+                    <td>{{ item.discount_amt }}</td>
+                    <td>{{ item.payment_mode }}</td>
+                    <td>
+                      <button (click)="navigateWithparam(item.id,'print')" type="submit" routerLink="/consultinvoice/print/{{item.id}}" class="btn btn-primary" data-toggle="modal"
+                        ><i class="fa fa-print"></i></button>
+                    </td>
+
+                    <td>
+                      <button (click)="updateview(item)" type="submit" class="btn btn-warning" data-toggle="modal"
+                        data-target="#editform"><i class="fa fa-edit"></i></button>
+                    </td>
+
+                    <td>
+                      <button (click)="remove(item.id)" type="submit" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /.container-fluid -->
+    </div>
+
+
+<!-- ############# Edit Modal ##############-->
+<div class="modal" id="editform">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5>Edit </h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="card">
+                    <div class="card-body">
+                        <form [formGroup]="editForm" novalidate>
+                          <div>
+                            <b>Invoice Id:</b> : {{objedit.id}} <br/>
+                            <b>Date:</b> : {{objedit.date | date}} <br/>
+                            <b>Invoice Id:</b> : {{objedit.id}} <br/>
+                            <b>Patient Name</b> : {{objedit.patient_name}} <br/>
+
+                            <b>Total Cost</b>:{{objedit.total_cost}}<br/>
+                            <b>Discount</b>:{{objedit.discount_amt}}<br/>
+                          </div>
+                            <div class="form-group">
+                              Balance
+                                <input placeholder="Balance" disabled type="number" class="form-control"
+                                    formControlName="due_amt" [(ngModel)]="objedit.due_amt"
+                                    #due_amt />
+                            </div>
+                            <div class="form-group">
+                              Paid
+                                <input placeholder="Amount Paid" type="number" class="form-control"
+                                    formControlName="advance" (input)=calculatefinal(objedit) [(ngModel)]="objedit.advance"
+                                    #advance />
+                            </div>
+                            <div class="form-group">
+                                <button (click)="update(objedit)" type="submit" class="btn btn-primary">
+                                    Submit
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,145 @@
+{
+    "pages": [
+      {
+        "pagename": "labconfig",
+        "forms": [
+          {
+            "formname": "patients",
+            "attributes": [
+              {
+                "placeholder": "Name",
+                "type": "text",
+                "class": "form-control",
+                "formControlName": "name",
+                "ngModel": "objadd.name"
+              },
+              {
+                "placeholder": "Gender",
+                "type": "text",
+                "class": "form-control",
+                "formControlName": "gender",
+                "ngModel": "objadd.gender",
+                "list": "gender"  
+              },
+              {
+                "placeholder": "DOB",
+                "type": "date",
+                "class": "form-control",
+                "formControlName": "dob",
+                "ngModel": "objadd.dob"
+              },
+              {
+                "placeholder": "Phone",
+                "type": "text",
+                "class": "form-control",
+                "formControlName": "phone",
+                "ngModel": "objadd.phone"
+              },
+              {
+                "placeholder": "Marital Status",
+                "type": "text",
+                "class": "form-control",
+                "formControlName": "marital_status",
+                "ngModel": "objadd.marital_status"
+              },
+              {
+                "placeholder": "Address",
+                "type": "text",
+                "class": "form-control",
+                "formControlName": "address",
+                "ngModel": "objadd.address"
+              },
+              {
+                "placeholder": "Medical History",
+                "type": "text",
+                "class": "form-control",
+                "formControlName": "medical_history",
+                "ngModel": "objadd.medical_history"
+              }
+            ],
+            "submiturl": "localhost:3002/labcategory/"
+          },
+          {
+            "formname": "Lab Sub-Category",
+            "attributes": [
+              {
+                "name": "Lab Category",
+                "type": "select",
+                "modelname": "labcategorylist",
+                "dataurl": "localhost:3001/labcategory/",
+                "data": ""
+              },
+              {
+                "name": "Lab Sub-Category",
+                "type": "text",
+                "modelname": "labsubcategory"
+              }
+            ],
+            "submiturl": "localhost:3002/labcategory/"
+          },
+          {
+            "formname": "Partner",
+            "attributes": [
+              {
+                "name": "Partner",
+                "type": "text",
+                "modelname": "partnername"
+              }
+            ],
+            "submiturl": "localhost:3002/labcategory/"
+          },
+          {
+            "formname": "Test",
+            "attributes": [
+              {
+                "name": "Test Name",
+                "type": "text",
+                "modelname": "testname"
+              },
+              {
+                "name": "Lab Category",
+                "type": "select",
+                "modelname": "labcategory",
+                "dataurl": ""
+              },
+              {
+                "name": "Lab Sub Category",
+                "type": "select",
+                "modelname": "subcategory",
+                "dataurl": ""
+              },
+              {
+                "name": "Test Color Code",
+                "type": "select",
+                "modelname": "testcolor",
+                "dataurl": ""
+              },
+              {
+                "name": "Cost",
+                "type": "text",
+                "modelname": "testcost"
+              },
+              {
+                "name": "Center Share in percentage or amount",
+                "type": "text",
+                "modelname": "centershare"
+              },
+              {
+                "name": "Center Share Type",
+                "type": "select",
+                "modelname": "centersharetype",
+                "dataurl": ""
+              },
+              {
+                "name": "Partner",
+                "type": "select",
+                "modelname": "partner",
+                "dataurl": ""
+              }
+            ],
+            "submiturl": "localhost:3002/labcategory/"
+          }
+        ]
+      }
+    ]
+  }

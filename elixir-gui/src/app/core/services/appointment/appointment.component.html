@@ -1,0 +1,372 @@
+<div *ngIf="router.url.includes('add')">
+<mat-tab-group mat-align-tabs="center" class="col-lg-6">
+  <mat-tab label="" >
+    <div class="card m-2">
+      <h4 class="card-header">Book Appointment</h4>
+      <div class="card-body">
+          <form [formGroup]="registerForm" (ngSubmit)="add()">
+
+              <div class="form-row">
+                  <div class="form-group col">
+                      <label>Patient</label>
+                      <input type="text" formControlName="patient" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.patient.errors }" list="patientlist" />
+                      <datalist id="patientlist">
+                          <option *ngFor="let item of patients" [value]=item.name>
+                              {{item.phone}}</option>
+                      </datalist>
+                      <div *ngIf="submitted && f.patient.errors" class="invalid-feedback">
+                          <div *ngIf="f.patient.errors.required">Name is required</div>
+                      </div>
+                  </div>
+              </div>
+
+
+              <div class="form-row">
+                <div class="form-group col">
+                    <label>Specialization</label>
+                    <input type="text" formControlName="specialization" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.specialization.errors }"
+                    (blur)="specializationFilter()" list="specializationlist" />
+                    <datalist id="specializationlist">
+                        <option *ngFor="let item of dept" [value]=item.name>
+                            {{item.id}}</option>
+                    </datalist>
+                    <div *ngIf="submitted && f.specialization.errors" class="invalid-feedback">
+                        <div *ngIf="f.specialization.errors.required">Specialization is required</div>
+                    </div>
+                </div>
+
+                <div class="form-group col">
+                  <label>Consultant</label>
+                  <input type="text" formControlName="consultant"
+                  class="form-control" [ngClass]="{ 'is-invalid': submitted && f.consultant.errors }"
+                  (click)="consultantFilter()" list="consultantlist" />
+                  <datalist id="consultantlist">
+                      <option *ngFor="let item of consultants" [value]=item.name>
+                          {{item.id}}</option>
+                  </datalist>
+
+                  <div *ngIf="submitted && f.consultant.errors" class="invalid-feedback">
+                      <div *ngIf="f.consultant.errors.required">Consultant is required</div>
+                  </div>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group col">
+                  <label>Date</label>
+                  <input type="date" formControlName="date" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.date.errors }" />
+                  <div *ngIf="submitted && f.date.errors" class="invalid-feedback">
+                      <div *ngIf="f.date.errors.required">Date is required</div>
+                  </div>
+              </div>
+
+              <div class="form-group col">
+                <label>Time</label>
+              <!--  <input type="time" id="appt" name="appt"
+       min="09:00" max="18:00" required>
+-->
+                <input type="time" formControlName="time" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.time.errors }" />
+                <div *ngIf="submitted && f.time.errors" class="invalid-feedback">
+                    <div *ngIf="f.time.errors.required">Time is required</div>
+                </div>
+            </div>
+          </div>
+
+          <div class="form-group col">
+            <label>Work Time</label>
+            <table class="table table-sm" style="font-size: 12px;">
+              <tr *ngFor="let obj of consultant.workhrsJson">
+                      <td>{{obj.day}}</td>
+                      <td>{{obj.time.shift1[0]}}-{{obj.time.shift1[1]}}</td>
+                      <td>{{obj.time.shift2[0]}}-{{obj.time.shift2[1]}}</td>
+              </tr>
+            </table>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col">
+                <label>Additional info</label>
+                <textarea formControlName="info" class="form-control" >
+                </textarea>
+            </div>
+          </div>
+
+              <div class="text-center">
+                  <button class="btn btn-primary mr-1">Send</button>
+                  <button class="btn btn-secondary" type="reset" (click)="onReset()">Cancel</button>
+              </div>
+          </form>
+      </div>
+  </div>
+  </mat-tab>
+</mat-tab-group>
+</div>
+
+
+
+
+
+
+<div class="container-fluid" *ngIf="_router.url.includes('view')">
+  <!-- DataTales Example -->
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">Appointments
+        <button type="button" class="btn btn-primary" data-toggle="modal"
+        data-target="#addform">
+          Register
+        </button>
+      </h6>
+
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Patient</th>
+              <th>Consultant</th>
+              <th>Specialization</th>
+              <th>Date</th>
+              <th>Time</th>
+              <th>info</th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of appointment; index as i">
+
+              <td>{{ i+1 }}</td>
+              <td>{{ item.patient }}</td>
+              <td>{{ item.consultant }}</td>
+              <td>{{ item.department_name }}</td>
+              <td>{{ item.date }}</td>
+              <td>{{ item.time }}</td>
+              <td>{{ item.info }}</td>
+                <td>
+                  <button (click)="updateview(item)" type="submit" class="btn btn-warning" data-toggle="modal"
+                    data-target="#editform"><i class="fa fa-edit"></i></button>
+                </td>
+                <td>
+                  <button (click)="remove(item.id)" type="submit" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>
+                </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="row text-center">
+  <div class="col-md-4">
+    <div class="btn-group">
+      <div
+        class="btn btn-primary"
+        mwlCalendarPreviousView
+        [view]="view"
+        [(viewDate)]="viewDate"
+        (viewDateChange)="closeOpenMonthViewDay()"
+      >
+        Previous
+      </div>
+      <div
+        class="btn btn-outline-secondary"
+        mwlCalendarToday
+        [(viewDate)]="viewDate"
+      >
+        Today
+      </div>
+      <div
+        class="btn btn-primary"
+        mwlCalendarNextView
+        [view]="view"
+        [(viewDate)]="viewDate"
+        (viewDateChange)="closeOpenMonthViewDay()"
+      >
+        Next
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h3>
+  </div>
+  <div class="col-md-4">
+    <div class="btn-group">
+      <div
+        class="btn btn-primary"
+        (click)="setView(CalendarView.Month)"
+        [class.active]="view === CalendarView.Month"
+      >
+        Month
+      </div>
+      <div
+        class="btn btn-primary"
+        (click)="setView(CalendarView.Week)"
+        [class.active]="view === CalendarView.Week"
+      >
+        Week
+      </div>
+      <div
+        class="btn btn-primary"
+        (click)="setView(CalendarView.Day)"
+        [class.active]="view === CalendarView.Day"
+      >
+        Day
+      </div>
+    </div>
+  </div>
+</div>
+<br />
+<div [ngSwitch]="view">
+  <mwl-calendar-month-view
+    *ngSwitchCase="CalendarView.Month"
+    [viewDate]="viewDate"
+    [events]="events"
+    [refresh]="refresh"
+    [activeDayIsOpen]="activeDayIsOpen"
+    (dayClicked)="dayClicked($event.day)"
+    (eventClicked)="handleEvent('Clicked', $event.event)"
+    (eventTimesChanged)="eventTimesChanged($event)"
+  >
+  </mwl-calendar-month-view>
+  <mwl-calendar-week-view
+    *ngSwitchCase="CalendarView.Week"
+    [viewDate]="viewDate"
+    [events]="events"
+    [refresh]="refresh"
+    (eventClicked)="handleEvent('Clicked', $event.event)"
+    (eventTimesChanged)="eventTimesChanged($event)"
+  >
+  </mwl-calendar-week-view>
+  <mwl-calendar-day-view
+    *ngSwitchCase="CalendarView.Day"
+    [viewDate]="viewDate"
+    [events]="events"
+    [refresh]="refresh"
+    (eventClicked)="handleEvent('Clicked', $event.event)"
+    (eventTimesChanged)="eventTimesChanged($event)"
+  >
+  </mwl-calendar-day-view>
+</div>
+
+<!-- Everything you see below is just for the demo, you don't need to include it in your app -->
+
+<br /><br /><br />
+
+<h3>
+  Edit events
+  <button class="btn btn-primary float-right" (click)="addEvent()">
+    Add new
+  </button>
+  <div class="clearfix"></div>
+</h3>
+<!--
+<div class="table-responsive">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Primary color</th>
+        <th>Secondary color</th>
+        <th>Starts at</th>
+        <th>Ends at</th>
+        <th>Remove</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let event of events">
+        <td>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="event.title"
+            (keyup)="refresh.next()"
+          />
+        </td>
+        <td>
+          <input
+            type="color"
+            [(ngModel)]="event.color.primary"
+            (change)="refresh.next()"
+          />
+        </td>
+        <td>
+          <input
+            type="color"
+            [(ngModel)]="event.color.secondary"
+            (change)="refresh.next()"
+          />
+        </td>
+        <td>
+          <input
+            class="form-control"
+            type="text"
+            mwlFlatpickr
+            [(ngModel)]="event.start"
+            (ngModelChange)="refresh.next()"
+            [altInput]="true"
+            [convertModelValue]="true"
+            [enableTime]="true"
+            dateFormat="Y-m-dTH:i"
+            altFormat="F j, Y H:i"
+            placeholder="Not set"
+          />
+        </td>
+        <td>
+          <input
+            class="form-control"
+            type="text"
+            mwlFlatpickr
+            [(ngModel)]="event.end"
+            (ngModelChange)="refresh.next()"
+            [altInput]="true"
+            [convertModelValue]="true"
+            [enableTime]="true"
+            dateFormat="Y-m-dTH:i"
+            altFormat="F j, Y H:i"
+            placeholder="Not set"
+          />
+        </td>
+        <td>
+          <button class="btn btn-danger" (click)="deleteEvent(event)">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+
+  </table>
+</div>
+ -->
+<!--
+<ng-template #modalContent let-close="close">
+  <div class="modal-header">
+    <h5 class="modal-title">Event action occurred</h5>
+    <button type="button" class="close" (click)="close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div>
+      Action:
+      <pre>{{ modalData?.action }}</pre>
+    </div>
+    <div>
+      Event:
+      <pre>{{ modalData?.event | json }}</pre>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-secondary" (click)="close()">
+      OK
+    </button>
+  </div>
+</ng-template>
+-->

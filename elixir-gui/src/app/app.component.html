@@ -1,0 +1,222 @@
+<!--<app-authentication *ngIf="!session"></app-authentication>-->
+
+<!--
+<app-log-in *ngIf="!authService.user as data"></app-log-in>
+<body id="page-top" *ngIf="!authService.user as data">
+-->
+<app-log-in *ngIf="!authService.user as data"></app-log-in>
+<body id="page-top" *ngIf="!!authService.user as data">
+
+  <div class="wrapper d-flex align-items-stretch">
+
+    <nav id="sidebar" class="p-4 pt-3" style="background-color: #222;
+    background: url(https://s3.amazonaws.com/creativetim_bucket/dashboard_static_images/sidebar.jpg);
+    box-shadow:inset 0 0 10px #000000;">
+      <a href="#" class="logo">ELIXIR</a>
+      <div id="accordion">
+        <ul class="list-unstyled components mb-5">
+          <li>
+            <a href="index.html">Dashboard</a>
+          </li>
+
+
+        <li>
+          <a href="#patientSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Patient</a>
+          <ul class="collapse list-unstyled" id="patientSubmenu" data-parent="#accordion">
+          <li>
+            <a routerLink="patient/add">Patient Registration</a>
+          </li>
+          <li>
+            <a routerLink="patient/view">Patient List</a>
+          </li>
+          </ul>
+        </li>
+
+
+
+        <li>
+          <a routerLink="specialization/view">Specialization</a>
+        </li>
+
+        <li>
+          <a href="#consultantSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Consultant</a>
+          <ul class="collapse list-unstyled" id="consultantSubmenu" data-parent="#accordion">
+            <li>
+              <a routerLink="consultant/add">Register Consultant</a>
+            </li>
+            <li>
+              <a routerLink="consultant/view">Consultant List</a>
+            </li>
+
+            <li>
+              <a href="#consultServiceSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">ConsultationService</a>
+              <ul class="collapse list-unstyled" id="consultServiceSubmenu">
+                <li>
+                  <a routerLink="consultationservices/view">Create/View ConsultationService</a>
+                </li>
+                <li>
+                  <a routerLink="consultationservices/map">Map ConsultationService Consultant</a>
+                </li>
+                <li>
+                  <a routerLink="consultationservices/list">ConsultationService Consultant List</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+
+
+
+
+
+
+        <li>
+          <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Lab</a>
+          <ul class="collapse list-unstyled" id="homeSubmenu" data-parent="#accordion">
+            <li>
+              <a routerLink="categories/view">Lab Categories</a>
+            </li>
+            <li>
+            <a routerLink="subcategories/view">Lab Test Categories</a>
+          </li>
+          <li>
+            <a routerLink="tests/view">View Lab Tests</a>
+          </li>
+
+          <a href="#partnerSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Lab Partner</a>
+          <ul class="collapse list-unstyled" id="partnerSubmenu">
+            <li>
+              <a routerLink="partners/view">Register/View Lab Partner</a>
+            </li>
+
+            <li>
+              <a href="#partnerServiceSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">LabPartner Service Mapping</a>
+              <ul class="collapse list-unstyled" id="partnerServiceSubmenu">
+                <li>
+                  <a routerLink="partners/partnerservice/add">Register LabPartner Service</a>
+                </li>
+
+                <li>
+                  <a routerLink="partners/partnerservice/list">View LabPartner Service</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+
+          </ul>
+        </li>
+
+        <li>
+          <a href="#appointmentSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Appointments</a>
+          <ul class="collapse list-unstyled" id="appointmentSubmenu" data-parent="#accordion">
+          <li>
+            <a routerLink="appointment/add">Create Appointment</a>
+          </li>
+          <li>
+            <a routerLink="appointment/view">Appointment List</a>
+          </li>
+          <li>
+            <a routerLink="appointment/calendar">Appointment Calendar</a>
+          </li>
+          </ul>
+        </li>
+
+
+
+        <li>
+          <a href="#employeeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Employee</a>
+          <ul class="collapse list-unstyled" id="employeeSubmenu" data-parent="#accordion">
+          <li>
+            <a routerLink="employee/add">Employee Registration</a>
+          </li>
+          <li>
+            <a routerLink="employee/view">Employee List</a>
+          </li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="#certificateSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Certificates</a>
+          <ul class="collapse list-unstyled" id="certificateSubmenu" data-parent="#accordion">
+          <li>
+            <a routerLink="certificates/medical">Medical</a>
+          </li>
+          <li>
+            <a routerLink="certificates/experience">Experience</a>
+          </li>
+          <li>
+            <a routerLink="certificates/letterhead">Letter Head</a>
+          </li>
+          </ul>
+        </li>
+
+
+
+
+        <li>
+          <a href="#analyticsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Analytics</a>
+          <ul class="collapse list-unstyled" id="analyticsSubmenu" data-parent="#accordion">
+          <li>
+            <a routerLink="analytics/center">Center</a>
+          </li>
+          <li>
+            <a routerLink="analytics/consultant">Consultant</a>
+          </li>
+          </ul>
+        </li>
+
+
+
+
+
+
+        <li>
+          <a href="#invoiceSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Invoice</a>
+          <ul class="collapse list-unstyled" id="invoiceSubmenu" data-parent="#accordion">
+            <li>
+              <a href="#consultInvoiceSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">ConsultationInvoice</a>
+              <ul class="collapse list-unstyled" id="consultInvoiceSubmenu">
+                <li>
+                  <a routerLink="consultationinvoice/add">Create ConsultationInvoice</a>
+                </li>
+                <li>
+                  <a routerLink="consultationinvoice/view">ConsultantInvoice List</a>
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <a href="#labInvoiceSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">LabInvoice</a>
+              <ul class="collapse list-unstyled" id="labInvoiceSubmenu">
+                <li>
+                  <a routerLink="labinvoice/add">Create LabInvoice</a>
+                </li>
+                <li>
+                  <a routerLink="labinvoice/view">LabInvoice List</a>
+                </li>
+              </ul>
+            </li>
+
+          </ul>
+        </li>
+
+        <li>
+          <a routerLink="communication/message">Message</a>
+        </li>
+
+        </ul>
+      </div>
+
+      </nav>
+
+      <!-- Page Content  -->
+    <div id="content">
+
+      <app-topbar></app-topbar>
+
+      <router-outlet class="overflow-auto" *ngIf="!isHomeRoute()"></router-outlet>
+      <app-dashboard class="overflow-auto" *ngIf="isHomeRoute()"></app-dashboard>
+      </div>
+  </div>
+
+</body>

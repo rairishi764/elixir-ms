@@ -1,0 +1,107 @@
+<!--<div class="form-group" *ngFor="let page of formvalue.pages">
+<div *ngIf= "page.pagename=='labconfig'">
+  <div *ngFor="let form of page.forms">
+    <div *ngIf= "form.formname=='patients'">
+      <input placeholder=form.attributes[0].placeholder type="text" class="form-control">
+    </div>
+  </div>
+</div>
+</div>
+
+<p>{{formvalue | json}}</p>
+<p>{{formvalue.forms.formname}}</p>
+<div *ngFor="let f of formvalue.forms.attributes">
+  {{f.placeholder}}
+</div>
+-->
+<div class="card" *ngIf="_router.url.includes('elixir')">
+  <div class="card-body">
+    <form [formGroup]="angForm" novalidate>
+      <div class="form-group row">
+        <div
+          class="form-group col-md-4"
+          *ngFor="let f of formvalue.forms.attributes"
+        >
+          <div *ngIf="f.type != 'dropdown'">
+            <input
+              placeholder="{{ f.placeholder }}"
+              type="{{ f.type }}"
+              class="form-control"
+              formControlName="{{ f.formControlName }}"
+            />
+          </div>
+          <div *ngIf="f.type == 'dropdown'">
+            <select
+              class="form-control"
+              formControlName="{{ f.formControlName }}"
+            >
+              <option value="" disabled selected>{{ f.placeholder }}</option>
+              <option
+                value="{{ f.dropdownval[i] }}"
+                *ngFor="let item of f.dropdownval; index as i"
+                >{{ f.dropdownval[i] }}</option
+              >
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <button
+          (click)="add()"
+          type="submit"
+          class="btn btn-primary"
+          [disabled]="angForm.pristine || angForm.invalid"
+        >
+          Submit
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!--
+<div class="col-md-2" [formGroup]="addForm">
+	<div class="form-group">
+		<table>
+			<thead>
+				<button (click)="onAddRow()" *ngIf="addForm.get('rows')">add row</button>
+			</thead>
+			<tbody>
+				<tr *ngFor="let row of addForm.get('rows')['controls'];let index = index;">
+          <td>
+            <input class="form-group" [formControl]="row.get('test')" list="testlist"
+            />
+            <datalist id="testlist">
+              <option
+                *ngFor="let item of testlist"
+                [value]="item.lab_category_name"
+              >
+                {{ item.lab_category_name }}
+              </option>
+            </datalist>
+          </td>
+          <td>
+            <input class="form-group" [formControl]="row.get('test_code')">
+          </td>
+          <td>
+            <input class="form-group" type="number" min=0 [formControl]="row.get('price')">
+          </td>
+          <td>
+            <input class="form-group" [formControl]="row.get('partner_share_type')">
+          </td>
+          <td>
+            <input class="form-group" type="number" min=0 [formControl]="row.get('partner_share')">
+          </td>
+          <td>
+            <button (click)="onRemoveRow(index)">Remove</button>
+          </td>
+				</tr>
+			</tbody>
+		</table>
+
+	</div>
+</div>
+
+<pre>{{rows.value | json}}</pre>
+-->

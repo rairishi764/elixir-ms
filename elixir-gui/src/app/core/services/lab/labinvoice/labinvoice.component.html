@@ -1,0 +1,689 @@
+<div *ngIf="router.url.includes('add')">
+  <div class="card" style="background-color: white;">
+    <div class="card-body" style="background-color: white;">
+      <div [formGroup]="addForm" *ngIf="router.url.includes('add')">
+        <label class="label-control">Create Invoice</label>
+        <br />
+        <div class="form-group row">
+        <div class="col-md-4">
+        <input
+          placeholder="Patient"
+          type="text"
+          class="form-control"
+          formControlName="patient_id"
+          #patient
+          list="patientlist1"
+          *ngIf="addForm.get('rows')"
+        />
+          {{invpatient.name}} <i class="fa fa-phone" aria-hidden="true"></i>{{invpatient.phone}}
+        <datalist id="patientlist1">
+          <option *ngFor="let item of patientlist" [value]="item.id">
+            {{ item.name }} Ph:{{ item.phone }}</option
+          >
+        </datalist>
+        </div>
+
+        <div class="col-md-4">
+        <select
+          class="form-control"
+          formControlName="payment_mode"
+          *ngIf="addForm.get('rows')"
+        ><option disabled>Payment Mode</option>
+          <option value="1">Card</option>
+          <option value="2">Cash</option>
+        </select>
+        </div>
+        </div>
+        <div class="form-group" *ngIf="addForm.get('rows')">
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="row-border hover">
+                <thead *ngIf="addForm.get('rows')">
+                  <tr>
+                    <td>
+                      <button
+                        (click)="onAddRow()"
+                        *ngIf="addForm.get('rows')"
+                        class="btn btn-primary"
+                      >
+                        <i class="fa fa-plus" aria-hidden="true"></i> Add Row
+                      </button>
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Qty</td>
+                    <td>Price</td>
+                    <td>SubTotal</td>
+                    <td></td>
+                    <td>Discounted Sub total</td>
+                    <td>PartnerShare Type</td>
+                    <td>PartnerShare</td>
+                    <td>PartnerShare Value</td>
+                    <td>CenterShare Value</td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr
+                    *ngFor="
+                      let row of addForm.get('rows')['controls'];
+                      let index = index
+                    "
+                  >
+                    <td>
+                      <input
+                        style="min-width: 120px;"
+                        placeholder="Category"
+                        type="text"
+                        class="form-control"
+                        (blur)="categoryfilter(row)"
+                        [formControl]="row.get('lab_category_name')"
+                        list="LabCategorylist"
+                      />
+                      <datalist id="LabCategorylist">
+                        <option
+                          *ngFor="let item of rowcategorieslist"
+                          [value]="item.lab_category_name"
+                        >
+                          {{ item.lab_category_name }}
+                        </option>
+                      </datalist>
+                    </td>
+                    <td>
+                      <input
+                        style="min-width: 120px;"
+                        placeholder="SubCategory"
+                        type="text"
+                        class="form-control"
+                        [formControl]="row.get('lab_subcategory_name')"
+                        list="LabSubCategorylist"
+                        (blur)="subcategoryfilter(row)"
+                      />
+                      <datalist id="LabSubCategorylist">
+                        <option
+                          *ngFor="let item of rowsubcategorieslist"
+                          [value]="item.lab_sub_category_name"
+                        >
+                          {{ item.lab_category_name }}
+                        </option>
+                      </datalist>
+                    </td>
+                    <td>
+                      <input
+                        style="min-width: 100px;"
+                        placeholder="Test"
+                        type="text"
+                        class="form-control"
+                        [formControl]="row.get('test')"
+                        (blur)="testfilter(row)"
+                        list="Testlist"
+                      />
+                      <datalist id="Testlist">
+                        <option
+                          *ngFor="let item of rowtestlist"
+                          [value]="item.lab_test_name"
+                        >
+                          {{ item.lab_sub_category_name }} |
+                          {{ item.lab_testcode_id }}
+                        </option>
+                      </datalist>
+                    </td>
+                    <td>
+                      <input
+                        style="min-width: 100px;"
+                        placeholder="Partner"
+                        type="text"
+                        class="form-control"
+                        [formControl]="row.get('partner')"
+                        (blur)="partnerfilter(row)"
+                        list="Partnerlist"
+                      />
+                      <datalist id="Partnerlist">
+                        <option
+                          *ngFor="let item of rowpartnerservicelist"
+                          [value]="item.partner"
+                        >
+                          {{ item.partner }}
+                        </option>
+                      </datalist>
+                    </td>
+
+                    <td>
+                      <input
+                        style="min-width: 100px;"
+                        placeholder="Consultant"
+                        type="text"
+                        class="form-control"
+                        [formControl]="row.get('consultant_name')"
+                        list="Consultantlist"
+                      />
+                      <datalist id="Consultantlist">
+                        <option
+                          *ngFor="let item of consultantlist"
+                          [value]="item.name"
+                        >
+                          {{ item.name }}
+                        </option>
+                      </datalist>
+                    </td>
+
+                    <td>
+                      <input
+                        style="max-width: 80px; min-width: 50px;"
+                        placeholder="No."
+                        type="number"
+                        class="form-control"
+                        min="1"
+                        [formControl]="row.get('qty')"
+                        (input)="calculate(row)"
+                      />
+                    </td>
+
+
+                    <td>
+                      <input
+                        style="max-width: 100px; min-width: 70px;"
+                        placeholder="Price"
+                        type="number"
+                        class="form-control"
+                        style="width: 100px;"
+                        min="0"
+                        [formControl]="row.get('test_cost')"
+                        (change)="calculate(row)"
+                      />
+                    </td>
+                    <td>
+                      <input
+                        style="max-width: 120px; min-width: 90px;"
+                        placeholder="SubTotal"
+                        type="number"
+                        class="form-control"
+                        disabled
+                        [formControl]="row.get('subtotal')"
+                      />
+                    </td>
+                    <td>
+                      <button (click)="onRemoveRow(index)" class="btn btn-danger">
+                        <i class="fa fa-minus" aria-hidden="true"></i>
+                      </button>
+                    </td>
+
+                    <td>
+                      <input
+                        style="max-width: 120px; min-width: 90px;"
+                        placeholder="SubTotal"
+                        type="number"
+                        class="form-control"
+                        disabled
+                        [formControl]="row.get('discounted_subtotal')"
+                      />
+                    </td>
+
+                    <td>
+                      <input
+                        style="max-width: 80px; min-width: 50px;"
+                        placeholder="Partner Share Type"
+                        type="text"
+                        class="form-control"
+                        min="1"
+                        [formControl]="row.get('partner_share_type')"
+                      />
+                    </td>
+                    <td>
+                      <input
+                        style="max-width: 80px; min-width: 50px;"
+                        placeholder="Partner Share"
+                        type="number"
+                        class="form-control"
+                        min="1"
+                        [formControl]="row.get('partner_share')"
+                      />
+                    </td>
+
+                    <td>
+                      <input
+                        style="max-width: 80px; min-width: 50px;"
+                        placeholder="Partner Share Value"
+                        type="number"
+                        class="form-control"
+                        min="1"
+                        [formControl]="row.get('partner_share_value')"
+                      />
+                    </td>
+
+
+                    <td>
+                      <input
+                        style="max-width: 80px; min-width: 50px;"
+                        placeholder="Center Share"
+                        type="number"
+                        class="form-control"
+                        min="1"
+                        [formControl]="row.get('center_share_value')"
+                      />
+                    </td>
+
+                  </tr>
+
+                  <tr>
+                    <td colspan="4"></td>
+                    <td colspan="3">Total Amount before discount</td>
+                    <td>
+                      <input
+                        style="max-width: 120px; min-width: 90px;"
+                        class="form-control"
+                        placeholder="Total"
+                        formControlName="total_amt"
+                        disabled
+                      />
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td></td>
+                    <td>Discount Type</td>
+                    <td colspan="2">
+                      <select class="form-control" formControlName="discount_type">
+                        <option value=0 selected>No Discount</option>
+                        <option value=1>Center</option>
+                        <option value=2>Partner</option>
+                        <option value=3>Shared</option>
+                        </select>
+                    </td>
+                    <td></td>
+                    <td>Discount%</td>
+                    <td>
+                      <input
+                        style="max-width: 120px; min-width: 90px;"
+                        class="form-control"
+                        placeholder="Discount"
+                        type="number"
+                        (change)="calculatediscount()"
+                        formControlName="discount_percent"
+                      />
+                    </td>
+                    <td>
+                      <input
+                        style="max-width: 120px; min-width: 90px;"
+                        class="form-control"
+                        placeholder="Discount Amt"
+                        (change)="calculatediscount()"
+                        type="number"
+                        formControlName="discount_amt"
+                      />
+                    </td>
+                    <td></td>
+                  </tr>
+
+                  <tr>
+                    <td colspan="4"></td>
+                    <td colspan="3">Total Amount after discount</td>
+                    <td>
+                      <input
+                        style="max-width: 120px; min-width: 90px;"
+                        class="form-control"
+                        placeholder="Discounted Total"
+                        formControlName="total_amt_after_discount"
+                        disabled
+                      />
+                    </td>
+                  </tr>
+
+
+                  <tr>
+
+                    <td colspan="5"></td>
+                    <td></td>
+                    <td>Amount Paid</td>
+                    <td>
+                      <input
+                        style="max-width: 120px; min-width: 90px;"
+                        class="form-control"
+                        placeholder="Advance"
+                        formControlName="advance"
+                        (change)="calculatediscount()"
+                        type="number"
+                      />
+                    </td>
+                    <td></td>
+                  </tr>
+
+                  <tr>
+                    <td colspan="2">
+                      <button
+                        type="button"
+                        (click)="add()"
+                        *ngIf="addForm.get('rows')"
+                        class="btn btn-success"
+                      >
+                        Submit
+                      </button>
+                    </td>
+                    <td><mat-slide-toggle>Save Paper!Mail Invoice</mat-slide-toggle></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Balance</td>
+                    <td>
+                      <input
+                        style="max-width: 120px; min-width: 90px;"
+                        disabled
+                        class="form-control"
+                        placeholder="Due Amt"
+                        formControlName="due_amt"
+                      />
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <!-- <pre>{{ rows.value | json }}</pre> -->
+    </div>
+  </div>
+</div>
+<!--###################################################################################-->
+
+<div id="invoice print" *ngIf="router.url.includes('print')" #invoice>
+  <div id="invoice" class="invoice-box" >
+    <table cellpadding="0" cellspacing="0" id="invoice-table">
+      <tr class="top">
+        <td colspan="5">
+          <table>
+            <tr>
+              <td class="title">
+                <!--<img
+                  src="../../../../../assets/img/logo.png"
+                  style="width: 100%; max-width: 300px;"
+                />-->
+                <h1 style="margin:0 0 -10px;color: grey;font-family: Arial, Helvetica"><b>{{clientDetails.name}}</b></h1>
+                  <p style="font-size:16px; margin:0 0 -20px">
+                  {{ clientDetails.address}}</p>
+                  <p style="font-size:16px; margin:0 0 -20px">
+                  {{ clientDetails.website}}</p>
+                  <p style="font-size:16px; margin:0 0 -20px">
+                  {{ clientDetails.email}}</p>
+              </td>
+
+              <td>
+                Invoice #: {{ labinvoice.id }}<br />
+                {{ labinvoice.date | date }}<br />
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+
+      <tr class="information">
+        <td colspan="5">
+          <table>
+            <tr>
+              <td>
+                <tr>
+                  <b>Name:</b>{{ labinvoice.patient_name }}
+                  <b>PID:</b>{{labinvoice.patient_id}}
+                </tr>
+                <tr>
+                <b>Phone:</b> {{ labinvoice.patient_number}}
+                <b>Gender/Age:</b> {{labinvoice.patient_gender}}/{{labinvoice.patient_age}}Yrs
+              </tr>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+
+      <tr class="heading">
+        <td>
+          LabTest
+        </td>
+        <td>
+          Referred Doctor
+        </td>
+        <td>
+          Units
+        </td>
+        <td>
+          Price
+        </td>
+        <td>
+          Sub Total
+        </td>
+      </tr>
+
+      <tr class="item" *ngFor="let item of labinvoice.servicesList">
+        <td>
+          {{ item.test }}
+        </td>
+        <td>
+          {{ item.consultant_name }}
+        </td>
+        <td>
+          {{ item.qty }}
+        </td>
+        <td>
+          {{ item.test_cost }}
+        </td>
+
+        <td>
+          {{ item.subtotal }}
+        </td>
+      </tr>
+
+      <tr class="total">
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>Total:</td>
+        <td>{{labinvoice.total_cost}}</td>
+      </tr>
+      <tr class="total" *ngIf="labinvoice.discount_percent!=0">
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>Discount:({{labinvoice.discount_percent}}%)</td>
+        <td>-{{labinvoice.discount_amt}} </td>
+      </tr>
+      <tr class="total" *ngIf="labinvoice.discount_percent!=0">
+        <td></td>
+        <td></td>
+        <td></td>
+        <td><b>Discounted Total:</b></td>
+        <td><b>{{labinvoice.total_cost-labinvoice.discount_amt}}</b></td>
+      </tr>
+      <tr class="total">
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>Paid:</td>
+        <td>{{labinvoice.advance}}</td>
+      </tr>
+      <tr class="total">
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>Balance:</td>
+        <td>{{labinvoice.due_amt}}</td>
+      </tr>
+      <tr class="heading">
+        <td>
+          Payment Method
+        </td>
+        <td></td>
+        <td></td>
+        <td></td>
+
+        <td *ngIf="labinvoice.payment_mode=='1'">
+            Card
+        </td>
+        <td *ngIf="labinvoice.payment_mode=='2'">
+          Cash
+      </td>
+      </tr>
+
+     <!-- <tr class="details">
+        <td>
+          Check
+        </td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>
+          1000
+        </td>
+      </tr>-->
+    </table>
+  </div>
+  <!--
+    <button  class="btn btn-warning" styleSheetFile="labinvoice.component.css, ../../../../styles.css" printSectionId="invoice" ngxPrint>print</button>
+  -->
+  <button  class="btn btn-success no-print" (click)="sendmail(labinvoice)">Send Email</button>
+  <button  class="btn btn-warning no-print" (click)="print()">Print</button>
+  </div>
+
+
+<!-- #######################  LIST INVOICE  ####################################### -->
+    <div *ngIf="router.url.includes('view')">
+    <!--  Table content  -->
+    <div class="container-fluid" *ngIf="router.url.includes('view')">
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4 no-print">
+          <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Invoice
+              <button type="button" class="btn btn-primary" routerLink="/labinvoice/add">
+                Create
+              </button>
+            </h6>
+
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Date</th>
+                    <th>Patient</th>
+                    <th>Services <br/><p style="font-size: 10px;">(Category,  SubCategory,  Consultant,  Partner,  TestCost,  Qty,  SubTotal, PartnerShareType, PartnerShare, PartnerShareValue, CenterShareValue )</p></th>
+                    <th>Total Cost</th>
+                    <th>Paid</th>
+                    <th>Balance</th>
+                    <th>Discount Percent</th>
+                    <th>Discount Amt</th>
+                    <th>Payment Mode</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of objlist; index as i">
+
+                    <td>{{ item.id }}</td>
+                    <td>{{ item.date | date }}</td>
+                    <td>{{ item.patient_name }}</td>
+                    <td>
+                        <table class="table table-sm" style="font-size: 12px;">
+                            <tr *ngFor="let obj of item.servicesList">
+                                <td>{{obj.lab_category_name}}</td>
+                                <td>{{obj.lab_subcategory_name}}</td>
+                                <td>{{obj.consultant_name}}</td>
+                                <td>{{ obj.partner}}</td>
+                                <td>{{obj.test_cost}}</td>
+                                <td>{{obj.qty}}</td>
+                                <td>{{ obj.subtotal}}</td>
+                                <td>{{ obj.partner_share_type}}</td>
+                                <td>{{ obj.partner_share}}</td>
+                                <td>{{ obj.partner_share_value}}</td>
+                                <td>{{ obj.center_share_value}}</td>
+
+                            </tr>
+                        </table>
+                    </td>
+                    <td>{{ item.total_cost }}</td>
+                    <td>{{ item.advance }}</td>
+                    <td>{{ item.due_amt }}</td>
+                    <td>{{ item.discount_percent }}</td>
+                    <td>{{ item.discount_amt }}</td>
+                    <td>{{ item.payment_mode }}</td>
+                    <td>
+                      <button (click)="navigateWithparam(item.id,'print')" type="submit" routerLink="/labinvoice/print/{{item.id}}" class="btn btn-primary" data-toggle="modal"
+                        ><i class="fa fa-print"></i></button>
+                    </td>
+
+                    <td>
+                      <button (click)="updateview(item)" type="submit" class="btn btn-warning" data-toggle="modal"
+                        data-target="#editform"><i class="fa fa-edit"></i></button>
+                    </td>
+
+                    <td>
+                      <button (click)="remove(item.id)" type="submit" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /.container-fluid -->
+    </div>
+
+
+
+
+<!-- ############# Edit Modal ##############-->
+<div class="modal" id="editform">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5>Edit </h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="card">
+                    <div class="card-body">
+                        <form [formGroup]="editForm" novalidate>
+                          <div>
+                            <b>Invoice Id:</b> : {{objedit.id}} <br/>
+                            <b>Date:</b> : {{objedit.date | date}} <br/>
+                            <b>Invoice Id:</b> : {{objedit.id}} <br/>
+                            <b>Patient Name</b> : {{objedit.patient_name}} <br/>
+
+                            <b>Total Cost</b>:{{objedit.total_cost}}<br/>
+                            <b>Discount</b>:{{objedit.discount_amt}}<br/>
+                          </div>
+                            <div class="form-group">
+                              Balance
+                                <input placeholder="Balance" disabled type="number" class="form-control"
+                                    formControlName="due_amt" [(ngModel)]="objedit.due_amt"
+                                    #due_amt />
+                            </div>
+                            <div class="form-group">
+                              Paid
+                                <input placeholder="Amount Paid" type="number" class="form-control"
+                                    formControlName="advance" (input)=calculatefinal(objedit) [(ngModel)]="objedit.advance"
+                                    #advance />
+                            </div>
+                            <div class="form-group">
+                                <button (click)="update(objedit)" type="submit" class="btn btn-primary">
+                                    Submit
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+

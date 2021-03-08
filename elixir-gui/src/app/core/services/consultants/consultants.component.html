@@ -1,0 +1,451 @@
+<!--#####################################################################################################
+                                           ADD
+    ################################################################################################  -->
+<div class="card" *ngIf="_router.url.includes('add')">
+  <div class="card-body">
+    <form [formGroup]="angForm" novalidate>
+      <!-- ##########   Name ########## -->
+      <div class="form-group row">
+        <div class="col-md-2">
+          <select name="title" placeholder="Title" id="title" [(ngModel)]="objadd.title" class="form-control" formControlName="title">
+            <option selected value="Dr.">Dr.</option>
+            <option value="Mr.">Mr.</option>
+            <option value="Ms.">Ms.</option>
+          </select>
+
+        </div>
+        <div class="col-md-4">
+        <input placeholder="Full Name" type="text" class="form-control" formControlName="name" [(ngModel)]="objadd.name" />
+      </div>
+      <div
+        *ngIf="angForm.controls['name'].invalid && (angForm.controls['name'].dirty || angForm.controls['name'].touched)"
+        class="alert alert-danger">
+        Required field.
+      </div>
+      <!-- ############################ -->
+
+      <div class="col-md-4">
+
+        <input placeholder="Specialization" type="text" class="form-control"
+            formControlName="lab_category_id" [(ngModel)]="objadd.lab_category_id"
+            #lab_category_id list="LabCategorylist" />
+        <datalist id="LabCategorylist">
+            <option *ngFor="let item of dept" [value]=item.id>
+                {{item.name}}</option>
+        </datalist>
+    </div>
+    <div *ngIf="angForm.controls['lab_category_id'].invalid && (angForm.controls['lab_category_id'].dirty || angForm.controls['lab_category_id'].touched)"
+        class="alert alert-danger">
+        Required field.
+    </div>
+
+      </div>
+
+
+    <div class="form-group row">
+      <div class="col-md-4">
+        <input placeholder="Qualification" type="text" class="form-control" formControlName="qualification"
+          [(ngModel)]="objadd.qualification" />
+      </div>
+      <div
+        *ngIf="angForm.controls['qualification'].invalid && (angForm.controls['qualification'].dirty || angForm.controls['qualification'].touched)"
+        class="alert alert-danger">
+        Required field.
+      </div>
+
+      <div class="col-md-4">
+        <input placeholder="Registration Body" type="text" class="form-control" formControlName="reg_body"
+          [(ngModel)]="objadd.reg_body" #reg_body />
+      </div>
+      <div
+        *ngIf="angForm.controls['reg_body'].invalid && (angForm.controls['reg_body'].dirty || angForm.controls['reg_body'].touched)"
+        class="alert alert-danger">
+        Required field.
+      </div>
+
+
+      <div class="col-md-4">
+        <input placeholder="Registration ID" type="text" class="form-control" formControlName="medical_id"
+          [(ngModel)]="objadd.medical_id" #medical_id />
+      </div>
+      <div
+        *ngIf="angForm.controls['medical_id'].invalid && (angForm.controls['medical_id'].dirty || angForm.controls['medical_id'].touched)"
+        class="alert alert-danger">
+        Required field.
+      </div>
+    </div>
+
+<div class="form-group row">
+      <div class="col-md-4">
+        <input placeholder="Phone" type="text" class="form-control" formControlName="phone"
+          [(ngModel)]="objadd.phone" />
+      </div>
+      <div
+        *ngIf="angForm.controls['phone'].invalid && (angForm.controls['phone'].dirty || angForm.controls['phone'].touched)"
+        class="alert alert-danger">
+        Required field.
+      </div>
+</div>
+
+<div class="form-group row">
+  <div class="col-md-4">
+    <select name="access_type" placeholder="AccessType" id="access_type" [(ngModel)]="objadd.access_type" class="form-control" formControlName="access_type">
+      <option value=1>administrator</option>
+      <option value=2>consultant</option>
+    </select>
+  </div>
+  <div class="col-md-4">
+    <input placeholder="Mail" type="text" class="form-control" formControlName="mail"
+      [(ngModel)]="objadd.mail" />
+  </div>
+  <div
+    *ngIf="angForm.controls['mail'].invalid && (angForm.controls['mail'].dirty || angForm.controls['mail'].touched)"
+    class="alert alert-danger">
+    Required field.
+  </div>
+
+  <div class="col-md-4">
+    <input placeholder="Default Password" type="text" class="form-control" formControlName="pwd"
+      [(ngModel)]="objadd.pwd" />
+  </div>
+  <div
+    *ngIf="angForm.controls['pwd'].invalid && (angForm.controls['pwd'].dirty || angForm.controls['pwd'].touched)"
+    class="alert alert-danger">
+    Required field.
+  </div>
+</div>
+
+<div class="form-group row">
+      <div class="col-md-4">
+        <textarea placeholder="Address" class="form-control" rows=4 cols="5" formControlName="address"
+          [(ngModel)]="objadd.address"></textarea>
+      </div>
+      <div
+        *ngIf="angForm.controls['address'].invalid && (angForm.controls['address'].dirty || angForm.controls['address'].touched)"
+        class="alert alert-danger">
+        Required field.
+      </div>
+
+      <div class="col-md-4">
+        <textarea placeholder="Experience" class="form-control" rows=4 cols="5" formControlName="records"
+          [(ngModel)]="objadd.records"></textarea>
+      </div>
+      <div
+        *ngIf="angForm.controls['records'].invalid && (angForm.controls['records'].dirty || angForm.controls['records'].touched)"
+        class="alert alert-danger">
+        Required field.
+      </div>
+</div>
+
+<div class="form-group row">
+      <div class="col-md-4">
+        <label class="col-md-4">DOB</label>
+        <input placeholder="DOB" type="date" class="form-control" formControlName="dob" [(ngModel)]="objadd.dob" />
+      </div>
+      <div *ngIf="angForm.controls['dob'].invalid && (angForm.controls['dob'].dirty)" class="alert alert-danger">
+        Required field.
+      </div>
+
+      <div class="col-md-4">
+        <label class="col-md-4">Color Code</label>
+      <input type="color" class="form-control" formControlName="colorcode" value="#B90600" [(ngModel)]="objadd.colorcode">
+      </div>
+    </div>
+      <div class="col-md-4">
+        <label class="col-md-4">Work Hrs</label>
+        <textarea placeholder="Work Hours" rows="9" cols="80" type="textarea" class="form-control" formControlName="workhrs" [(ngModel)]="objadd.workhrs" >
+          {
+            "Monday":[[0900,1200],[1400,1600]],
+            "Tuesday":[],
+            "Wednesday":[[0900,1200]],
+            "Thursday":[[1200,1600]],
+            "Friday":[[0900,1200],[1400,1600]],
+            "Saturday":[[0900,1200]],
+            "Sunday":[]
+          }
+        </textarea>
+      </div>
+      <div *ngIf="angForm.controls['workhrs'].invalid && (angForm.controls['workhrs'].dirty)" class="alert alert-danger">
+        Required field.
+      </div>
+
+
+
+
+
+
+      <div class="col-md-4">
+        <button (click)="add(objadd)" type="submit" class="btn btn-primary"
+          [disabled]="angForm.pristine || angForm.invalid">
+          Submit
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+<!--#####################################################################################################
+                                           LIST
+    ################################################################################################  -->
+
+<!-- ############# Edit Modal ##############-->
+<div class="modal" id="editform" >
+  <div class="modal-dialog" >
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h5>Edit </h5>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body" >
+        <!-- ############# Edit  ##########  -->
+        <div class="card">
+          <div class="card-body">
+            <form [formGroup]="angForm" novalidate>
+              <!-- #####  Name ###### -->
+              <div>
+                <div>
+                  <select name="title" placeholder="Title" id="title" [(ngModel)]="objedit.title" class="form-control" formControlName="title">
+                    <option selected value="Dr.">Dr.</option>
+                    <option value="Mr.">Mr.</option>
+                    <option value="Ms.">Ms.</option>
+                  </select>
+
+                </div>
+                <div>
+                <input placeholder="Full Name" type="text" class="form-control" formControlName="name" [(ngModel)]="objedit.name" />
+              </div>
+              <div
+                *ngIf="angForm.controls['name'].invalid && (angForm.controls['name'].dirty || angForm.controls['name'].touched)"
+                class="alert alert-danger">
+                Required field.
+              </div>
+              <!-- ############################ -->
+
+              <div>
+
+                <input placeholder="Specialization" type="text" class="form-control"
+                    formControlName="lab_category_id" [(ngModel)]="objedit.department_name"
+                    #lab_category_id list="LabCategorylist" />
+                <datalist id="LabCategorylist">
+                    <option *ngFor="let item of dept" [value]=item.id>
+                        {{item.name}}</option>
+                </datalist>
+            </div>
+            <div *ngIf="angForm.controls['lab_category_id'].invalid && (angForm.controls['lab_category_id'].dirty || angForm.controls['lab_category_id'].touched)"
+                class="alert alert-danger">
+                Required field.
+            </div>
+
+              </div>
+
+
+            <div>
+              <div>
+                <input placeholder="Qualification" type="text" class="form-control" formControlName="qualification"
+                  [(ngModel)]="objedit.qualification" />
+              </div>
+              <div
+                *ngIf="angForm.controls['qualification'].invalid && (angForm.controls['qualification'].dirty || angForm.controls['qualification'].touched)"
+                class="alert alert-danger">
+                Required field.
+              </div>
+
+              <div>
+                <input placeholder="Registration Body" type="text" class="form-control" formControlName="reg_body"
+                  [(ngModel)]="objedit.reg_body" #reg_body />
+              </div>
+              <div
+                *ngIf="angForm.controls['reg_body'].invalid && (angForm.controls['reg_body'].dirty || angForm.controls['reg_body'].touched)"
+                class="alert alert-danger">
+                Required field.
+              </div>
+
+
+              <div>
+                <input placeholder="Registration ID" type="text" class="form-control" formControlName="medical_id"
+                  [(ngModel)]="objedit.medical_id" #medical_id />
+              </div>
+              <div
+                *ngIf="angForm.controls['medical_id'].invalid && (angForm.controls['medical_id'].dirty || angForm.controls['medical_id'].touched)"
+                class="alert alert-danger">
+                Required field.
+              </div>
+            </div>
+        <div>
+              <div>
+                <input placeholder="Phone" type="text" class="form-control" formControlName="phone"
+                  [(ngModel)]="objedit.phone" />
+              </div>
+              <div
+                *ngIf="angForm.controls['phone'].invalid && (angForm.controls['phone'].dirty || angForm.controls['phone'].touched)"
+                class="alert alert-danger">
+                Required field.
+              </div>
+        </div>
+
+        <div>
+          <div>
+            <select name="access_type" placeholder="AccessType" id="access_type" [(ngModel)]="objedit.access_type" class="form-control" formControlName="access_type">
+              <option value=1>administrator</option>
+              <option value=2>consultant</option>
+            </select>
+          </div>
+          <div>
+            <input placeholder="Mail" type="text" class="form-control" formControlName="mail"
+              [(ngModel)]="objedit.mail" />
+          </div>
+          <div
+            *ngIf="angForm.controls['mail'].invalid && (angForm.controls['mail'].dirty || angForm.controls['mail'].touched)"
+            class="alert alert-danger">
+            Required field.
+          </div>
+
+        </div>
+
+        <div>
+              <div>
+                <textarea placeholder="Address" class="form-control" rows=4 cols="5" formControlName="address"
+                  [(ngModel)]="objedit.address"></textarea>
+              </div>
+              <div
+                *ngIf="angForm.controls['address'].invalid && (angForm.controls['address'].dirty || angForm.controls['address'].touched)"
+                class="alert alert-danger">
+                Required field.
+              </div>
+
+              <div>
+                <textarea placeholder="Experience" class="form-control" rows=4 cols="5" formControlName="records"
+                  [(ngModel)]="objedit.records"></textarea>
+              </div>
+              <div
+                *ngIf="angForm.controls['records'].invalid && (angForm.controls['records'].dirty || angForm.controls['records'].touched)"
+                class="alert alert-danger">
+                Required field.
+              </div>
+        </div>
+
+              <div>
+                <label>DOB</label>
+                <input placeholder="DOB" type="date" class="form-control" formControlName="dob" [(ngModel)]="objedit.dob" />
+              </div>
+              <div *ngIf="angForm.controls['dob'].invalid && (angForm.controls['dob'].dirty)" class="alert alert-danger">
+                Required field.
+              </div>
+
+
+              <div>
+                <label>Working Hours</label>
+                <input type="textarea" class="form-control" formControlName="workhrs" [(ngModel)]="objedit.workhrs" />
+              </div>
+              <div *ngIf="angForm.controls['workhrs'].invalid && (angForm.controls['dob'].dirty)" class="alert alert-danger">
+                Required field.
+              </div>
+
+              <input type="color" class="form-control" formControlName="colorcode" value="#ff0000">
+
+              <div>
+                <button (click)="update(objedit)" type="submit" class="btn btn-primary"
+                  [disabled]="angForm.pristine || angForm.invalid">
+                  Submit
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <!-- ########################################## -->
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+<!--######################-->
+
+<!-- #######################  LIST CONSULTANTS  ####################################### -->
+<!--  Table content  -->
+
+<div class="container-fluid" *ngIf="_router.url.includes('view')">
+  <!-- DataTales Example -->
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">Consultants
+        <button type="button" class="btn btn-primary" routerLink="/consultant/add">
+          Register
+        </button>
+      </h6>
+
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Specialization</th>
+              <th>Work Hours</th>
+              <th>Mail</th>
+              <th>Qualification</th>
+              <th>Registration Body</th>
+              <th>Registration ID</th>
+              <th>Phone</th>
+
+
+              <th>Address</th>
+              <th>Records</th>
+              <th>DOB</th>
+              <th>Access Type</th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of consultants; index as i">
+
+              <td>{{ i+1 }}</td>
+              <td>{{item.title}}{{ item.name }}</td>
+              <td>{{item.department_name}}</td>
+              <td>
+                <table class="table table-sm" style="font-size: 12px;">
+                <tr *ngFor="let obj of item.workhrsJson">
+                        <td>{{obj.day}}</td>
+                        <td>{{obj.time.shift1[0]}}-{{obj.time.shift1[1]}}</td>
+                        <td>{{obj.time.shift2[0]}}-{{obj.time.shift2[1]}}</td>
+                    </tr>
+                </table>
+        </td>
+              <td>{{item.mail}}</td>
+              <td>{{ item.qualification }}</td>
+              <td>{{ item.reg_body }}</td>
+              <td>{{ item.medical_id }}</td>
+              <td>{{ item.phone }}</td>
+
+                <td>{{ item.address }}</td>
+                <td>{{ item.records }}</td>
+                <td>{{ item.dob | date }}</td>
+                <td>{{ item.access_type}}</td>
+
+              <td>
+                <button (click)="updateview(item)" type="submit" class="btn btn-warning" data-toggle="modal"
+                  data-target="#editform"><i class="fa fa-edit"></i></button>
+              </td>
+              <td>
+                <button (click)="remove(item.id)" type="submit" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /.container-fluid -->

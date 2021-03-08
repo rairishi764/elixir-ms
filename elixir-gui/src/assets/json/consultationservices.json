@@ -1,0 +1,23 @@
+{
+    "forms":
+    {
+      "formname": "Consultation Services",
+      "attributes": [
+
+        {
+          "placeholder": "Consultation Service",
+          "type": "text",
+          "class": "form-control",
+          "formControlName": "name"
+        },
+        {
+          "placeholder": "Service Description",
+          "type": "text",
+          "class": "form-control",
+          "formControlName": "description"
+        }
+
+      ],
+      "submiturl": "localhost:3002/consultationservice/"
+    }
+}

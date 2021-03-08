@@ -1,0 +1,115 @@
+
+<mat-tab-group mat-align-tabs="center" class="col-lg-6">
+  <mat-tab label="" >
+    <div class="card m-3">
+      <h5 class="card-header">Simple message</h5>
+      <div class="card-body">
+          <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+            <div class="form-row">
+              <div class="form-group col">
+                  <label>Carrier</label>
+                  <select formControlName="carrier" class="form-control">
+                    <option selected value="sms">SMS</option>
+                    <option value="whatsapp">WhatsApp</option>
+                  </select>
+              </div>
+          </div>
+
+            <div class="form-row">
+                  <div class="form-group col">
+                      <label>Phone No(To)</label>
+                      <input type="text" formControlName="phone" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.phone.errors }" />
+                      <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
+                          <div *ngIf="f.phone.errors.required">Phone Number is required</div>
+                      </div>
+                  </div>
+
+              </div>
+              <div class="form-group col">
+                  <label>Message</label>
+                  <textarea rows="4" cols="50" formControlName="message" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.message.errors }"></textarea>
+                  <div *ngIf="submitted && f.message.errors" class="invalid-feedback">
+                      <div *ngIf="f.message.errors.required">message is required</div>
+                      <div *ngIf="f.message.errors.message">message must be a valid message address</div>
+                  </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col">
+                    <label>Media url</label>
+                    <input type="text" formControlName="mediaurl" class="form-control" />
+                </div>
+              </div>
+              <!--<div class="form-row">
+                  <div class="form-group col">
+                      <label>Password</label>
+                      <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                      <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                          <div *ngIf="f.password.errors.required">Password is required</div>
+                          <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+                      </div>
+                  </div>
+              </div>-->
+
+              <div class="text-center">
+                  <button class="btn btn-primary mr-1">Send</button>
+                  <button class="btn btn-secondary" type="reset" (click)="onReset()">Cancel</button>
+              </div>
+          </form>
+      </div>
+  </div>
+  </mat-tab>
+  <!--
+  <mat-tab label="Whatsapp Message">
+    <div class="card m-3">
+      <h5 class="card-header">Simple Whatsapp message</h5>
+      <div class="card-body">
+          <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+            <div class="form-row">
+              <div class="form-group col">
+                  <label>Carrier</label>
+                  <select formControlName="Carrier" class="form-control">
+                    <option selected value="sms">SMS</option>
+                    <option value="whatsapp">WhatsApp</option>
+                  </select>
+              </div>
+          </div>
+
+            <div class="form-row">
+                  <div class="form-group col">
+                      <label>Phone No(To)</label>
+                      <input type="text" formControlName="phone" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.phone.errors }" />
+                      <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
+                          <div *ngIf="f.phone.errors.required">Phone is required</div>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col">
+                    <label>Media url</label>
+                    <input type="text" formControlName="mediaurl" class="form-control" />
+                </div>
+              </div>
+
+              <div class="form-group col">
+                  <label>Message</label>
+                  <textarea rows="4" cols="50" formControlName="message" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.message.errors }"></textarea>
+                  <div *ngIf="submitted && f.message.errors" class="invalid-feedback">
+                      <div *ngIf="f.message.errors.required">Message is required</div>
+                      <div *ngIf="f.message.errors.message">message must be a valid message address</div>
+                  </div>
+              </div>
+
+
+              <div class="text-center">
+                  <button class="btn btn-primary mr-1">Send</button>
+                  <button class="btn btn-secondary" type="reset" (click)="onReset()">Cancel</button>
+              </div>
+          </form>
+      </div>
+  </div>
+  </mat-tab>-->
+</mat-tab-group>
+

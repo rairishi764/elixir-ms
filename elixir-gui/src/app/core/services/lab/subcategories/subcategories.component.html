@@ -1,0 +1,182 @@
+<!--#####################################################################################################
+                                                 LIST
+          ################################################################################################  -->
+<!-- ############# Add Modal ##############-->
+<div class="modal" id="addform">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h5>Add </h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <!-- ############# Add  ##########  -->
+                <div class="card">
+                    <div class="card-body">
+                        <form [formGroup]="angForm" novalidate>
+                            <!-- #####  Name ###### -->
+                            <div class="form-group">
+
+                                <input placeholder="LabCategoryId" type="text" class="form-control"
+                                    formControlName="lab_category_id" [(ngModel)]="objadd.lab_category_id"
+                                    #lab_category_id list="LabCategorylist" />
+                                <datalist id="LabCategorylist">
+                                    <option *ngFor="let item of categorieslist" [value]=item.lab_category_id>
+                                        {{item.lab_category_name}}</option>
+                                </datalist>
+                            </div>
+                            <div *ngIf="angForm.controls['lab_category_id'].invalid && (angForm.controls['lab_category_id'].dirty || angForm.controls['lab_category_id'].touched)"
+                                class="alert alert-danger">
+                                Required field.
+                            </div>
+
+                            <div class="form-group">
+
+                                <input placeholder="LabSubCategory" type="text" class="form-control"
+                                    formControlName="lab_sub_category_name" [(ngModel)]="objadd.lab_sub_category_name"
+                                    #lab_sub_category_name />
+
+                            </div>
+                            <div *ngIf="angForm.controls['lab_sub_category_name'].invalid && (angForm.controls['lab_sub_category_name'].dirty || angForm.controls['lab_sub_category_name'].touched)"
+                                class="alert alert-danger">
+                                Required field.
+                            </div>
+
+                            <div class="form-group">
+                                <button (click)="add(objadd)" type="submit" class="btn btn-primary">
+                                    Submit
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- ########################################## -->
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!--######################-->
+
+<!-- ############# Edit Modal ##############-->
+<div class="modal" id="editform">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h5>Edit </h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <!-- ############# Edit  ##########  -->
+                <div class="card">
+                    <div class="card-body">
+                        <form [formGroup]="angForm" novalidate>
+                            <!-- #####  Name ###### -->
+                            <div class="form-group">
+
+                                <input placeholder="LabCategoryId" type="text" class="form-control"
+                                    formControlName="lab_category_id" [(ngModel)]="objedit.lab_category_id"
+                                    #lab_category_id list="LabCategorylist" />
+                                <datalist id="LabCategorylist">
+                                    <option *ngFor="let item of categorieslist" [value]=item.lab_category_id>
+                                        {{item.lab_category_name}}</option>
+                                </datalist>
+                            </div>
+                            <div *ngIf="angForm.controls['lab_category_id'].invalid && (angForm.controls['lab_category_id'].dirty || angForm.controls['lab_category_id'].touched)"
+                                class="alert alert-danger">
+                                Required field.
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <input placeholder="LabSubCategory" type="text" class="form-control"
+                                    formControlName="lab_sub_category_name" [(ngModel)]="objedit.lab_sub_category_name"
+                                    #lab_sub_category_name />
+
+                            </div>
+                            <div *ngIf="angForm.controls['lab_sub_category_name'].invalid && (angForm.controls['lab_sub_category_name'].dirty || angForm.controls['lab_sub_category_name'].touched)"
+                                class="alert alert-danger">
+                                Required field.
+                            </div>
+
+
+
+                            <div class="form-group">
+                                <button (click)="update(objedit)" type="submit" class="btn btn-primary">
+                                    Submit
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- ########################################## -->
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!--######################-->
+<!-- #######################  LIST CONSULTANTS  ####################################### -->
+<!--  Table content  -->
+<div class="container-fluid" *ngIf="_router.url.includes('view')">
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Category
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addform">
+                    Register
+                </button>
+            </h6>
+
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Lab Sub Category</th>
+                            <th>Lab Category</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of objlist; index as i">
+
+                            <td>{{ i+1 }}</td>
+                            <td>{{ item.lab_sub_category_name }}</td>
+                            <td>{{ item.lab_category_name }}</td>
+                            <td>
+                                <button (click)="updateview(item)" type="submit" class="btn btn-warning" data-toggle="modal"
+                                  data-target="#editform"><i class="fa fa-edit"></i></button>
+                              </td>
+                              <td>
+                                <button (click)="remove(item.id)" type="submit" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>
+                              </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /.container-fluid -->

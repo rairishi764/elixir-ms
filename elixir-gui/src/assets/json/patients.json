@@ -1,0 +1,70 @@
+{
+    "forms":
+    {
+      "formname": "patients",
+      "attributes": [
+        {
+          "placeholder": "Title",
+          "type": "dropdown",
+          "class": "form-control",
+          "formControlName": "title",
+          "ngModel": "objadd.title",
+          "list": "title",
+          "dropdownval": ["dr.","ms.","mr."]
+        },
+        {
+          "placeholder": "Full Name",
+          "type": "text",
+          "class": "form-control",
+          "formControlName": "name",
+          "ngModel": "objadd.name"
+        },
+        {
+          "placeholder": "Gender",
+          "type": "dropdown",
+          "class": "form-control",
+          "formControlName": "gender",
+          "ngModel": "objadd.gender",
+          "list": "gender",
+          "dropdownval": ["Male","Female"]
+        },
+        {
+          "placeholder": "DOB",
+          "type": "date",
+          "class": "form-control",
+          "formControlName": "dob",
+          "ngModel": "objadd.dob"
+        },
+        {
+          "placeholder": "Phone",
+          "type": "number",
+          "class": "form-control",
+          "formControlName": "phone",
+          "ngModel": "objadd.phone"
+        },
+        {
+          "placeholder": "Marital Status",
+          "type": "dropdown",
+          "class": "form-control",
+          "formControlName": "marital_status",
+          "ngModel": "objadd.marital_status",
+          "dropdownval": ["Married","Unmarried","Divorced"]
+        },
+        {
+          "placeholder": "Address",
+          "type": "text",
+          "class": "form-control",
+          "formControlName": "address",
+          "ngModel": "objadd.address"
+        },
+        {
+          "placeholder": "Medical History",
+          "type": "text",
+          "class": "form-control",
+          "formControlName": "medical_history",
+          "ngModel": "objadd.medical_history"
+        }
+      ],
+      "submiturl": "localhost:3002/labcategory/"
+    }
+}
