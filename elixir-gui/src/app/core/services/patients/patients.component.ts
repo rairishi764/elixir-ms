@@ -72,10 +72,12 @@ export class PatientsComponent implements OnInit {
   add(obj) {
     var add = true
     for(let obj1 of this.patients){
+        if(obj1.dob!=null){
         if(obj1.dob.toString().substring(0,10)==obj.dob && obj1.gender==obj.gender&&(obj1.phone==obj.phone||obj1.mail==obj.mail)){
           if (confirm("The Patient seems to exist with name:"+obj1.name+", Contact No:"+obj1.phone+". Do u still want to add the user?") == true) {
             add= false
           }
+        }
         }
     }
     if (add){
