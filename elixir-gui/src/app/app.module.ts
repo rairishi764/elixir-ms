@@ -16,7 +16,6 @@ import { TestsComponent } from './core/services/lab/tests/tests.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ConsultantsService } from './core/services/consultants/consultants.service';
-import { AuthenticationComponent } from './core/authentication/authentication.component';
 import { DataTablesModule } from 'angular-datatables';
 import { PartnersComponent } from './core/services/lab/partners/partners.component';
 import { DashboardComponent } from './core/dashboard/dashboard.component';
@@ -79,7 +78,6 @@ providers: [ ConsultantsService ]
     CategoriesComponent,
     SubCategoriesComponent,
     TestsComponent,
-    AuthenticationComponent,
     PartnersComponent,
     DashboardComponent,
     LabinvoiceComponent,

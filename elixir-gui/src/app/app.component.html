@@ -212,9 +212,9 @@
     <div id="content">
 
       <app-topbar></app-topbar>
-      Welcome Customer, Your dashboard is coming soon.
+    <div *ngIf="!isHomeRoute()">Welcome Customer, Your dashboard is coming soon.</div>
       <router-outlet class="overflow-auto" *ngIf="isHomeRoute()"></router-outlet>
-      <app-dashboard class="overflow-auto" *ngIf="isHomeRoute()"></app-dashboard>
+      <app-dashboard class="overflow-auto" *ngIf="isHomeRoute()&&router.url=='/'"></app-dashboard>
       </div>
   </div>
 

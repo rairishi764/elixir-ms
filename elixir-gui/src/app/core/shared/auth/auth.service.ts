@@ -72,12 +72,11 @@ export class AuthService {
 
     loginDbSync(user){
       var notfound = true;
-
       this.employeeService.listAll().subscribe((data: Employees[]) => {
         this.employees = data;
         for(let obj of this.employees){
-          //alert("Employee Check:"+obj.mail+" "+user.email)
           if(obj.mail==user.email){
+            alert("Employee matched:"+obj.mail+" "+user.email+obj.access_type)
             user.role=obj.access_type;
             notfound = false
           }
@@ -88,17 +87,16 @@ export class AuthService {
         this.consultantService.listAll().subscribe((data: Consultants[]) => {
         this.consultants = data;
         for(let obj of this.consultants){
-          //alert("Consultant Check:"+obj.mail+" "+user.email)
+          //alert("Consultant matched:"+obj.mail+" "+user.email)
           if(obj.mail==user.email){
+            alert("Consultant matched:"+obj.access_type)
             user.role=obj.access_type;
             notfound=false;
           }
         }
       });
       }
-      //alert("XXX:"+notfound)
       if(notfound){
-        //alert("Adding patient")
       this.patientService.listAll().subscribe((data: Patients[]) => {
       this.patients = data;
       for (let obj of this.patients){
@@ -116,7 +114,6 @@ export class AuthService {
         }
      });
     }
-
      return user
     }
 
