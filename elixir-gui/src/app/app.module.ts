@@ -6,6 +6,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 //Lab components
+
 import { PatientsComponent } from './core/services/patients/patients.component';
 import { ConsultantsComponent } from './core/services/consultants/consultants.component';
 import { CategoriesComponent } from './core/services/lab/categories/categories.component';

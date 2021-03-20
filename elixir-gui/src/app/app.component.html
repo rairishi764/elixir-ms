@@ -4,12 +4,11 @@
 <app-log-in *ngIf="!authService.user as data"></app-log-in>
 <body id="page-top" *ngIf="!authService.user as data">
 -->
-<app-log-in *ngIf="!authService.user as data"></app-log-in>
 <body id="page-top" *ngIf="!!authService.user as data">
 
   <div class="wrapper d-flex align-items-stretch">
 
-    <nav id="sidebar" class="p-4 pt-3" style="background-color: #222;
+    <nav *ngIf="isHomeRoute()" id="sidebar" class="p-4 pt-3" style="background-color: #222;
     background: url(https://s3.amazonaws.com/creativetim_bucket/dashboard_static_images/sidebar.jpg);
     box-shadow:inset 0 0 10px #000000;">
       <a href="#" class="logo">ELIXIR</a>
@@ -213,10 +212,12 @@
     <div id="content">
 
       <app-topbar></app-topbar>
-
-      <router-outlet class="overflow-auto" *ngIf="!isHomeRoute()"></router-outlet>
+      Welcome Customer, Your dashboard is coming soon.
+      <router-outlet class="overflow-auto" *ngIf="isHomeRoute()"></router-outlet>
       <app-dashboard class="overflow-auto" *ngIf="isHomeRoute()"></app-dashboard>
       </div>
   </div>
 
 </body>
+
+<app-log-in *ngIf="!authService.user as data"></app-log-in>

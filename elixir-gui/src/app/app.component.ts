@@ -15,7 +15,13 @@ export class AppComponent {
   title = 'elixir-gui';
   constructor(public router : Router,public authService: AuthService){}
   isHomeRoute() {
-    if(this.authService.user.uid!='')
-    return this.router.url === '/';
+    //alert(this.authService.user.role)
+    if(this.authService.user.uid!=''&&(this.authService.user.role==1||this.authService.user.role==2||this.authService.user.role==3))
+    {
+    //return this.router.url === '/';
+    return true
+  }
+  else
+    return false
   }
 }
