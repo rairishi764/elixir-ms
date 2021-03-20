@@ -89,7 +89,6 @@ export class AuthService {
         for(let obj of this.consultants){
           //alert("Consultant matched:"+obj.mail+" "+user.email)
           if(obj.mail==user.email){
-            alert("Consultant matched:"+obj.access_type)
             user.role=obj.access_type;
             notfound=false;
           }
