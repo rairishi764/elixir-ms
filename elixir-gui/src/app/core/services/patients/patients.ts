@@ -13,4 +13,5 @@ export default class Patients {
     id:number;
     age:number;
     mail: string;
+    access_type:number;
   }

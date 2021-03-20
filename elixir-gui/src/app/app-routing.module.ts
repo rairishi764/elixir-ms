@@ -16,6 +16,7 @@ import { ConsultationinvoiceComponent } from './core/services/consultationinvoic
 import { AnalyticsComponent } from './core/services/analytics/analytics.component';
 import { MessagesComponent } from './core/services/messages/messages.component';
 import { CertificatesComponent } from './core/services/certificates/certificates.component'
+import { DashboardComponent } from './core/dashboard/dashboard.component';
 const routes: Routes = [
   {
     path: 'patient/add',
@@ -153,6 +154,10 @@ const routes: Routes = [
   {
     path : 'certificates/letterhead',
     component: CertificatesComponent
+  },
+  {
+    path : 'dashboard',
+    component: DashboardComponent
   }
 
 ];

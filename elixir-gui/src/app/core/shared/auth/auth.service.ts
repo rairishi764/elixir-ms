@@ -101,7 +101,7 @@ export class AuthService {
       this.patients = data;
       for (let obj of this.patients){
         if(user.email==obj.mail){
-          user.role=4;
+          user.role=obj.access_type;
           notfound = false
         }
       }

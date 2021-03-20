@@ -15,7 +15,7 @@
       <div id="accordion">
         <ul class="list-unstyled components mb-5">
           <li>
-            <a href="index.html">Dashboard</a>
+            <a routerLink="dashboard">Dashboard</a>
           </li>
 
 
@@ -210,7 +210,6 @@
 
       <!-- Page Content  -->
     <div id="content">
-
       <app-topbar></app-topbar>
     <div *ngIf="!isHomeRoute()">Welcome Customer, Your dashboard is coming soon.</div>
       <router-outlet class="overflow-auto" *ngIf="isHomeRoute()"></router-outlet>
