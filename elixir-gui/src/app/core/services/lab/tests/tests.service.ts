@@ -14,7 +14,7 @@ export class TestsService {
     this.http.post(`${this.uri}`+"labtest",obj)
     .subscribe(suc => {
       alert("Successfully added.");
-      window.location.reload();
+
   },
   err => {
      alert("Error in adding.");
@@ -29,7 +29,7 @@ export class TestsService {
     this.http.delete(`${this.uri}`+"labtest/"+id)
         .subscribe(suc => {
           alert("Successfully deleted.");
-          window.location.reload();
+
       },
       err => {
          alert("Error in deleting.");
@@ -39,7 +39,7 @@ export class TestsService {
   update(obj){
     this.http.put(`${this.uri}`+"labtest/"+obj.id,obj).subscribe(suc => {
       alert("Successfully updated.");
-      window.location.reload();
+
   },
   err => {
      alert("Error in updating.");

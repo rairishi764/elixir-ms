@@ -12,7 +12,7 @@ export class PartnersService {
     this.http.post(`${this.uri}partner/`,obj)
     .subscribe(suc => {
       alert("Successfully added.");
-      window.location.reload();
+
   },
   err => {
      alert("Error in adding.");
@@ -35,7 +35,7 @@ export class PartnersService {
     this.http.delete(`${this.uri}partner/`+id)
         .subscribe(suc => {
           alert("Successfully deleted.");
-          window.location.reload();
+
       },
       err => {
          alert("Error in deleting.");
@@ -46,7 +46,7 @@ export class PartnersService {
     this.http.delete(`${this.uri}partnerservice/`+id)
     .subscribe(suc => {
       alert("Successfully deleted.");
-      window.location.reload();
+
   },
   err => {
      alert("Error in deleting.");
@@ -56,7 +56,7 @@ export class PartnersService {
   update(obj){
     this.http.put(`${this.uri}partner/`+obj.id,obj).subscribe(suc => {
       alert("Successfully updated.");
-      window.location.reload();
+
   },
   err => {
      alert("Error in updating.");
@@ -66,7 +66,7 @@ export class PartnersService {
   updateserv(obj){
     this.http.put(`${this.uri}partnerservice/`+obj.id,obj).subscribe(suc => {
       alert("Successfully updated.");
-      window.location.reload();
+
   },
   err => {
      alert("Error in updating.");
@@ -82,7 +82,7 @@ export class PartnersService {
         this.http.post(`${this.uri}partnerservice/`,object)
         .subscribe(suc => {
           alert("Service Successfully updated.");
-          window.location.reload();
+
       },
       err => {
          alert("Error in adding.");

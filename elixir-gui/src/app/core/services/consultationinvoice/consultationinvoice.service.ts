@@ -17,7 +17,7 @@ export class ConsultationinvoiceService {
     this.http.delete(`${this.uri}consultationinvoice/`+id)
         .subscribe(suc => {
           alert("Successfully deleted.");
-          window.location.reload();
+
       },
       err => {
          alert("Error in deleting.");
@@ -28,7 +28,7 @@ export class ConsultationinvoiceService {
     //alert(JSON.stringify(obj));
     this.http.put(`${this.uri}consultationinvoice/`+obj.id,obj).subscribe(suc => {
       alert("Successfully updated.");
-      window.location.reload();
+
   },
   err => {
      alert("Error in updating.");

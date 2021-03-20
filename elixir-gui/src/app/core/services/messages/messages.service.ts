@@ -14,7 +14,7 @@ export class MessagesService {
     this.http.post(`${this.uri}/sms`,obj)
     .subscribe(suc => {
       alert("Successfully added.");
-      window.location.reload();
+
   },
   err => {
      alert("Error in sending.");
@@ -26,7 +26,7 @@ export class MessagesService {
     this.http.post(`${this.uri}/whatsapp`,obj)
     .subscribe(suc => {
       alert("Successfully added.");
-      window.location.reload();
+
   },
   err => {
      alert("Error in sending.");
@@ -39,7 +39,7 @@ export class MessagesService {
     this.http.post(`${this.uri}/whatsappwithmedia`,obj)
     .subscribe(suc => {
       alert("Successfully added.");
-      window.location.reload();
+
   },
   err => {
      alert("Error in sending.");

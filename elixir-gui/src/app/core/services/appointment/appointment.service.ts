@@ -13,7 +13,7 @@ export class AppointmentService {
     this.http.post(`${this.uri}appointment/`,obj)
     .subscribe(suc => {
       alert("Successfully added.");
-      window.location.reload();
+
   },
   err => {
      alert("Error in adding.");
@@ -29,7 +29,7 @@ export class AppointmentService {
     this.http.delete(`${this.uri}appointment/`+id)
         .subscribe(suc => {
           alert("Successfully deleted.");
-          window.location.reload();
+
       },
       err => {
          alert("Error in deleting.");
@@ -40,7 +40,7 @@ export class AppointmentService {
   update(obj){
     this.http.put(`${this.uri}appointment/`+obj.id,obj).subscribe(suc => {
       alert("Successfully updated.");
-      window.location.reload();
+
   },
   err => {
      alert("Error in updating.");

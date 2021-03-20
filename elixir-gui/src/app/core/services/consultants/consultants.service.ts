@@ -14,7 +14,7 @@ export class ConsultantsService {
     this.http.post(`${this.uri}consultant/`,obj)
     .subscribe(suc => {
       alert("Successfully added.");
-      window.location.reload();
+
   },
   err => {
      alert("Error in adding.");
@@ -30,7 +30,7 @@ export class ConsultantsService {
     this.http.delete(`${this.uri}consultant/`+id)
         .subscribe(suc => {
           alert("Successfully deleted.");
-          window.location.reload();
+
       },
       err => {
          alert("Error in deleting.");
@@ -41,7 +41,7 @@ export class ConsultantsService {
   update(obj){
     this.http.put(`${this.uri}consultant/`+obj.id,obj).subscribe(suc => {
       alert("Successfully updated.");
-      window.location.reload();
+
   },
   err => {
      alert("Error in updating.");

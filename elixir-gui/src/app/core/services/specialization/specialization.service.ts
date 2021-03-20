@@ -12,7 +12,7 @@ export class SpecializationService {
     this.http.post(`${this.uri}`,obj)
     .subscribe(suc => {
       alert("Successfully added.");
-      window.location.reload();
+
   },
   err => {
      alert("Error in adding.");
@@ -27,7 +27,7 @@ export class SpecializationService {
     this.http.delete(`${this.uri}`+id)
         .subscribe(suc => {
           alert("Successfully deleted.");
-          window.location.reload();
+
       },
       err => {
          alert("Error in deleting.");
@@ -37,7 +37,7 @@ export class SpecializationService {
   update(obj){
     this.http.put(`${this.uri}`+obj.id,obj).subscribe(suc => {
       alert("Successfully updated.");
-      window.location.reload();
+
   },
   err => {
      alert("Error in updating.");
