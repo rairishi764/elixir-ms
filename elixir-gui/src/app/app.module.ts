@@ -30,7 +30,6 @@ import {NgxPrintModule} from 'ngx-print';
 import { TestingComponent } from './core/services/testing/testing.component';
 import { SpecializationComponent } from './core/services/specialization/specialization.component';
 import { ConsultationservicesComponent } from './core/services/consultationservices/consultationservices.component';
-import { AuthGoogleComponent } from './core/auth-google/auth-google.component';
 import { environment } from './../environments/environment';
 import { ConsultationinvoiceComponent } from './core/services/consultationinvoice/consultationinvoice.component';
 import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
@@ -88,7 +87,6 @@ providers: [ ConsultantsService ]
     TestingComponent,
     SpecializationComponent,
     ConsultationservicesComponent,
-    AuthGoogleComponent,
     ConsultationinvoiceComponent,
     AnalyticsComponent,
     MessagesComponent,
