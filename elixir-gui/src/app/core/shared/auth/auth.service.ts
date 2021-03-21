@@ -76,9 +76,10 @@ export class AuthService {
         this.employees = data;
         for(let obj of this.employees){
           if(obj.mail==user.email){
-            alert("Employee matched:"+obj.mail+" "+user.email+obj.access_type)
+            //alert("Employee matched:"+obj.mail+" "+user.email+obj.access_type)
             user.role=obj.access_type;
             notfound = false
+            return user
           }
         }
         });
@@ -91,6 +92,7 @@ export class AuthService {
           if(obj.mail==user.email){
             user.role=obj.access_type;
             notfound=false;
+            return user
           }
         }
       });
@@ -110,6 +112,7 @@ export class AuthService {
           this.newPatient['access_type'] = 4;
           user.role = 4;
           this.patientService.add(this.newPatient)
+          return user
         }
      });
     }

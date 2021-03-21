@@ -104,15 +104,6 @@
     Required field.
   </div>
 
-  <div class="col-md-4">
-    <input placeholder="Default Password" type="text" class="form-control" formControlName="pwd"
-      [(ngModel)]="objadd.pwd" />
-  </div>
-  <div
-    *ngIf="angForm.controls['pwd'].invalid && (angForm.controls['pwd'].dirty || angForm.controls['pwd'].touched)"
-    class="alert alert-danger">
-    Required field.
-  </div>
 </div>
 
 <div class="form-group row">
@@ -287,10 +278,8 @@
 
         <div>
           <div>
-            <select name="access_type" placeholder="AccessType" id="access_type" [(ngModel)]="objedit.access_type" class="form-control" formControlName="access_type">
-              <option value=1>administrator</option>
-              <option value=2>consultant</option>
-            </select>
+            <input name="access_type" type="text" placeholder="AccessType" id="access_type"
+            [(ngModel)]="objedit.access_type" class="form-control" formControlName="access_type"/>
           </div>
           <div>
             <input placeholder="Mail" type="text" class="form-control" formControlName="mail"
@@ -328,7 +317,7 @@
 
               <div>
                 <label>DOB</label>
-                <input placeholder="DOB" type="date" class="form-control" formControlName="dob" [(ngModel)]="objedit.dob" />
+                <input placeholder="DOB" type="text" class="form-control" formControlName="dob" [(ngModel)]="objedit.dob" />
               </div>
               <div *ngIf="angForm.controls['dob'].invalid && (angForm.controls['dob'].dirty)" class="alert alert-danger">
                 Required field.
@@ -343,7 +332,7 @@
                 Required field.
               </div>
 
-              <input type="color" class="form-control" formControlName="colorcode" value="#ff0000">
+              <input type="text" class="form-control" formControlName="colorcode" [(ngModel)]="objedit.colorcode">
 
               <div>
                 <button (click)="update(objedit)" type="submit" class="btn btn-primary"

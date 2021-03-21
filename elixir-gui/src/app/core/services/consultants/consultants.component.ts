@@ -93,6 +93,12 @@ export class ConsultantsComponent implements OnInit {
   }
 
   update(obj){
+    for(let dep of this.dept){
+      if(dep.name==obj.department_name){
+      obj.department_id = dep.id;
+    }
+    }
+    alert(JSON.stringify(obj))
     this.service.update(obj)
 
   }
