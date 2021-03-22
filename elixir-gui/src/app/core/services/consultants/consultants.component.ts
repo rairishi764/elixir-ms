@@ -84,12 +84,14 @@ export class ConsultantsComponent implements OnInit {
   }
 
   add(obj) {
-    alert(JSON.stringify(obj));
+    //alert(JSON.stringify(obj));
     this.service.add(obj);
+    this.ngOnInit();
   }
 
   updateview(obj){
     this.objedit=obj;
+    this.ngOnInit();
   }
 
   update(obj){
@@ -98,9 +100,9 @@ export class ConsultantsComponent implements OnInit {
       obj.department_id = dep.id;
     }
     }
-    alert(JSON.stringify(obj))
+    //alert(JSON.stringify(obj))
     this.service.update(obj)
-
+    this.ngOnInit();
   }
 
   remove(id){

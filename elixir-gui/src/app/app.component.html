@@ -4,7 +4,7 @@
 <app-log-in *ngIf="!authService.user as data"></app-log-in>
 <body id="page-top" *ngIf="!authService.user as data">
 -->
-<body id="page-top" *ngIf="!!authService.user as data">
+<body id="page-top" *ngIf="authService.user as data">
 
   <div class="wrapper d-flex align-items-stretch">
 

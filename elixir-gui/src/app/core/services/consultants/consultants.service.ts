@@ -9,8 +9,8 @@ export class ConsultantsService {
   uri = environment.deployment.labApi;
   constructor(private http: HttpClient) { }
   add(obj) {
-    console.log(obj);
-    alert(JSON.stringify(obj))
+    //console.log(obj);
+    //alert(JSON.stringify(obj))
     this.http.post(`${this.uri}consultant/`,obj)
     .subscribe(suc => {
       alert("Successfully added.");

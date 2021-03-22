@@ -10,7 +10,8 @@
           <select name="title" placeholder="Title" id="title" [(ngModel)]="objadd.title" class="form-control" formControlName="title">
             <option selected value="Dr.">Dr.</option>
             <option value="Mr.">Mr.</option>
-            <option value="Ms.">Ms.</option>
+            <option value="Ms.">Miss.</option>
+            <option value="Mrs.">Mrs.</option>
           </select>
 
         </div>
@@ -103,7 +104,6 @@
     class="alert alert-danger">
     Required field.
   </div>
-
 </div>
 
 <div class="form-group row">
@@ -155,6 +155,7 @@
             "Sunday":[]
           }
         </textarea>
+
       </div>
       <div *ngIf="angForm.controls['workhrs'].invalid && (angForm.controls['workhrs'].dirty)" class="alert alert-danger">
         Required field.

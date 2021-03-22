@@ -108,7 +108,7 @@
 
 
 
-<div class="container-fluid" *ngIf="_router.url.includes('view')">
+<div class="container-fluid" *ngIf="router.url.includes('view')">
   <!-- DataTales Example -->
   <div class="card shadow mb-4">
     <div class="card-header py-3">
@@ -162,7 +162,7 @@
 </div>
 
 
-
+<div id="appointment" *ngIf="router.url.includes('calendar')">
 <div class="row text-center">
   <div class="col-md-4">
     <div class="btn-group">
@@ -266,6 +266,7 @@
   </button>
   <div class="clearfix"></div>
 </h3>
+</div>
 <!--
 <div class="table-responsive">
   <table class="table table-bordered">
